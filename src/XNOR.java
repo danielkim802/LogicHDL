@@ -6,11 +6,12 @@ public class XNOR extends Gate {
         super(num, id);
     }
     public boolean evaluate() throws GateEvaluationError {
+        checkEvaluated();
         Component[] ins = getInputs();
         boolean acc = false;
         int count = 0;
         for (int i = 0; i < ins.length; i ++) {
-            if (ins[i].getValue()) {
+            if (ins[i].getValue(0)) {
                 count ++;
             }
         }

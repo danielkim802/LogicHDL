@@ -5,24 +5,20 @@
 abstract class Component {
     private Component[] inputs;
     private boolean evaluated;
-    private boolean value;
     private int id;
 
+    // constructor
     public Component(int ID) {
         id = ID;
         evaluated = false;
-        value = false;
     }
 
     // getters and setters
     public boolean isEvaluated() {
         return evaluated;
     }
-    public void setValue(boolean val) {
-        value = val;
-    }
-    public boolean getValue() {
-        return value;
+    public void setEvaluated(boolean val) {
+        evaluated = val;
     }
     public int getID() {
         return id;
@@ -37,10 +33,22 @@ abstract class Component {
         inputs[index] = val;
     }
 
+    // checks if all parents are evaluated
+    public boolean checkEvaluated() {
+        boolean acc = true;
+        for (int i = 0; i < inputs.length; i ++) {
+            acc &= inputs[i].isEvaluated();
+        }
+        return acc;
+    }
+
     // connects current component to another one
     abstract void connect(Component input, int inputnum) throws ComponentConnectionError;
 
     // evaluates current gate
     abstract boolean evaluate() throws ComponentEvaluationError;
+
+    // gets value of the component
+    abstract boolean getValue(int out);
 }
 

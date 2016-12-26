@@ -6,10 +6,11 @@ public class NOR extends Gate {
         super(num, id);
     }
     public boolean evaluate() throws GateEvaluationError {
+        checkEvaluated();
         Component[] ins = getInputs();
         boolean acc = true;
         for (int i = 0; i < ins.length; i ++) {
-            acc = ins[i].getValue() || acc;
+            acc = ins[i].getValue(0) || acc;
         }
         setValue(!acc);
         return !acc;
