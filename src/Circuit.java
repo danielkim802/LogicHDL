@@ -29,12 +29,19 @@ public class Circuit {
             case "OR":
                 add = new OR(inputs, nextID);
             case "NOT":
+                add = new NOT(nextID);
             case "NOR":
+                add = new NOR(inputs, nextID);
             case "XOR":
+                add = new XOR(inputs, nextID);
             case "XNOR":
+                add = new XNOR(inputs, nextID);
             case "NAND":
-            default:
+                add = new NAND(inputs, nextID);
         }
+        nextID ++;
+        gates.add(add);
+        return nextID-1;
     }
 
     // connects two gates together given two ids
