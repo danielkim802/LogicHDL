@@ -6,7 +6,7 @@ public class NOR extends Gate {
         super(num, id);
     }
     public boolean evaluate() throws GateEvaluationError {
-        Gate[] ins = getInputs();
+        Component[] ins = getInputs();
         boolean acc = true;
         for (int i = 0; i < ins.length; i ++) {
             acc = ins[i].getValue() || acc;

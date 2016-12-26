@@ -1,47 +1,20 @@
 /**
  * Created by danielkim802 on 12/25/16.
  */
-abstract class Gate {
-    private Gate[] inputs;
-    private boolean evaluated;
-    private boolean value;
-    private int id;
-
+abstract class Gate extends Component {
     // constructor
     public Gate(int inputlength, int ID) {
-        inputs = new Gate[inputlength];
-        evaluated = false;
-        value = false;
-        id = ID;
-    }
-
-    // getters and setters
-    public int getID() {
-        return id;
-    }
-    public Gate[] getInputs() {
-        return inputs;
-    }
-    public boolean isEvaluated() {
-        return evaluated;
-    }
-    public void setValue(boolean val) {
-        value = val;
-    }
-    public boolean getValue() {
-        return value;
+        super(ID);
+        setInputs(new Component[inputlength]);
     }
 
     // connects a gate to this gate with the specified input number
-    public void connect(Gate in, int inputnum) throws GateInputError {
+    public void connect(Component in, int inputnum) throws GateInputError {
         try {
-            inputs[inputnum] = in;
+            setInput(in, inputnum);
         }
         catch (ArrayIndexOutOfBoundsException e) {
-            throw new GateInputError("Tried connecting to an invalid input: Gate " + id);
+            throw new GateInputError("Tried connecting gate to an invalid input: Gate " + getID());
         }
     }
-
-    // evaluates current gate
-    abstract boolean evaluate() throws GateEvaluationError;
 }

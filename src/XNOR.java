@@ -6,7 +6,7 @@ public class XNOR extends Gate {
         super(num, id);
     }
     public boolean evaluate() throws GateEvaluationError {
-        Gate[] ins = getInputs();
+        Component[] ins = getInputs();
         boolean acc = false;
         int count = 0;
         for (int i = 0; i < ins.length; i ++) {

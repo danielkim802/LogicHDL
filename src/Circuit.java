@@ -6,14 +6,14 @@ import java.util.List;
  */
 public class Circuit {
     // list of all gates in the circuit
-    private List<Gate> gates;
+    private List<Component> gates;
 
     // next id to assign to the next gate
     private int nextID;
 
     // constructor
     public Circuit() {
-        gates = new ArrayList<Gate>();
+        gates = new ArrayList<Component>();
         nextID = 0;
     }
 
