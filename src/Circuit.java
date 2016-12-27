@@ -1,3 +1,5 @@
+import ComponentError.ComponentInvalidError;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,85 +8,58 @@ import java.util.List;
  */
 // front end for gate manipulation
 public class Circuit {
-    // list of all gates in the circuit
-    private List<Component> components;
-
-    // next id to assign to the next gate
-    private int nextID;
+    // list of all gate ids in the circuit
+    private List<Integer> components;
+    private ComponentHandler handler = ComponentHandler.getHandler();
+    private int nextHandle;
 
     // constructor
     public Circuit() {
-        components = new ArrayList<Component>();
-        nextID = 0;
-    }
-
-    // component id handlers
-    public boolean getValue(int i) {
-        return components.get(i).getValue(0);
+        components = new ArrayList<Integer>();
+        nextHandle = 0;
+        System.out.println(components.size());
     }
 
     // evaluates the circuit
     public void evaluate() {
-        for (int i = 0; i < components.size(); i ++) {
-
-            // check for unevaluated components and evaluate them
-            if (!components.get(i).isEvaluated()) {
-                Component current = components.get(i);
-                boolean finished = false;
-                while (!finished) {
-
-                }
-            }
-        }
     }
 
-    // creates a new gate and adds it to the circuit
-    public int addGate(String gate, int inputs) {
-        Gate add = null;
-        switch(gate) {
-            case "AND":
-                add = new AND(inputs, nextID);
-                break;
-            case "OR":
-                add = new OR(inputs, nextID);
-                break;
-            case "NOT":
-                add = new NOT(nextID);
-                break;
-            case "NOR":
-                add = new NOR(inputs, nextID);
-                break;
-            case "XOR":
-                add = new XOR(inputs, nextID);
-                break;
-            case "XNOR":
-                add = new XNOR(inputs, nextID);
-                break;
-            case "NAND":
-                add = new NAND(inputs, nextID);
-                break;
-        }
-        nextID ++;
-        components.add(add);
-        return nextID-1;
+    // generates a new handle
+    public int generateHandle() {
+        nextHandle ++;
+        return nextHandle-1;
     }
 
-    // creates a new input or output and adds to the circuit
-    public int addIO(String io, boolean val) {
-        Component add = null;
-        switch (io) {
-            case "IN":
-                add = new INPUT(val, nextID);
-            case "OUT":
-                add = new OUTPUT(nextID);
-        }
-        nextID ++;
-        components.add(add);
-        return nextID-1;
+    // adding components
+    public int addGate(String gate, int inputs) throws ComponentInvalidError {
+        components.add(handler.makeGate(gate, inputs));
+        return generateHandle();
+    }
+    public int addIN(boolean val) throws ComponentInvalidError {
+        components.add(handler.makeIO("IN", val));
+        return generateHandle();
+    }
+    public int addOUT() throws ComponentInvalidError {
+        components.add(handler.makeIO("OUT", false));
+        return generateHandle();
     }
 
-    // connects two gates together given two ids (comp1 -> comp2)
-    public void connect(int comp1, int comp2, int input) throws ComponentConnectionError {
-        components.get(comp2).connect(components.get(comp1), input);
+    // connects two components in the circuit together given their handles
+    public void connect(int handle1, int output, int handle2, int input) {
+        int id1 = handler.get(components.get(handle1)).getID();
+        int id2 = handler.get(components.get(handle2)).getID();
+        handler.connect(id1, output, id2, input);
+    }
+
+    // gets the component with the handle
+    public boolean getValue(int handle, int output) {
+        Component component = handler.get(components.get(handle));
+        if (component instanceof OUTPUT) {
+            return ((OUTPUT) component).getValue();
+        }
+        if (component instanceof INPUT) {
+            return ((INPUT) component).getValue();
+        }
+        return component.getValue(output);
     }
 }

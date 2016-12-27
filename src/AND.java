@@ -1,3 +1,5 @@
+import ComponentError.GateEvaluationError;
+
 /**
  * Created by danielkim802 on 12/25/16.
  */
@@ -6,11 +8,10 @@ public class AND extends Gate {
         super(num, id);
     }
     public boolean evaluate() throws GateEvaluationError {
-        checkEvaluated();
-        Component[] ins = getInputs();
+        checkEvaluated("Parents are not evaluated: AND "+getID());
         boolean acc = true;
-        for (int i = 0; i < ins.length; i ++) {
-            acc = ins[i].getValue(0) && acc;
+        for (int i = 0; i < getInputs().length; i ++) {
+            acc &= getInputValue(i);
         }
         setValue(acc);
         return acc;

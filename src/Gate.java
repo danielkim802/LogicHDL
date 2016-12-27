@@ -1,31 +1,30 @@
+import ComponentError.ComponentEvaluationError;
+import ComponentError.GateEvaluationError;
+
 /**
  * Created by danielkim802 on 12/25/16.
  */
 abstract class Gate extends Component {
-    private boolean value;
-
     // constructor
     public Gate(int inputlength, int ID) {
-        super(ID);
-        setInputs(new Component[inputlength]);
+        super(inputlength, 1, ID);
     }
 
-    // value setters and getters
+    // getters and setters
     public void setValue(boolean val) {
-        value = val;
-        setEvaluated(true);
+        setValue(val, 0);
     }
-    public boolean getValue(int out) {
-        return value;
+    public boolean getValue() {
+        return getValue(0);
     }
 
-    // connects a gate to this gate with the specified input number
-    public void connect(Component in, int inputnum) throws GateInputError {
+    // check evaluation override
+    public void checkEvaluated(String msg) throws GateEvaluationError {
         try {
-            setInput(in, inputnum);
+            super.checkEvaluated();
         }
-        catch (ArrayIndexOutOfBoundsException e) {
-            throw new GateInputError("Tried connecting gate to an invalid input: Gate " + getID());
+        catch (ComponentEvaluationError e) {
+            throw new GateEvaluationError(msg);
         }
     }
 }

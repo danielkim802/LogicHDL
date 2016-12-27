@@ -6,7 +6,10 @@ public class INPUT extends Gate {
         super(0, id);
         setValue(value);
     }
-    public boolean evaluate() throws GateEvaluationError {
+    public boolean getValue() {
+        return getValue(0);
+    }
+    public boolean evaluate() throws ComponentError.GateEvaluationError {
         return getValue(0);
     }
 }

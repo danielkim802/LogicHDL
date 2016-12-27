@@ -1,3 +1,5 @@
+import ComponentError.GateEvaluationError;
+
 /**
  * Created by danielkim802 on 12/25/16.
  */
@@ -6,17 +8,14 @@ public class XNOR extends Gate {
         super(num, id);
     }
     public boolean evaluate() throws GateEvaluationError {
-        checkEvaluated();
-        Component[] ins = getInputs();
-        boolean acc = false;
+        checkEvaluated("Parents are not evaluated: XNOR "+getID());
         int count = 0;
-        for (int i = 0; i < ins.length; i ++) {
-            if (ins[i].getValue(0)) {
+        for (int i = 0; i < getInputs().length; i ++) {
+            if (getInputValue(0)) {
                 count ++;
             }
         }
-        acc = count == 1;
-        setValue(!acc);
-        return !acc;
+        setValue(count != 1);
+        return count != 1;
     }
 }
