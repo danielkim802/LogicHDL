@@ -17,6 +17,7 @@ public class OUTPUT extends Gate {
     public boolean evaluate() throws GateEvaluationError {
         checkEvaluated("Parents are not evaluated: OUTPUT "+getID());
         value = getInputValue(0);
+        setEvaluated(true);
         return value;
     }
 }

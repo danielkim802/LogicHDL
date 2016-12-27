@@ -27,6 +27,23 @@ public class ComponentHandler {
         return nextID-1;
     }
 
+    // checks if parents are evaluated
+    public boolean parentsEvaluated(int id) {
+        Component current = components.get(id);
+        try {
+            current.checkEvaluated();
+            return true;
+        }
+        catch (ComponentEvaluationError e) {
+            return false;
+        }
+    }
+
+    // checks if a component is evaluated
+    public boolean isEvaluated(int id) {
+        return components.get(id).isEvaluated();
+    }
+
     // creates a gate and returns its id
     public int makeGate(String gate, int inputs) throws ComponentInvalidError {
         Gate newgate = null;
@@ -79,7 +96,7 @@ public class ComponentHandler {
     }
 
     // gets component given an ID
-    public Component get(int id) {
+    private Component get(int id) {
         return components.get(id);
     }
 
@@ -88,5 +105,50 @@ public class ComponentHandler {
         Wire wire = new Wire(id1, output, id2, input);
         get(id1).setOutput(wire, output);
         get(id2).setInput(wire, input);
+    }
+
+    // checks if a component is evaluated given an id
+    public boolean isComponentEvaluated(int id) {
+        return ComponentHandler.getHandler().get(id).isEvaluated();
+    }
+
+    // gets value of component
+    public boolean getValue(int id, int output) {
+        Component component = get(id);
+        if (component instanceof OUTPUT) {
+            return ((OUTPUT) component).getValue();
+        }
+        if (component instanceof INPUT) {
+            return ((INPUT) component).getValue();
+        }
+        return component.getValue(output);
+    }
+
+    // returns a list of ids of parents
+    public int[] getParents(int id) {
+        Component current = get(id);
+        Wire[] inputs = current.getInputs();
+        int len = inputs.length;
+        int[] parents = new int[len];
+        for (int i = 0; i < len; i ++) {
+            if (inputs[i] == null) {
+                parents[i] = -1;
+            }
+            else {
+                parents[i] = inputs[i].getOther(id);
+            }
+        }
+        return parents;
+    }
+
+    // evaluates component id
+    public void evaluate(int id) throws ComponentEvaluationError {
+        get(id).evaluate();
+    }
+
+    // clears all components
+    public void clear() {
+        components.clear();
+        nextID = 0;
     }
 }

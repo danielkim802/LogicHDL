@@ -11,10 +11,11 @@ public class XOR extends Gate {
         checkEvaluated("Parents are not evaluated: XOR "+getID());
         int count = 0;
         for (int i = 0; i < getInputs().length; i ++) {
-            if (getInputValue(0)) {
+            if (getInputValue(i)) {
                 count ++;
             }
         }
+        setEvaluated(true);
         setValue(count == 1);
         return count == 1;
     }

@@ -9,10 +9,11 @@ public class NOR extends Gate {
     }
     public boolean evaluate() throws GateEvaluationError {
         checkEvaluated("Parents are not evaluated: NOR "+getID());
-        boolean acc = true;
+        boolean acc = false;
         for (int i = 0; i < getInputs().length; i ++) {
             acc |= getInputValue(i);
         }
+        setEvaluated(true);
         setValue(!acc);
         return !acc;
     }

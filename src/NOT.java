@@ -11,6 +11,7 @@ public class NOT extends Gate {
     public boolean evaluate() throws GateEvaluationError {
         checkEvaluated("Parents are not evaluated: NOT "+getID());
         boolean val = !getInputValue(0);
+        setEvaluated(true);
         setValue(val);
         return val;
     }

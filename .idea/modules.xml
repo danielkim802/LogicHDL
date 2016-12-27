@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LogicHDL.iml" filepath="$PROJECT_DIR$/LogicHDL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LogicSim.iml" filepath="$PROJECT_DIR$/LogicSim.iml" />
     </modules>
   </component>
 </project>

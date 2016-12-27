@@ -15,6 +15,7 @@ public class XNOR extends Gate {
                 count ++;
             }
         }
+        setEvaluated(true);
         setValue(count != 1);
         return count != 1;
     }

@@ -1,3 +1,5 @@
+import ComponentError.ComponentEvaluationError;
+
 /**
  * Created by danielkim802 on 12/25/16.
  */
@@ -47,24 +49,25 @@ abstract class Component {
         outputs[output] = wire;
     }
 
-    // checks if a component is evaluated given an id
-    public boolean isComponentEvaluated(int id) {
-        return ComponentHandler.getHandler().get(id).isEvaluated();
-    }
-
     // gets value of connection
     public boolean getInputValue(int index) {
         ComponentHandler handler = ComponentHandler.getHandler();
         int other = inputs[index].getOther(id);
         int otherOutput = inputs[index].getOtherIndex(id);
-        return handler.get(other).getValue(otherOutput);
+        return handler.getValue(other, otherOutput);
     }
 
     // checks if all parents are evaluated
-    public void checkEvaluated() throws ComponentError.ComponentEvaluationError {
+    public void checkEvaluated() throws ComponentEvaluationError {
+        ComponentHandler handler = ComponentHandler.getHandler();
         boolean acc = true;
         for (int i = 0; i < inputs.length; i ++) {
-            acc &= isComponentEvaluated(inputs[i].getOther(id));
+            if (inputs[i] == null) {
+                acc = false;
+            }
+            else {
+                acc &= handler.isComponentEvaluated(inputs[i].getOther(id));
+            }
         }
         if (!acc) {
             throw new ComponentError.ComponentEvaluationError("Parents are not evaluated: Component "+getID());

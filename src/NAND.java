@@ -13,6 +13,7 @@ public class NAND extends Gate {
         for (int i = 0; i < getInputs().length; i ++) {
             acc &= getInputValue(i);
         }
+        setEvaluated(true);
         setValue(!acc);
         return !acc;
     }
