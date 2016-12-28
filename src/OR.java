@@ -10,9 +10,21 @@ public class OR extends Gate {
     public boolean evaluate() throws GateEvaluationError {
         checkEvaluated("Parents are not evaluated: OR "+getID());
         boolean acc = false;
+        boolean unassigned = false;
         for (int i = 0; i < getInputs().length; i ++) {
-            acc |= getInputValue(i);
+            if (isInputAssigned(i)) {
+                boolean inputval = getInputValue(i);
+                acc |= inputval;
+            }
+            else {
+                unassigned = true;
+            }
         }
+
+        if (unassigned && !acc) {
+            throw new GateEvaluationError("Output unspecified: OR "+getID());
+        }
+
         setEvaluated(true);
         setValue(acc);
         return acc;

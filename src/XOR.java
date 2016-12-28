@@ -10,11 +10,22 @@ public class XOR extends Gate {
     public boolean evaluate() throws GateEvaluationError {
         checkEvaluated("Parents are not evaluated: XOR "+getID());
         int count = 0;
+        boolean unassigned = false;
         for (int i = 0; i < getInputs().length; i ++) {
-            if (getInputValue(i)) {
-                count ++;
+            if (isInputAssigned(i)) {
+                if (getInputValue(i)) {
+                    count ++;
+                }
+            }
+            else {
+                unassigned = true;
             }
         }
+
+        if (unassigned) {
+            throw new GateEvaluationError("Output unspecified: XOR "+getID());
+        }
+
         setEvaluated(true);
         setValue(count == 1);
         return count == 1;

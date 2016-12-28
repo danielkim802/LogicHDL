@@ -57,24 +57,27 @@ abstract class Component {
         return handler.getValue(other, otherOutput);
     }
 
+    // checks if the input is assigned
+    public boolean isInputAssigned(int index) {
+        return inputs[index] != null;
+    }
+
     // checks if all parents are evaluated
+    // not assigned inputs are ignored
     public void checkEvaluated() throws ComponentEvaluationError {
         ComponentHandler handler = ComponentHandler.getHandler();
         boolean acc = true;
         for (int i = 0; i < inputs.length; i ++) {
-            if (inputs[i] == null) {
-                acc = false;
-            }
-            else {
+            if (inputs[i] != null) {
                 acc &= handler.isComponentEvaluated(inputs[i].getOther(id));
             }
         }
         if (!acc) {
-            throw new ComponentError.ComponentEvaluationError("Parents are not evaluated: Component "+getID());
+            throw new ComponentEvaluationError("Parents are not evaluated: Component "+getID());
         }
     }
 
     // evaluates current gate
-    abstract boolean evaluate() throws ComponentError.ComponentEvaluationError;
+    abstract boolean evaluate() throws ComponentEvaluationError;
 }
 
