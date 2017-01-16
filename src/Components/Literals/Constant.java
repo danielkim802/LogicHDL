@@ -25,6 +25,10 @@ public class Constant extends Component {
         connect("output", input, c);
     }
 
+    public Constant copy() {
+        return new Constant(value);
+    }
+
     public void propagate() {
         for (Wire wire : getOutputs().get("output")) {
             wire.set(value);

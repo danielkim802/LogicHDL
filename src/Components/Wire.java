@@ -14,6 +14,9 @@ public class Wire {
         connect = c;
     }
 
+    public Component getConnect() {
+        return connect;
+    }
     public void set(long val) {
         value = val;
         valid = true;

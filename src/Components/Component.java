@@ -25,5 +25,8 @@ public abstract class Component {
     public boolean allInputsValid() {
         return getInputs().values().stream().filter( a -> !a.isValid() ).toArray().length == 0;
     }
+
+    // copies component and everything below it
+    public abstract Component copy();
     public abstract void propagate();
 }

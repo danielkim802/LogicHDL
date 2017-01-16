@@ -17,6 +17,9 @@ public class Output extends Component {
     public long value() {
         return value;
     }
+    public Output copy() {
+        return new Output();
+    }
 
     public void propagate() {
         if (getInputs().get("input").isValid()) {

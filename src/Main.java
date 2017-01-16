@@ -50,7 +50,24 @@ public class Main {
         B.propagate();
         C.propagate();
 
-        System.out.println(S.value());
-        System.out.println(Co.value());
+        Constant A2 = new Constant(0);
+        Constant B2 = new Constant(0);
+        Constant C2 = new Constant(1);
+        Output S2 = new Output();
+        Output Co2 = new Output();
+
+        Circuit fulladder2 = fulladder.copy();
+        A2.connect("A", fulladder2);
+        B2.connect("B", fulladder2);
+        C2.connect("C", fulladder2);
+        fulladder2.connect("S", "input", S2);
+        fulladder2.connect("Co", "input", Co2);
+
+        A2.propagate();
+        B2.propagate();
+        C2.propagate();
+
+        System.out.println(S2.value());
+        System.out.println(Co2.value());
     }
 }

@@ -42,9 +42,54 @@ public class Circuit extends Component {
     public Output getOutput(String name) {
         return outputs.get(name);
     }
-    // TODO
     public Circuit copy() {
-        return new Circuit();
+        Circuit copy = new Circuit();
+        Map<Component, Component> map = new HashMap<>();
+
+        // copy over all parts of the circuit to the map
+        for (Constant input : inputs.values()) {map.put(input, input.copy());}
+        for (Output output : outputs.values()) {map.put(output, output.copy());}
+        for (Component component : components) {map.put(component, component.copy());}
+
+        // note: there is probably a way to simplify this mess
+
+        // connect everything together
+        for (Component original : map.keySet()) {
+
+            // copy over output connections from original -> copy
+            for (String key : original.getOutputs().keySet()) {
+
+                // copy over wires for a single output
+                List<Wire> connections = new ArrayList<>();
+                for (Wire wire : original.getOutputs().get(key)) {
+                    Wire wirecopy = new Wire(map.get(wire.getConnect()));
+                    connections.add(wirecopy);
+
+                    // copy wire to input of other component
+                    for (String keyother : wire.getConnect().getInputs().keySet()) {
+                        if (wire.getConnect().getInputs().get(keyother) == wire) {
+                            map.get(wire.getConnect()).getInputs().put(keyother, wirecopy);
+                        }
+                    }
+                }
+                map.get(original).getOutputs().put(key, connections);
+            }
+        }
+
+        // copy map to new circuit
+        for (String key : inputs.keySet()) {
+            copy.inputs.put(key, (Constant) map.get(inputs.get(key)));
+            copy.getInputs().put(key, new Wire());
+        }
+        for (String key : outputs.keySet()) {
+            copy.outputs.put(key, (Output) map.get(outputs.get(key)));
+            copy.getOutputs().put(key, new ArrayList<>());
+        }
+        for (Component component : components) {
+            copy.components.add(map.get(component));
+        }
+
+        return copy;
     }
 
     public void propagate() {

@@ -1,5 +1,6 @@
 package Components;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.OptionalLong;
 import java.util.function.LongBinaryOperator;
@@ -29,6 +30,24 @@ public abstract class Gate extends Component {
 
     public void connect(String input, Component c) {
         connect("output", input, c);
+    }
+
+    public Gate copy() {
+        try {
+            Gate copy;
+            if (getClass().getName() == "Not") {
+                copy = getClass().newInstance();
+            }
+            else {
+                copy = getClass().getConstructor(int.class).newInstance(getInputs().size());
+            }
+            copy.operator = operator;
+            copy.finaloperator = finaloperator;
+            return copy;
+        }
+        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            return null;
+        }
     }
 
     public void propagate() {
