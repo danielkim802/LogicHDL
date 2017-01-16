@@ -22,5 +22,8 @@ public abstract class Component {
         other.getInputs().put(input, wire);
         outputs.get(output).add(wire);
     }
+    public boolean allInputsValid() {
+        return getInputs().values().stream().filter( a -> !a.isValid() ).toArray().length == 0;
+    }
     public abstract void propagate();
 }

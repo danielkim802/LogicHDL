@@ -32,13 +32,12 @@ public abstract class Gate extends Component {
     }
 
     public void propagate() {
-        // check if all inputs are valid
-        if (getInputs().values().stream().filter( a -> !a.isValid() ).toArray().length == 0) {
+        if (allInputsValid()) {
 
             // map each input to a long |> apply operator to all values
             long result = getInputs().values().stream().mapToLong(a -> a.value() ).reduce( operator ).getAsLong();
 
-            // propogate result to outputs
+            // propagate result to outputs
             for (Wire wire : getOutputs().get("output")) {
                 wire.set(finaloperator.applyAsLong(result));
             }

@@ -1,12 +1,22 @@
+import Components.Circuit;
 import Components.Gates.*;
 import Components.Literals.*;
+
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
+        Circuit fulladder = new Circuit();
+        fulladder.addInput("A", 0);
+        fulladder.addInput("B", 0);
+        fulladder.addInput("C", 0);
+        fulladder.addOutput("S");
+        fulladder.addOutput("Co");
+
         Constant A = new Constant(0);
-        Constant B = new Constant(1);
-        Constant C = new Constant(1);
+        Constant B = new Constant(0);
+        Constant C = new Constant(0);
         Xor xor1 = new Xor();
         Xor xor2 = new Xor();
         And and1 = new And();
@@ -15,18 +25,26 @@ public class Main {
         Output S = new Output();
         Output Co = new Output();
 
-        A.connect("0", xor1);
-        A.connect("1", and2);
-        B.connect("1", xor1);
-        B.connect("0", and2);
-        C.connect("1", xor2);
-        C.connect("0", and1);
+        fulladder.getInput("A").connect("0", xor1);
+        fulladder.getInput("A").connect("1", and2);
+        fulladder.getInput("B").connect("1", xor1);
+        fulladder.getInput("B").connect("0", and2);
+        fulladder.getInput("C").connect("1", xor2);
+        fulladder.getInput("C").connect("0", and1);
         xor1.connect("0", xor2);
         xor1.connect("1", and1);
         and1.connect("0", or1);
         and2.connect("1", or1);
-        xor2.connect("input", S);
-        or1.connect("input", Co);
+        xor2.connect("input", fulladder.getOutput("S"));
+        or1.connect("input", fulladder.getOutput("Co"));
+
+        fulladder.setComponents(Arrays.asList(xor1, xor2, and1, and2, or1));
+
+        A.connect("A", fulladder);
+        B.connect("B", fulladder);
+        C.connect("C", fulladder);
+        fulladder.connect("S", "input", S);
+        fulladder.connect("Co", "input", Co);
 
         A.propagate();
         B.propagate();

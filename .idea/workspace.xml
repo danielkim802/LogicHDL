@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c48302-b0a5-4351-8bd5-f4250ec98bf6" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Components/Circuit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Component.java" afterPath="$PROJECT_DIR$/src/Components/Component.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Gate.java" afterPath="$PROJECT_DIR$/src/Components/Gate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Gates/Nand.java" afterPath="$PROJECT_DIR$/src/Components/Gates/Nand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Gates/Nor.java" afterPath="$PROJECT_DIR$/src/Components/Gates/Nor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Gates/Or.java" afterPath="$PROJECT_DIR$/src/Components/Gates/Or.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Gates/Xnor.java" afterPath="$PROJECT_DIR$/src/Components/Gates/Xnor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Gates/Xor.java" afterPath="$PROJECT_DIR$/src/Components/Gates/Xor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Literals/Constant.java" afterPath="$PROJECT_DIR$/src/Components/Literals/Constant.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="LogicHDL.iws" />
@@ -35,8 +32,42 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+            <state relative-caret-position="199">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Circuit.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Circuit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#590#591#0" expanded="true" />
+                <element signature="e#626#627#0" expanded="true" />
+                <element signature="e#681#682#0" expanded="true" />
+                <element signature="e#715#716#0" expanded="true" />
+                <element signature="e#1046#1047#0" expanded="true" />
+                <element signature="e#1085#1086#0" expanded="true" />
+                <element signature="e#1128#1129#0" expanded="true" />
+                <element signature="e#1168#1169#0" expanded="true" />
+                <element signature="e#1208#1209#0" expanded="true" />
+                <element signature="e#1244#1245#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Component.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,14 +78,15 @@
       <file leaf-file-name="Gate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Gate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+            <state relative-caret-position="304">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#625#626#0" expanded="true" />
                 <element signature="e#654#655#0" expanded="true" />
                 <element signature="e#705#706#0" expanded="true" />
                 <element signature="e#739#740#0" expanded="true" />
+                <element signature="e#793#794#0" expanded="true" />
                 <element signature="e#836#837#0" expanded="true" />
               </folding>
             </state>
@@ -151,7 +183,6 @@
         <option value="$PROJECT_DIR$/src/Circuit.java" />
         <option value="$PROJECT_DIR$/src/Components/Wire.java" />
         <option value="$PROJECT_DIR$/src/Components/Literals/Output.java" />
-        <option value="$PROJECT_DIR$/src/Components/Component.java" />
         <option value="$PROJECT_DIR$/src/Components/Gates/And.java" />
         <option value="$PROJECT_DIR$/src/Components/Gates/Nand.java" />
         <option value="$PROJECT_DIR$/src/Components/Gates/Nor.java" />
@@ -159,9 +190,11 @@
         <option value="$PROJECT_DIR$/src/Components/Gates/Or.java" />
         <option value="$PROJECT_DIR$/src/Components/Gates/Xnor.java" />
         <option value="$PROJECT_DIR$/src/Components/Gates/Xor.java" />
-        <option value="$PROJECT_DIR$/src/Components/Gate.java" />
         <option value="$PROJECT_DIR$/src/Components/Literals/Constant.java" />
+        <option value="$PROJECT_DIR$/src/Components/Component.java" />
+        <option value="$PROJECT_DIR$/src/Components/Gate.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Components/Circuit.java" />
       </list>
     </option>
   </component>
@@ -272,50 +305,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogicHDL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogicHDL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Literals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogicHDL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogicHDL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -789,12 +778,12 @@
       <workItem from="1480286478447" duration="314000" />
       <workItem from="1482717870920" duration="47561000" />
       <workItem from="1484469145871" duration="414000" />
-      <workItem from="1484469728823" duration="11205000" />
+      <workItem from="1484469728823" duration="14413000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59494000" />
+    <option name="totallyTimeSpent" value="62702000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="24" width="1400" height="833" extended-state="0" />
@@ -849,14 +838,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/InputHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Circuit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1141,16 +1122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="19" column="37" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Gates/And.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1243,15 +1214,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Gate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+        <state relative-caret-position="304">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#625#626#0" expanded="true" />
             <element signature="e#654#655#0" expanded="true" />
             <element signature="e#705#706#0" expanded="true" />
             <element signature="e#739#740#0" expanded="true" />
+            <element signature="e#793#794#0" expanded="true" />
             <element signature="e#836#837#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1270,10 +1252,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Circuit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#590#591#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#715#716#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+            <element signature="e#1168#1169#0" expanded="true" />
+            <element signature="e#1208#1209#0" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        <state relative-caret-position="199">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
