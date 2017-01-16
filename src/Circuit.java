@@ -1,6 +1,7 @@
 import ComponentError.ComponentEvaluationError;
 import ComponentError.ComponentInvalidError;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -118,5 +119,9 @@ public class Circuit {
     public void clear() {
         components.clear();
         nextHandle = 0;
+    }
+
+    public void render(Graphics2D g) {
+        components.forEach(component -> component.render());
     }
 }

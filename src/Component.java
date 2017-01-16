@@ -1,5 +1,7 @@
 import ComponentError.ComponentEvaluationError;
 
+import java.awt.*;
+
 /**
  * Created by danielkim802 on 12/25/16.
  */
@@ -79,5 +81,7 @@ abstract class Component {
 
     // evaluates current gate
     abstract boolean evaluate() throws ComponentEvaluationError;
+
+    abstract void render(Graphics2D g);
 }
 
