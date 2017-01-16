@@ -14,6 +14,8 @@ public abstract class Component extends Renderer {
     private Map<String, Wire> inputs = new HashMap<>();
     private Map<String, List<Wire>> outputs = new HashMap<>();
 
+    private boolean propagating = false;
+
     public Map<String, Wire> getInputs() {
         return inputs;
     }
@@ -27,6 +29,13 @@ public abstract class Component extends Renderer {
     }
     public boolean allInputsValid() {
         return getInputs().values().stream().filter( a -> !a.isValid() ).toArray().length == 0;
+    }
+
+    public void setPropagating(boolean val) {
+        propagating = val;
+    }
+    public boolean isPropagating() {
+        return propagating;
     }
 
     // copies component and everything below it

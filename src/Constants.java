@@ -12,4 +12,8 @@ public class Constants {
         // modules
         FULLADDER
     }
+
+    public enum Mode {
+        SELECT, PLACE
+    }
 }

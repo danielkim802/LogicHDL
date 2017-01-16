@@ -4,10 +4,8 @@ import Components.Literals.Constant;
 import Components.Literals.Output;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by danielkim802 on 1/16/17.
@@ -28,6 +26,19 @@ public class Circuit extends Component {
     }
     public void setComponents(List<Component> comps) {
         components = comps;
+    }
+    public List<Component> getComponents() {
+        List<Component> comps = new ArrayList<>();
+        for (Component c : components) {
+            comps.add(c);
+        }
+        for (Constant c : inputs.values()) {
+            comps.add(c);
+        }
+        for (Output c : outputs.values()) {
+            comps.add(c);
+        }
+        return comps;
     }
     public void addInput(String name, long value) {
         inputs.put(name, new Constant(value));
@@ -114,13 +125,7 @@ public class Circuit extends Component {
     }
 
     public void draw(Graphics2D g) {
-        for (Constant constant : inputs.values()) {
-            constant.draw(g);
-        }
-        for (Output output : outputs.values()) {
-            output.draw(g);
-        }
-        for (Component component : components) {
+        for (Component component : getComponents()) {
             component.draw(g);
         }
     }
