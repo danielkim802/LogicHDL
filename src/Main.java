@@ -1,40 +1,13 @@
 import Components.Circuit;
 import Components.Gates.*;
 import Components.Literals.*;
+import Components.Modules.Fulladder;
 
 import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
-        Circuit fulladder = new Circuit();
-        fulladder.addInput("A", 0);
-        fulladder.addInput("B", 0);
-        fulladder.addInput("C", 0);
-        fulladder.addOutput("S");
-        fulladder.addOutput("Co");
-
-        Xor xor1 = new Xor();
-        Xor xor2 = new Xor();
-        And and1 = new And();
-        And and2 = new And();
-        Or or1 = new Or();
-
-        fulladder.getInput("A").connect("0", xor1);
-        fulladder.getInput("A").connect("1", and2);
-        fulladder.getInput("B").connect("1", xor1);
-        fulladder.getInput("B").connect("0", and2);
-        fulladder.getInput("C").connect("1", xor2);
-        fulladder.getInput("C").connect("0", and1);
-        xor1.connect("0", xor2);
-        xor1.connect("1", and1);
-        and1.connect("0", or1);
-        and2.connect("1", or1);
-        xor2.connect("input", fulladder.getOutput("S"));
-        or1.connect("input", fulladder.getOutput("Co"));
-
-        fulladder.setComponents(Arrays.asList(xor1, xor2, and1, and2, or1));
-
         long[] A = {1,0,1,1};
         long[] B = {0,0,0,1};
 
@@ -53,10 +26,10 @@ public class Main {
         Output S3 = new Output();
         Output Co = new Output();
 
-        Circuit f0 = fulladder.copy();
-        Circuit f1 = fulladder.copy();
-        Circuit f2 = fulladder.copy();
-        Circuit f3 = fulladder.copy();
+        Fulladder f0 = new Fulladder();
+        Fulladder f1 = new Fulladder();
+        Fulladder f2 = new Fulladder();
+        Fulladder f3 = new Fulladder();
 
         A0.connect("A", f0);
         A1.connect("A", f1);
@@ -67,10 +40,10 @@ public class Main {
         B2.connect("B", f2);
         B3.connect("B", f3);
         C.connect("C", f0);
-        f0.connect("Co", "C", f1);
-        f1.connect("Co", "C", f2);
-        f2.connect("Co", "C", f3);
-        f3.connect("Co", "input", Co);
+        f0.connect("Cout", "C", f1);
+        f1.connect("Cout", "C", f2);
+        f2.connect("Cout", "C", f3);
+        f3.connect("Cout", "input", Co);
         f0.connect("S", "input", S0);
         f1.connect("S", "input", S1);
         f2.connect("S", "input", S2);

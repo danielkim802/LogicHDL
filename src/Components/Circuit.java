@@ -92,6 +92,12 @@ public class Circuit extends Component {
         return copy;
     }
 
+    public void propagateLocal() {
+        for (String name : inputs.keySet()) {
+            inputs.get(name).propagate();
+        }
+    }
+
     public void propagate() {
         if (allInputsValid()) {
             for (String name : inputs.keySet()) {
