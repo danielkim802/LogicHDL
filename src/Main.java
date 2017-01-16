@@ -1,15 +1,11 @@
-import Components.Circuit;
-import Components.Gates.*;
 import Components.Literals.*;
 import Components.Modules.Fulladder;
-
-import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
         long[] A = {1,0,1,1};
-        long[] B = {0,0,0,1};
+        long[] B = {1,0,0,1};
 
         Constant A0 = new Constant(A[3]);
         Constant A1 = new Constant(A[2]);
@@ -61,5 +57,6 @@ public class Main {
 
         System.out.println(""+S3.value()+S2.value()+S1.value()+S0.value());
         System.out.println(Co.value());
+        new View();
     }
 }

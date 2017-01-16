@@ -7,6 +7,7 @@ import Components.Gates.Or;
 import Components.Gates.Xor;
 import Components.Wire;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -72,4 +73,6 @@ public class Fulladder extends Component {
             }
         }
     }
+
+    public void draw(Graphics2D g) {}
 }

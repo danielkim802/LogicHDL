@@ -1,5 +1,8 @@
 package Components;
 
+import Render.Renderer;
+
+import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,7 +10,7 @@ import java.util.Map;
 /**
  * Created by danielkim802 on 1/16/17.
  */
-public abstract class Component {
+public abstract class Component extends Renderer {
     private Map<String, Wire> inputs = new HashMap<>();
     private Map<String, List<Wire>> outputs = new HashMap<>();
 

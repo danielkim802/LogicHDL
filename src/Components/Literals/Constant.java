@@ -3,6 +3,7 @@ package Components.Literals;
 import Components.Component;
 import Components.Wire;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -34,5 +35,7 @@ public class Constant extends Component {
             wire.set(value);
         }
     }
+
+    public void draw(Graphics2D g) {}
 
 }

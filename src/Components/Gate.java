@@ -1,5 +1,6 @@
 package Components;
 
+import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.OptionalLong;
@@ -54,12 +55,16 @@ public abstract class Gate extends Component {
         if (allInputsValid()) {
 
             // map each input to a long |> apply operator to all values
-            long result = getInputs().values().stream().mapToLong(a -> a.value() ).reduce( operator ).getAsLong();
+            long result = getInputs().values().stream().mapToLong( a -> a.value() ).reduce( operator ).getAsLong();
 
             // propagate result to outputs
             for (Wire wire : getOutputs().get("output")) {
                 wire.set(finaloperator.applyAsLong(result));
             }
         }
+    }
+
+    public void draw(Graphics2D g) {
+        g.drawRect(getX(), getY(), 30, 30);
     }
 }

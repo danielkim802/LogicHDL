@@ -3,6 +3,8 @@ package Components.Literals;
 import Components.Component;
 import Components.Wire;
 
+import java.awt.*;
+
 /**
  * Created by danielkim802 on 1/16/17.
  */
@@ -26,4 +28,6 @@ public class Output extends Component {
             value = getInputs().get("input").value();
         }
     }
+
+    public void draw(Graphics2D g) {}
 }

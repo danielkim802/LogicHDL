@@ -3,6 +3,7 @@ package Components;
 import Components.Literals.Constant;
 import Components.Literals.Output;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,6 +110,18 @@ public class Circuit extends Component {
                     wire.set(outputs.get(name).value());
                 }
             }
+        }
+    }
+
+    public void draw(Graphics2D g) {
+        for (Constant constant : inputs.values()) {
+            constant.draw(g);
+        }
+        for (Output output : outputs.values()) {
+            output.draw(g);
+        }
+        for (Component component : components) {
+            component.draw(g);
         }
     }
 }
