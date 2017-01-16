@@ -21,6 +21,10 @@ public class Constant extends Component {
         value = val;
     }
 
+    public void connect(String input, Component c) {
+        connect("output", input, c);
+    }
+
     public void propagate() {
         for (Wire wire : getOutputs().get("output")) {
             wire.set(value);

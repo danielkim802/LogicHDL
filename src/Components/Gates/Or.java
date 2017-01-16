@@ -13,4 +13,7 @@ public class Or extends Gate {
     public Or(int ins) {
         super(ins);
     }
+    public Or() {
+        super(2);
+    }
 }

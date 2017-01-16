@@ -14,4 +14,7 @@ public class Nand extends Gate {
     public Nand(int ins) {
         super(ins);
     }
+    public Nand() {
+        super(2);
+    }
 }

@@ -14,4 +14,7 @@ public class Xnor extends Gate {
     public Xnor(int ins) {
         super(ins);
     }
+    public Xnor() {
+        super(2);
+    }
 }

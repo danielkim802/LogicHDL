@@ -13,4 +13,7 @@ public class Xor extends Gate {
     public Xor(int ins) {
         super(ins);
     }
+    public Xor() {
+        super(2);
+    }
 }

@@ -14,4 +14,7 @@ public class Nor extends Gate {
     public Nor(int ins) {
         super(ins);
     }
+    public Nor() {
+        super(2);
+    }
 }

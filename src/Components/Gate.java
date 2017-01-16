@@ -27,6 +27,10 @@ public abstract class Gate extends Component {
         finaloperator = op;
     }
 
+    public void connect(String input, Component c) {
+        connect("output", input, c);
+    }
+
     public void propagate() {
         // check if all inputs are valid
         if (getInputs().values().stream().filter( a -> !a.isValid() ).toArray().length == 0) {
