@@ -31,9 +31,11 @@ public class Constant extends Component {
     }
 
     public void propagate() {
+        setPropagating(true);
         for (Wire wire : getOutputs().get("output")) {
             wire.set(value);
         }
+        setPropagating(false);
     }
 
     public void draw(Graphics2D g) {

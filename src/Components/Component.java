@@ -1,8 +1,7 @@
 package Components;
 
-import Render.Renderer;
+import Render.Drawable;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,7 @@ import java.util.Map;
 /**
  * Created by danielkim802 on 1/16/17.
  */
-public abstract class Component extends Renderer {
+public abstract class Component extends Drawable {
     private Map<String, Wire> inputs = new HashMap<>();
     private Map<String, List<Wire>> outputs = new HashMap<>();
 
@@ -23,7 +22,7 @@ public abstract class Component extends Renderer {
         return outputs;
     }
     public void connect(String output, String input, Component other) {
-        Wire wire = new Wire(other);
+        Wire wire = new Wire(this, other);
         other.getInputs().put(input, wire);
         outputs.get(output).add(wire);
     }

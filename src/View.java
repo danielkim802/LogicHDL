@@ -22,6 +22,8 @@ public class View extends JFrame implements MouseListener, KeyListener {
 
     {
         circuit.addInput("A", 0);
+        circuit.getInput("A").setX(150);
+        circuit.getInput("A").setY(150);
         circuit.addInput("B", 1);
         circuit.addOutput("C");
         And and1 = new And();
@@ -48,11 +50,17 @@ public class View extends JFrame implements MouseListener, KeyListener {
         addKeyListener(this);
 
         new Thread(this::loop).start();
+        new Thread(this::renderloop).start();
     }
 
     private void loop() {
         while (running) {
             circuit.propagateLocal();
+        }
+    }
+
+    private void renderloop() {
+        while (running) {
             draw();
         }
     }

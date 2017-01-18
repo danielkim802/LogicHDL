@@ -6,11 +6,13 @@ package Components;
 public class Wire {
     private long value;
     private boolean valid;
+    private Component from;
     private Component connect;
 
     public Wire() {}
-    public Wire(Component c) {
+    public Wire(Component f, Component c) {
         // component wire is pointing at
+        from = f;
         connect = c;
     }
 

@@ -54,7 +54,6 @@ public abstract class Gate extends Component {
     public void propagate() {
         if (allInputsValid()) {
             setPropagating(true);
-
             // map each input to a long |> apply operator to all values
             long result = getInputs().values().stream().mapToLong( a -> a.value() ).reduce( operator ).getAsLong();
 
@@ -62,7 +61,6 @@ public abstract class Gate extends Component {
             for (Wire wire : getOutputs().get("output")) {
                 wire.set(finaloperator.applyAsLong(result));
             }
-
             setPropagating(false);
         }
     }

@@ -24,9 +24,11 @@ public class Output extends Component {
     }
 
     public void propagate() {
-        if (getInputs().get("input").isValid()) {
+        setPropagating(true);
+        if (allInputsValid()) {
             value = getInputs().get("input").value();
         }
+        setPropagating(false);
     }
 
     public void draw(Graphics2D g) {

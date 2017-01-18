@@ -74,7 +74,7 @@ public class Circuit extends Component {
                 // copy over wires for a single output
                 List<Wire> connections = new ArrayList<>();
                 for (Wire wire : original.getOutputs().get(key)) {
-                    Wire wirecopy = new Wire(map.get(wire.getConnect()));
+                    Wire wirecopy = new Wire(map.get(original), map.get(wire.getConnect()));
                     connections.add(wirecopy);
 
                     // copy wire to input of other component
