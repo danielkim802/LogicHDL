@@ -39,6 +39,7 @@ public class Constant extends Component {
     }
 
     public void draw(Graphics2D g) {
+        drawWires(g);
         g.setColor(isPropagating() ? Color.red : Color.black);
         g.drawRect(getX(), getY(), 30, 30);
     }

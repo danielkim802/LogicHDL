@@ -58,7 +58,6 @@ public class Main {
 
         System.out.println(""+S3.value()+S2.value()+S1.value()+S0.value());
         System.out.println(Co.value());
-        ResourceLibrary r = ResourceLibrary.library();
         new View();
     }
 }

@@ -14,29 +14,22 @@ import java.util.*;
  * Created by danielkim802 on 1/17/17.
  */
 public class ResourceLibrary {
-    private Map<Class, List<BufferedImage>> library;
+    private static Map<Class, List<BufferedImage>> imageLibrary;
+    private static Map<String, List<BufferedImage>> accessoryLibrary;
     private static ResourceLibrary resourceLibrary = new ResourceLibrary();
 
-    public static ResourceLibrary library() {
-        return resourceLibrary;
-    }
+//    public static ResourceLibrary library() {
+//        return resourceLibrary;
+//    }
 
-    private ResourceLibrary() {
-        library = new HashMap<>();
+    private void loadImages() {
         List<Class> allClasses = Arrays.asList(
                 // gates
-                And.class,
-                Nand.class,
-                Nor.class,
-                Not.class,
-                Or.class,
-                Xnor.class,
-                Xor.class,
+                And.class, Nand.class, Nor.class, Not.class,
+                Or.class, Xnor.class, Xor.class,
 
                 // literals
-                Constant.class,
-                Joint.class,
-                Output.class,
+                Constant.class, Joint.class, Output.class,
 
                 // modules
                 Fulladder.class
@@ -45,10 +38,10 @@ public class ResourceLibrary {
         for (Class clazz : allClasses) {
             boolean done = false;
             int frame = 0;
-            library.put(clazz, new ArrayList<>());
+            imageLibrary.put(clazz, new ArrayList<>());
             while (!done) {
                 try {
-                    library.get(clazz).add(ImageIO.read(new File("src/Resources/"+clazz.getSimpleName()+"_"+frame+".png")));
+                    imageLibrary.get(clazz).add(ImageIO.read(new File("src/Resources/"+clazz.getSimpleName()+"_"+frame+".png")));
                     System.out.println("loaded image: " + "src/Resources/" + clazz.getSimpleName() + "_" + frame+".png");
                     frame ++;
                 }
@@ -57,5 +50,41 @@ public class ResourceLibrary {
                 }
             }
         }
+    }
+
+    private void loadAccessories() {
+        List<String> allAccessories = Arrays.asList(
+                "dot"
+        );
+
+        for (String accessory : allAccessories) {
+            boolean done = false;
+            int frame = 0;
+            accessoryLibrary.put(accessory, new ArrayList<>());
+            while (!done) {
+                try {
+                    accessoryLibrary.get(accessory).add(ImageIO.read(new File("src/Resources/Misc_"+accessory+"_"+frame+".png")));
+                    System.out.println("loaded accessory: " + "src/Resources/Misc_" + accessory + "_" + frame+".png");
+                    frame ++;
+                }
+                catch (IOException e) {
+                    done = true;
+                }
+            }
+        }
+    }
+
+    private ResourceLibrary() {
+        imageLibrary = new HashMap<>();
+        accessoryLibrary = new HashMap<>();
+        loadImages();
+        loadAccessories();
+    }
+
+    public static List<BufferedImage> getImages(Class clazz) {
+        return imageLibrary.get(clazz);
+    }
+    public static List<BufferedImage> getImages(String accessory) {
+        return accessoryLibrary.get(accessory);
     }
 }

@@ -1,7 +1,9 @@
 package Components;
 
 import Render.Drawable;
+import Render.ResourceLibrary;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,10 @@ public abstract class Component extends Drawable {
     private Map<String, List<Wire>> outputs = new HashMap<>();
 
     private boolean propagating = false;
+
+    public Component() {
+        setImages(ResourceLibrary.getImages(this.getClass()));
+    }
 
     public Map<String, Wire> getInputs() {
         return inputs;
@@ -35,6 +41,14 @@ public abstract class Component extends Drawable {
     }
     public boolean isPropagating() {
         return propagating;
+    }
+
+    public void drawWires(Graphics2D g) {
+        for (List<Wire> wires : outputs.values()) {
+            for (Wire wire : wires) {
+                wire.draw(g);
+            }
+        }
     }
 
     // copies component and everything below it

@@ -126,6 +126,8 @@ public class Circuit extends Component {
 
     public void draw(Graphics2D g) {
         for (Component component : getComponents()) {
+
+            // draw components
             component.draw(g);
         }
     }

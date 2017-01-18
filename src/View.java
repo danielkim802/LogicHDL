@@ -20,20 +20,20 @@ public class View extends JFrame implements MouseListener, KeyListener {
     Constants.Mode mode = Constants.Mode.PLACE;
     Component selected;
 
-    {
-        circuit.addInput("A", 0);
-        circuit.getInput("A").setX(150);
-        circuit.getInput("A").setY(150);
-        circuit.addInput("B", 1);
-        circuit.addOutput("C");
-        And and1 = new And();
-        circuit.addComponent(and1);
-        circuit.getInput("A").connect("0", and1);
-        circuit.getInput("B").connect("1", and1);
-        and1.connect("input", circuit.getOutput("C"));
-        and1.setX(200);
-        and1.setY(200);
-    }
+//    {
+//        circuit.addInput("A", 0);
+//        circuit.getInput("A").setX(150);
+//        circuit.getInput("A").setY(150);
+//        circuit.addInput("B", 1);
+//        circuit.addOutput("C");
+//        And and1 = new And();
+//        circuit.addComponent(and1);
+//        circuit.getInput("A").connect("0", and1);
+//        circuit.getInput("B").connect("1", and1);
+//        and1.connect("input", circuit.getOutput("C"));
+//        and1.setX(200);
+//        and1.setY(200);
+//    }
 
     private boolean running = true;
 
@@ -123,9 +123,10 @@ public class View extends JFrame implements MouseListener, KeyListener {
                     break;
             }
             System.out.println(a);
+            a.setXY(e.getX(), e.getY());
+            System.out.println(a.getX());
+            System.out.println(a.getY());
             circuit.addComponent(a);
-            a.setX(e.getX());
-            a.setY(e.getY());
         }
         else if (mode == Constants.Mode.SELECT) {
             for (Component component : circuit.getComponents()) {

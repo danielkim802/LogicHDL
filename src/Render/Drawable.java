@@ -9,8 +9,10 @@ import java.util.List;
  */
 public abstract class Drawable {
     private int x, y, x2, y2;
-    private int imageIndex;
+    private int imageIndex = 0;
     private List<BufferedImage> images;
+    private List<BufferedImage> accessories;
+    private int orientation = 0;
 
     private boolean selected = false;
 
@@ -36,6 +38,21 @@ public abstract class Drawable {
         y2 = ypos;
     }
 
+    public void setImages(List<BufferedImage> imgs) {
+        images = imgs;
+    }
+    public void setImageIndex(int index) {
+        imageIndex = index;
+    }
+    public BufferedImage getImage() {
+        if (images.size() > 0) {
+            return images.get(imageIndex);
+        }
+        else {
+            return null;
+        }
+    }
+
     public int getX() {
         return x;
     }
@@ -51,6 +68,11 @@ public abstract class Drawable {
 
     public void setSelected(boolean bool) {
         selected = bool;
+    }
+
+    public void placeDot(Graphics2D g, int state, int xpos, int ypos) {
+        BufferedImage dot = ResourceLibrary.getImages("dot").get(state);
+        g.drawImage(dot, null, xpos - dot.getWidth() / 2, ypos - dot.getHeight() / 2);
     }
 
     public abstract void draw(Graphics2D g);

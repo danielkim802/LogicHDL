@@ -1,9 +1,10 @@
 package Components;
 
+import Render.ResourceLibrary;
+
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.OptionalLong;
 import java.util.function.LongBinaryOperator;
 import java.util.function.LongUnaryOperator;
 
@@ -65,8 +66,26 @@ public abstract class Gate extends Component {
         }
     }
 
+    private void drawIODots(Graphics2D g) {
+        int height = getImage().getHeight();
+        int width = getImage().getWidth();
+        int inputs = getInputs().size();
+        int offset = 3;
+
+        // draw input dots
+        float spacing = height / (float) inputs;
+        for (int i = 0; i < inputs; i ++) {
+            placeDot(g, 0, getX() + offset, (int) (getY() + (i * spacing) + (spacing / 2.0)));
+        }
+
+        // draw output dot
+        placeDot(g, 0, getX() + width - offset, getY() + (height / 2));
+    }
+
     public void draw(Graphics2D g) {
-        g.setColor(isPropagating() ? Color.red : Color.black);
-        g.drawRect(getX(), getY(), 30, 30);
+        drawWires(g);
+        setImageIndex(isPropagating() ? 1 : 0);
+        g.drawImage(getImage(), null, getX(), getY());
+        drawIODots(g);
     }
 }
