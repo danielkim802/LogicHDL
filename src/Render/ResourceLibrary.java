@@ -48,9 +48,8 @@ public class ResourceLibrary {
             library.put(clazz, new ArrayList<>());
             while (!done) {
                 try {
-                    System.out.println("Components\\Resources\\" + clazz.getSimpleName() + "_" + frame+ ".png");
-                    library.get(clazz).add(ImageIO.read(new File(""+clazz.getSimpleName()+"_"+frame+".png")));
-                    System.out.println("loaded image: " + "Resources/" + clazz.getSimpleName() + "_" + frame+".png");
+                    library.get(clazz).add(ImageIO.read(new File("src/Resources/"+clazz.getSimpleName()+"_"+frame+".png")));
+                    System.out.println("loaded image: " + "src/Resources/" + clazz.getSimpleName() + "_" + frame+".png");
                     frame ++;
                 }
                 catch (IOException e) {
