@@ -20,12 +20,25 @@ public class View extends JFrame implements MouseListener, KeyListener {
     Constants.Mode mode = Constants.Mode.PLACE;
     Component selected;
 
+    {
+        circuit.addInput("A", 0);
+        circuit.addInput("B", 1);
+        circuit.addOutput("C");
+        And and1 = new And();
+        circuit.addComponent(and1);
+        circuit.getInput("A").connect("0", and1);
+        circuit.getInput("B").connect("1", and1);
+        and1.connect("input", circuit.getOutput("C"));
+        and1.setX(200);
+        and1.setY(200);
+    }
+
     private boolean running = true;
 
     public View() {
         setTitle("LogicSim");
         setSize(900, 600);
-        setLocationRelativeTo(null); /* Center the window */
+        setLocationRelativeTo(null);
         setUndecorated(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);

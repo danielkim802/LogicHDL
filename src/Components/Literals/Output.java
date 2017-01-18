@@ -29,5 +29,8 @@ public class Output extends Component {
         }
     }
 
-    public void draw(Graphics2D g) {}
+    public void draw(Graphics2D g) {
+        g.setColor(isPropagating() ? Color.red : Color.black);
+        g.drawRect(getX(), getY(), 30, 30);
+    }
 }
