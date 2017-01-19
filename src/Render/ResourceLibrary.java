@@ -1,5 +1,6 @@
 package Render;
 
+import Components.Dot;
 import Components.Gates.*;
 import Components.Literals.*;
 import Components.Modules.*;

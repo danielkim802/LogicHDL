@@ -2,6 +2,7 @@ package Components.Literals;
 
 import Components.Component;
 import Components.Wire;
+import Render.DrawHandler;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,9 +14,8 @@ public class Constant extends Component {
     private long value = 0;
 
     public Constant(long val) {
-        super();
+        super(0, 0);
         value = val;
-        getOutputs().put("output", new ArrayList<>());
     }
 
     public void set(long val) {
@@ -40,8 +40,15 @@ public class Constant extends Component {
 
     public void draw(Graphics2D g) {
         drawWires(g);
-        g.setColor(isPropagating() ? Color.red : Color.black);
-        g.drawRect(getX(), getY(), 30, 30);
+        setImageIndex(isPropagating() ? 1 : 0);
+        DrawHandler.drawImage(g, getImage(), getX(), getY());
+    }
+
+    public void updateDots() {
+        getOutputDots().get("output").setXY(getX() + (getImage().getWidth() / 2), getY());
+    }
+    public void setIO(int ins, int outs) {
+        getOutputs().put("output", new ArrayList<>());
     }
 
 }

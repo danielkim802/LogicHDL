@@ -11,18 +11,27 @@ public class Wire extends Drawable {
     private long value;
     private boolean valid;
     private Component from;
+    private Dot fromDot;
     private Component connect;
+    private Dot connectDot;
 
     public Wire() {}
-    public Wire(Component f, Component c) {
-        // component wire is pointing at
+    public Wire(Component f, Dot fdot, Component c, Dot cdot) {
         from = f;
+        fromDot = fdot;
         connect = c;
+        connectDot = cdot;
 
-        setXY(f.getX(), f.getY());
-        setXY2(c.getX(), c.getY());
+        setXY(fdot.getX(), fdot.getY());
+        setXY2(cdot.getX(), cdot.getY());
     }
 
+    public Dot getFromDot() {
+        return fromDot;
+    }
+    public Dot getConnectDot() {
+        return connectDot;
+    }
     public Component getConnect() {
         return connect;
     }
@@ -42,6 +51,7 @@ public class Wire extends Drawable {
     }
 
     public void draw(Graphics2D g) {
-        g.drawLine(getX(), getY(), getX2(), getY2());
+        g.drawLine(fromDot.getX(), fromDot.getY(), connectDot.getX(), connectDot.getY());
     }
+    public void updateDots() {}
 }

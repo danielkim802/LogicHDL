@@ -16,6 +16,7 @@ public class Circuit extends Component {
     private List<Component> components;
 
     public Circuit() {
+        super(0, 0);
         inputs = new HashMap<>();
         outputs = new HashMap<>();
         components = new ArrayList<>();
@@ -74,7 +75,7 @@ public class Circuit extends Component {
                 // copy over wires for a single output
                 List<Wire> connections = new ArrayList<>();
                 for (Wire wire : original.getOutputs().get(key)) {
-                    Wire wirecopy = new Wire(map.get(original), map.get(wire.getConnect()));
+                    Wire wirecopy = new Wire(map.get(original), wire.getFromDot(), map.get(wire.getConnect()), wire.getConnectDot());
                     connections.add(wirecopy);
 
                     // copy wire to input of other component
@@ -131,4 +132,6 @@ public class Circuit extends Component {
             component.draw(g);
         }
     }
+    public void updateDots() {}
+    public void setIO(int ins, int outs) {}
 }

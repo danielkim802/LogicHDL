@@ -13,9 +13,7 @@ public class Joint extends Component {
     private int outputs;
 
     public Joint() {
-        super();
-        getInputs().put("from", new Wire());
-        getOutputs().put("to", new ArrayList<>());
+        super(0, 0);
         outputs = 0;
     }
 
@@ -39,4 +37,9 @@ public class Joint extends Component {
     }
 
     public void draw(Graphics2D g) {}
+    public void updateDots() {}
+    public void setIO(int ins, int outs) {
+        getInputs().put("from", new Wire());
+        getOutputs().put("to", new ArrayList<>());
+    }
 }

@@ -18,11 +18,7 @@ public class Fulladder extends Component {
     private Circuit fulladder = new Circuit();
 
     public Fulladder() {
-        getInputs().put("A", new Wire());
-        getInputs().put("B", new Wire());
-        getInputs().put("C", new Wire());
-        getOutputs().put("S", new ArrayList<>());
-        getOutputs().put("Cout", new ArrayList<>());
+        super(0, 0);
 
         fulladder.addInput("A", 0);
         fulladder.addInput("B", 0);
@@ -75,4 +71,12 @@ public class Fulladder extends Component {
     }
 
     public void draw(Graphics2D g) {}
+    public void updateDots() {}
+    public void setIO(int ins, int outs) {
+        getInputs().put("A", new Wire());
+        getInputs().put("B", new Wire());
+        getInputs().put("C", new Wire());
+        getOutputs().put("S", new ArrayList<>());
+        getOutputs().put("Cout", new ArrayList<>());
+    }
 }

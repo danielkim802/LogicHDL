@@ -2,6 +2,7 @@ package Components.Literals;
 
 import Components.Component;
 import Components.Wire;
+import Render.DrawHandler;
 
 import java.awt.*;
 
@@ -12,8 +13,7 @@ public class Output extends Component {
     private long value;
 
     public Output() {
-        super();
-        getInputs().put("input", new Wire());
+        super(0, 0);
     }
 
     public long value() {
@@ -32,7 +32,13 @@ public class Output extends Component {
     }
 
     public void draw(Graphics2D g) {
-        g.setColor(isPropagating() ? Color.red : Color.black);
-        g.drawRect(getX(), getY(), 30, 30);
+        setImageIndex(isPropagating() ? 1 : 0);
+        DrawHandler.drawImage(g, getImage(), getX(), getY());
+    }
+    public void updateDots() {
+        getInputDots().get("input").setXY(getX() - (getImage().getWidth() / 2), getY());
+    }
+    public void setIO(int ins, int outs) {
+        getInputs().put("input", new Wire());
     }
 }

@@ -13,12 +13,27 @@ import java.util.Map;
  */
 public abstract class Component extends Drawable {
     private Map<String, Wire> inputs = new HashMap<>();
+    private Map<String, Dot> inputDots = new HashMap<>();
     private Map<String, List<Wire>> outputs = new HashMap<>();
-
+    private Map<String, Dot> outputDots = new HashMap<>();
     private boolean propagating = false;
 
-    public Component() {
+    public Component(int inputlen, int outputlen) {
         setImages(ResourceLibrary.getImages(this.getClass()));
+
+        // make inputs and outputs
+        setIO(inputlen, outputlen);
+
+        // make dots
+        for (String key : inputs.keySet()) {
+            inputDots.put(key, new Dot());
+        }
+        for (String key : outputs.keySet()) {
+            outputDots.put(key, new Dot());
+        }
+
+        // move dots to correct position
+        updateDots();
     }
 
     public Map<String, Wire> getInputs() {
@@ -27,8 +42,14 @@ public abstract class Component extends Drawable {
     public Map<String, List<Wire>> getOutputs() {
         return outputs;
     }
+    public Map<String, Dot> getInputDots() {
+        return inputDots;
+    }
+    public Map<String, Dot> getOutputDots() {
+        return outputDots;
+    }
     public void connect(String output, String input, Component other) {
-        Wire wire = new Wire(this, other);
+        Wire wire = new Wire(this, outputDots.get(output), other, other.inputDots.get(input));
         other.getInputs().put(input, wire);
         outputs.get(output).add(wire);
     }
@@ -54,4 +75,5 @@ public abstract class Component extends Drawable {
     // copies component and everything below it
     public abstract Component copy();
     public abstract void propagate();
+    public abstract void setIO(int ins, int outs);
 }

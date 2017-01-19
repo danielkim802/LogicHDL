@@ -20,20 +20,20 @@ public class View extends JFrame implements MouseListener, KeyListener {
     Constants.Mode mode = Constants.Mode.PLACE;
     Component selected;
 
-//    {
-//        circuit.addInput("A", 0);
-//        circuit.getInput("A").setX(150);
-//        circuit.getInput("A").setY(150);
-//        circuit.addInput("B", 1);
-//        circuit.addOutput("C");
-//        And and1 = new And();
-//        circuit.addComponent(and1);
-//        circuit.getInput("A").connect("0", and1);
-//        circuit.getInput("B").connect("1", and1);
-//        and1.connect("input", circuit.getOutput("C"));
-//        and1.setX(200);
-//        and1.setY(200);
-//    }
+    {
+        circuit.addInput("A", 0);
+        circuit.getInput("A").setXY(150, 280);
+        circuit.addInput("B", 1);
+        circuit.getInput("B").setXY(150, 320);
+        circuit.addOutput("C");
+        circuit.getOutput("C").setXY(400, 300);
+        And and1 = new And();
+        circuit.addComponent(and1);
+        circuit.getInput("A").connect("0", and1);
+        circuit.getInput("B").connect("1", and1);
+        and1.connect("input", circuit.getOutput("C"));
+        and1.setXY(300, 300);
+    }
 
     private boolean running = true;
 

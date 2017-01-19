@@ -1,6 +1,6 @@
 package Components;
 
-import Render.ResourceLibrary;
+import Render.DrawHandler;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
@@ -16,11 +16,7 @@ public abstract class Gate extends Component {
     private LongUnaryOperator finaloperator = a -> a;
 
     public Gate(int inputlen) {
-        super();
-        for (int i = 0; i < inputlen; i ++) {
-            getInputs().put(""+i, new Wire());
-        }
-        getOutputs().put("output", new ArrayList<Wire>());
+        super(inputlen, 0);
     }
 
     public void setOp(LongBinaryOperator op) {
@@ -66,26 +62,46 @@ public abstract class Gate extends Component {
         }
     }
 
-    private void drawIODots(Graphics2D g) {
-        int height = getImage().getHeight();
-        int width = getImage().getWidth();
-        int inputs = getInputs().size();
-        int offset = 3;
+    public void updateDots() {
+        try {
+            int height = getImage().getHeight();
+            int width = getImage().getWidth();
+            int inputs = getInputs().size();
+            int offset = 0;
+            int adjusty = height / 2;
+            int adjustx = width / 2;
+            int spacing = height / inputs;
 
-        // draw input dots
-        float spacing = height / (float) inputs;
-        for (int i = 0; i < inputs; i ++) {
-            placeDot(g, 0, getX() + offset, (int) (getY() + (i * spacing) + (spacing / 2.0)));
+            for (int i = 0; i < getInputDots().size(); i ++) {
+                getInputDots().get(""+i).setXY(getX() + offset - adjustx, getY() + (i * spacing) + (spacing / 2) - adjusty);
+            }
+
+            getOutputDots().get("output").setXY(getX() + width - offset - adjustx, getY() + (height / 2) - adjusty);
+        }
+        catch (NullPointerException e) {
+
         }
 
-        // draw output dot
-        placeDot(g, 0, getX() + width - offset, getY() + (height / 2));
+    }
+
+    public void setIO(int inputlen, int outputlen) {
+        for (int i = 0; i < inputlen; i ++) {
+            getInputs().put(""+i, new Wire());
+        }
+        getOutputs().put("output", new ArrayList<Wire>());
+    }
+
+    private void drawIODots(Graphics2D g) {
+        for (Dot dot : getInputDots().values()) {
+            dot.draw(g);
+        }
+        getOutputDots().get("output").draw(g);
     }
 
     public void draw(Graphics2D g) {
         drawWires(g);
         setImageIndex(isPropagating() ? 1 : 0);
-        g.drawImage(getImage(), null, getX(), getY());
+        DrawHandler.drawImage(g, getImage(), getX(), getY());
         drawIODots(g);
     }
 }
