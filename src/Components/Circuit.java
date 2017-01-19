@@ -25,7 +25,7 @@ public class Circuit extends Component {
     public void addComponent(Component comp) {
         components.add(comp);
     }
-    public void setComponents(List<Component> comps) {
+    public void setComponents(ArrayList<Component> comps) {
         components = comps;
     }
     public List<Component> getComponentList() {

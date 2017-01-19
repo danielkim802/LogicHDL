@@ -45,7 +45,9 @@ public class Fulladder extends Component {
         xor2.connect("input", fulladder.getOutput("S"));
         or1.connect("input", fulladder.getOutput("Cout"));
 
-        fulladder.setComponents(Arrays.asList(xor1, xor2, and1, and2, or1));
+        ArrayList<Component> comps = new ArrayList<>();
+        comps.addAll(Arrays.asList(xor1, xor2, and1, and2, or1));
+        fulladder.setComponents(comps);
     }
 
     public Fulladder copy() {

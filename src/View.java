@@ -13,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by danielkim802 on 1/16/17.
@@ -25,18 +27,58 @@ public class View extends JFrame implements MouseListener, KeyListener {
     Selectable selected;
 
     {
+//        circuit.addInput("A", 1);
+//        circuit.getInput("A").setXY(150, 280);
+//        circuit.addInput("B", 1);
+//        circuit.getInput("B").setXY(150, 320);
+//        circuit.addOutput("C");
+//        circuit.getOutput("C").setXY(400, 300);
+//        Or and1 = new Or();
+//        circuit.addComponent(and1);
+//        circuit.getInput("A").connect("0", and1);
+//        circuit.getInput("B").connect("1", and1);
+//        and1.connect("input", circuit.getOutput("C"));
+//        and1.setXY(300, 300);
+
         circuit.addInput("A", 1);
-        circuit.getInput("A").setXY(150, 280);
         circuit.addInput("B", 1);
-        circuit.getInput("B").setXY(150, 320);
-        circuit.addOutput("C");
-        circuit.getOutput("C").setXY(400, 300);
-        Or and1 = new Or();
-        circuit.addComponent(and1);
-        circuit.getInput("A").connect("0", and1);
-        circuit.getInput("B").connect("1", and1);
-        and1.connect("input", circuit.getOutput("C"));
-        and1.setXY(300, 300);
+        circuit.addInput("C", 1);
+        circuit.addOutput("S");
+        circuit.addOutput("Cout");
+
+        Xor xor1 = new Xor();
+        Xor xor2 = new Xor();
+        And and1 = new And();
+        And and2 = new And();
+        Or or1 = new Or();
+
+        circuit.getInput("A").connect("0", xor1);
+        circuit.getInput("A").connect("1", and2);
+        circuit.getInput("B").connect("1", xor1);
+        circuit.getInput("B").connect("0", and2);
+        circuit.getInput("C").connect("1", xor2);
+        circuit.getInput("C").connect("0", and1);
+        xor1.connect("0", xor2);
+        xor1.connect("1", and1);
+        and1.connect("0", or1);
+        and2.connect("1", or1);
+        xor2.connect("input", circuit.getOutput("S"));
+        or1.connect("input", circuit.getOutput("Cout"));
+
+        ArrayList<Component> comps = new ArrayList<>();
+        comps.addAll(Arrays.asList(xor1, xor2, and1, and2, or1));
+        circuit.setComponents(comps);
+
+        circuit.getInput("A").setXY(50, 50);
+        circuit.getInput("B").setXY(50, 100);
+        circuit.getInput("C").setXY(50, 150);
+        xor1.setXY(100, 70);
+        xor2.setXY(150, 70);
+        and1.setXY(200, 130);
+        and2.setXY(200, 180);
+        or1.setXY(250, 155);
+        circuit.getOutput("S").setXY(300, 70);
+        circuit.getOutput("Cout").setXY(300, 155);
     }
 
     private boolean running = true;
@@ -80,7 +122,7 @@ public class View extends JFrame implements MouseListener, KeyListener {
             case 54: component = Constants.Component.XOR; break;
             case 55: component = Constants.Component.CONSTANT; break;
             case 56: component = Constants.Component.OUTPUT; break;
-            case 57: mode = (mode == Constants.Mode.PLACE) ? Constants.Mode.SELECT : Constants.Mode.PLACE;
+            case 57: mode = (mode == Constants.Mode.PLACE) ? Constants.Mode.CLICK : Constants.Mode.PLACE;
         }
     }
     public void keyReleased(KeyEvent e) {}
@@ -144,7 +186,7 @@ public class View extends JFrame implements MouseListener, KeyListener {
     public void draw() {
         Graphics2D g = (Graphics2D) getBufferStrategy().getDrawGraphics();
         camera.scale(g, 2.0, 2.0);
-        camera.translate(g, -30, -100);
+//        camera.translate(g, -30, -100);
         circuit.draw(g);
 
         g.dispose();
