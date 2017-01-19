@@ -14,6 +14,6 @@ public class Constants {
     }
 
     public enum Mode {
-        SELECT, PLACE
+        SELECT, PLACE, CLICK
     }
 }

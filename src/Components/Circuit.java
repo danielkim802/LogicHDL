@@ -1,5 +1,6 @@
 package Components;
 
+import Actions.Selectable;
 import Components.Literals.Constant;
 import Components.Literals.Output;
 
@@ -52,9 +53,31 @@ public class Circuit extends Component {
     public Constant getInput(String name) {
         return inputs.get(name);
     }
+    public Map<String, Constant> getCircuitInputs() {
+        return inputs;
+    }
     public Output getOutput(String name) {
         return outputs.get(name);
     }
+    public Map<String, Output> getCircuitOutputs() {
+        return outputs;
+    }
+
+    public List<Component> getAllComponents() {
+        List<Component> all = new ArrayList<>();
+        all.addAll(inputs.values());
+        all.addAll(outputs.values());
+        all.addAll(components);
+        return all;
+    }
+    public List<Dot> getAllDots() {
+        List<Dot> all = new ArrayList<>();
+        for (Component component : getAllComponents()) {
+            all.addAll(component.getDots());
+        }
+        return all;
+    }
+
     public Circuit copy() {
         Circuit copy = new Circuit();
         Map<Component, Component> map = new HashMap<>();
@@ -106,8 +129,8 @@ public class Circuit extends Component {
     }
 
     public void propagateLocal() {
-        for (String name : inputs.keySet()) {
-            inputs.get(name).propagate();
+        for (Component component : getComponents()) {
+            component.propagate();
         }
     }
 
@@ -115,13 +138,13 @@ public class Circuit extends Component {
         if (allInputsValid()) {
             for (String name : inputs.keySet()) {
                 inputs.get(name).set(getInputs().get(name).value());
-                inputs.get(name).propagate();
             }
             for (String name : outputs.keySet()) {
                 for (Wire wire : getOutputs().get(name)) {
                     wire.set(outputs.get(name).value());
                 }
             }
+            propagateLocal();
         }
     }
 

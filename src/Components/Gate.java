@@ -50,7 +50,6 @@ public abstract class Gate extends Component {
 
     public void propagate() {
         if (allInputsValid()) {
-            setPropagating(true);
             // map each input to a long |> apply operator to all values
             long result = getInputs().values().stream().mapToLong( a -> a.value() ).reduce( operator ).getAsLong();
 
@@ -58,7 +57,6 @@ public abstract class Gate extends Component {
             for (Wire wire : getOutputs().get("output")) {
                 wire.set(finaloperator.applyAsLong(result));
             }
-            setPropagating(false);
         }
     }
 
@@ -78,30 +76,20 @@ public abstract class Gate extends Component {
 
             getOutputDots().get("output").setXY(getX() + width - offset - adjustx, getY() + (height / 2) - adjusty);
         }
-        catch (NullPointerException e) {
-
-        }
-
+        catch (NullPointerException e) {}
     }
 
     public void setIO(int inputlen, int outputlen) {
         for (int i = 0; i < inputlen; i ++) {
             getInputs().put(""+i, new Wire());
         }
-        getOutputs().put("output", new ArrayList<Wire>());
-    }
-
-    private void drawIODots(Graphics2D g) {
-        for (Dot dot : getInputDots().values()) {
-            dot.draw(g);
-        }
-        getOutputDots().get("output").draw(g);
+        getOutputs().put("output", new ArrayList<>());
     }
 
     public void draw(Graphics2D g) {
         drawWires(g);
-        setImageIndex(isPropagating() ? 1 : 0);
         DrawHandler.drawImage(g, getImage(), getX(), getY());
-        drawIODots(g);
+        drawDots(g);
+        drawSelected(g);
     }
 }

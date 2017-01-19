@@ -1,5 +1,7 @@
 package Render;
 
+import Actions.Selectable;
+
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -7,13 +9,13 @@ import java.util.List;
 /**
  * Created by danielkim802 on 1/16/17.
  */
-public abstract class Drawable {
+public abstract class Drawable extends Selectable {
     private int x, y, x2, y2;
     private int imageIndex = 0;
     private List<BufferedImage> images;
+    private int width;
+    private int height;
     private int orientation = 0;
-
-    private boolean selected = false;
 
     public void setX(int pos) {
         x = pos;
@@ -58,6 +60,11 @@ public abstract class Drawable {
         }
     }
 
+    public void setDimensions(int w, int h) {
+        width = w;
+        height = h;
+    }
+
     public int getX() {
         return x;
     }
@@ -70,9 +77,11 @@ public abstract class Drawable {
     public int getY2() {
         return y2;
     }
-
-    public void setSelected(boolean bool) {
-        selected = bool;
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
     }
 
     public abstract void draw(Graphics2D g);

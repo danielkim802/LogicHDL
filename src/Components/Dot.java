@@ -10,10 +10,14 @@ import java.awt.*;
  * Created by danielkim802 on 1/18/17.
  */
 public class Dot extends Drawable {
-    public Dot() {
+    private Component parent;
+
+    public Dot(Component p) {
+        parent = p;
         setImages(ResourceLibrary.getImages("dot"));
     }
-    public Dot(int xpos, int ypos) {
+    public Dot(Component p, int xpos, int ypos) {
+        parent = p;
         setXY(xpos, ypos);
         setImages(ResourceLibrary.getImages("dot"));
     }
@@ -23,4 +27,5 @@ public class Dot extends Drawable {
     }
 
     public void updateDots() {}
+    public void actionClicked() {}
 }

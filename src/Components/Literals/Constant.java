@@ -26,22 +26,30 @@ public class Constant extends Component {
         connect("output", input, c);
     }
 
+    public void toggle() {
+        value = value == 0 ? 1 : 0;
+    }
+
     public Constant copy() {
         return new Constant(value);
     }
 
     public void propagate() {
-        setPropagating(true);
         for (Wire wire : getOutputs().get("output")) {
             wire.set(value);
         }
-        setPropagating(false);
     }
 
     public void draw(Graphics2D g) {
-        drawWires(g);
-        setImageIndex(isPropagating() ? 1 : 0);
+        setImageIndex(value == 0 ? 0 : 1);
         DrawHandler.drawImage(g, getImage(), getX(), getY());
+        drawWires(g);
+        drawDots(g);
+        drawSelected(g);
+    }
+
+    public void actionClicked() {
+        toggle();
     }
 
     public void updateDots() {

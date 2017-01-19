@@ -24,16 +24,15 @@ public class Output extends Component {
     }
 
     public void propagate() {
-        setPropagating(true);
         if (allInputsValid()) {
             value = getInputs().get("input").value();
         }
-        setPropagating(false);
     }
 
     public void draw(Graphics2D g) {
-        setImageIndex(isPropagating() ? 1 : 0);
+        setImageIndex(value == 0 ? 0 : 1);
         DrawHandler.drawImage(g, getImage(), getX(), getY());
+        drawDots(g);
     }
     public void updateDots() {
         getInputDots().get("input").setXY(getX() - (getImage().getWidth() / 2), getY());

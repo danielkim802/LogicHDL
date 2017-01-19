@@ -38,7 +38,6 @@ public class Wire extends Drawable {
     public void set(long val) {
         value = val;
         valid = true;
-        connect.propagate();
     }
     public void setValid(boolean val) {
         valid = val;
@@ -51,7 +50,9 @@ public class Wire extends Drawable {
     }
 
     public void draw(Graphics2D g) {
+        g.setColor(value == 0 ? Color.black : Color.red);
         g.drawLine(fromDot.getX(), fromDot.getY(), connectDot.getX(), connectDot.getY());
     }
     public void updateDots() {}
+    public void actionClicked() {}
 }

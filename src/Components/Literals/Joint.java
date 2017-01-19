@@ -28,11 +28,9 @@ public class Joint extends Component {
 
     public void propagate() {
         if (allInputsValid()) {
-            setPropagating(true);
             for (Wire wire : getOutputs().get("to")) {
                 wire.set(getInputs().get("from").value());
             }
-            setPropagating(false);
         }
     }
 
