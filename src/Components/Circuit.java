@@ -1,6 +1,5 @@
 package Components;
 
-import Actions.Selectable;
 import Components.Literals.Constant;
 import Components.Literals.Output;
 
@@ -29,7 +28,7 @@ public class Circuit extends Component {
     public void setComponents(List<Component> comps) {
         components = comps;
     }
-    public List<Component> getComponents() {
+    public List<Component> getComponentList() {
         List<Component> comps = new ArrayList<>();
         for (Component c : components) {
             comps.add(c);
@@ -129,7 +128,7 @@ public class Circuit extends Component {
     }
 
     public void propagateLocal() {
-        for (Component component : getComponents()) {
+        for (Component component : getComponentList()) {
             component.propagate();
         }
     }
@@ -149,7 +148,7 @@ public class Circuit extends Component {
     }
 
     public void draw(Graphics2D g) {
-        for (Component component : getComponents()) {
+        for (Component component : getComponentList()) {
 
             // draw components
             component.draw(g);

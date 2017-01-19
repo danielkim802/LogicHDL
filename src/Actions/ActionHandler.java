@@ -2,6 +2,7 @@ package Actions;
 
 import Components.Circuit;
 import Components.Component;
+import Render.Camera;
 import Render.Drawable;
 
 import java.awt.event.MouseEvent;
@@ -16,9 +17,9 @@ public class ActionHandler {
         return x - w <= searchx && searchx <= x + w && y - h <= searchy && searchy <= y + h;
     }
 
-    public static Selectable getSelectedWithPosition(MouseEvent e, Circuit circuit) {
-        int mousex = e.getX();
-        int mousey = e.getY();
+    public static Selectable getSelectedWithPosition(Camera c, MouseEvent e, Circuit circuit) {
+        int mousex = c.getXMouse(e);
+        int mousey = c.getYMouse(e);
 
         Selectable selected = null;
 

@@ -30,4 +30,7 @@ public class DrawHandler {
         g.drawRect(centerCoord(x, width), centerCoord(y, height), width, height);
         g.setColor(defaultColor);
     }
+    public static void clearRect(Graphics2D g, int width, int height, int x, int y) {
+        g.clearRect(centerCoord(x, width), centerCoord(y, height), width, height);
+    }
 }

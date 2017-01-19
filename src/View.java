@@ -5,6 +5,7 @@ import Components.Component;
 import Components.Gates.*;
 import Components.Literals.*;
 import Components.Modules.*;
+import Render.Camera;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,13 +14,12 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import static java.lang.Math.max;
-
 /**
  * Created by danielkim802 on 1/16/17.
  */
 public class View extends JFrame implements MouseListener, KeyListener {
     Circuit circuit = new Circuit();
+    Camera camera = new Camera();
     Constants.Component component = Constants.Component.AND;
     Constants.Mode mode = Constants.Mode.PLACE;
     Selectable selected;
@@ -80,7 +80,7 @@ public class View extends JFrame implements MouseListener, KeyListener {
             case 54: component = Constants.Component.XOR; break;
             case 55: component = Constants.Component.CONSTANT; break;
             case 56: component = Constants.Component.OUTPUT; break;
-            case 57: mode = (mode == Constants.Mode.PLACE) ? Constants.Mode.CLICK : Constants.Mode.PLACE;
+            case 57: mode = (mode == Constants.Mode.PLACE) ? Constants.Mode.SELECT : Constants.Mode.PLACE;
         }
     }
     public void keyReleased(KeyEvent e) {}
@@ -91,6 +91,8 @@ public class View extends JFrame implements MouseListener, KeyListener {
     public void mouseEntered(MouseEvent e) {}
     public void mousePressed(MouseEvent e) {}
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getX());
+        System.out.println(e.getY());
         switch (mode) {
             case PLACE:
                 Component a = new And();
@@ -107,33 +109,27 @@ public class View extends JFrame implements MouseListener, KeyListener {
                     case FULLADDER: a = new Fulladder(); break;
                 }
                 System.out.println(a);
-                a.setXY(e.getX(), e.getY());
+                a.setXY(camera.getXMouse(e), camera.getYMouse(e));
                 circuit.addComponent(a);
                 break;
             case SELECT:
-                for (Component component : circuit.getComponents()) {
-//                    if (Math.abs(component.getX()-e.getX()) <= 15 && Math.abs(component.getY()-e.getY()) <= 15) {
-//                        if (selected == null) {
-//                            selected = component;
-//                            System.out.println("selected: " + component);
-//                            component.setSelected(true);
-//                            break;
-//                        }
-//                        else {
-//                            System.out.println((selected + " -> " + component));
-//                            selected.connect("output", "0", component);
-//                            break;
-//                        }
-//                    }
+                Selectable newselected = ActionHandler.getSelectedWithPosition(camera, e, circuit);
+                if (newselected != null) {
+                    if (selected != null) {
+                        if (selected == newselected) {
+                            newselected.setSelected(!newselected.isSelected());
+                        }
+                        else {
+                            selected.setSelected(false);
+                            newselected.setSelected(true);
+                        }
+                    }
+
+                    selected = newselected;
                 }
-                if (selected != null) {
-                    selected.setSelected(false);
-                }
-                selected = ActionHandler.getSelectedWithPosition(e, circuit);
-                selected.setSelected(true);
                 break;
             case CLICK:
-                Selectable clicked = ActionHandler.getSelectedWithPosition(e, circuit);
+                Selectable clicked = ActionHandler.getSelectedWithPosition(camera, e, circuit);
                 if (clicked != null) {
                     clicked.click();
                 }
@@ -147,7 +143,10 @@ public class View extends JFrame implements MouseListener, KeyListener {
 
     public void draw() {
         Graphics2D g = (Graphics2D) getBufferStrategy().getDrawGraphics();
+        camera.scale(g, 2.0, 2.0);
+        camera.translate(g, -30, -100);
         circuit.draw(g);
+
         g.dispose();
         getBufferStrategy().show();
     }

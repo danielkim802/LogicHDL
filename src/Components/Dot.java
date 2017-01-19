@@ -23,6 +23,7 @@ public class Dot extends Drawable {
     }
 
     public void draw(Graphics2D g) {
+        setImageIndex(isSelected() ? 1 : 0);
         DrawHandler.drawImage(g, getImage(), getX(), getY());
     }
 
