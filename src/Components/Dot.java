@@ -28,5 +28,5 @@ public class Dot extends Drawable {
     }
 
     public void updateDots() {}
-    public void actionClicked() {}
+    public void click() {}
 }

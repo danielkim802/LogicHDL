@@ -1,4 +1,7 @@
+package Render;
+
 import Actions.ActionHandler;
+import Actions.Constants;
 import Actions.Selectable;
 import Components.Circuit;
 import Components.Component;
@@ -9,22 +12,44 @@ import Render.Camera;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static java.awt.event.KeyEvent.*;
 
 /**
  * Created by danielkim802 on 1/16/17.
  */
-public class View extends JFrame implements MouseListener, KeyListener {
+public class View extends JFrame implements MouseListener, KeyListener, MouseMotionListener {
     Circuit circuit = new Circuit();
-    Camera camera = new Camera();
+    Camera camera = new Camera(this);
     Constants.Component component = Constants.Component.AND;
     Constants.Mode mode = Constants.Mode.PLACE;
     Selectable selected;
+    Selectable moving;
+
+//    MouseAdapter mouseHandler = new MouseAdapter() {
+//        @Override
+//        public void mouseReleased(MouseEvent e) {
+//            System.out.println("released");
+//            moving = null;
+//        }
+//        @Override
+//        public void mousePressed(MouseEvent e) {
+//            System.out.println("dragging");
+//            if (moving == null) {
+//                moving = ActionHandler.getSelectedWithPosition(camera, e, circuit);
+//            }
+//        }
+//        @Override
+//        public void mouseDragged(MouseEvent e) {
+//            System.out.println("moving");
+//            if (moving != null) {
+//                moving.drag(camera.getXMouse(e), camera.getYMouse(e));
+//            }
+//        }
+//    };
 
     {
 //        circuit.addInput("A", 1);
@@ -93,6 +118,7 @@ public class View extends JFrame implements MouseListener, KeyListener {
         createBufferStrategy(3);
 
         addMouseListener(this);
+        addMouseMotionListener(this);
         addKeyListener(this);
 
         new Thread(this::loop).start();
@@ -102,17 +128,26 @@ public class View extends JFrame implements MouseListener, KeyListener {
         while (running) {
             update();
             draw();
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
-        switch(code) {
+        int speed = 5;
+        System.out.println("pressed");
+        System.out.println(e.getKeyCode());
+        switch (e.getKeyCode()) {
+            case VK_RIGHT:
+                camera.translate(speed, 0);
+                break;
+            case VK_LEFT:
+                camera.translate(-speed, 0);
+                break;
+            case VK_UP:
+                camera.translate(0, -speed);
+                break;
+            case VK_DOWN:
+                camera.translate(0, speed);
+                break;
             case 48: component = Constants.Component.AND; break;
             case 49: component = Constants.Component.NAND; break;
             case 50: component = Constants.Component.NOR; break;
@@ -129,9 +164,22 @@ public class View extends JFrame implements MouseListener, KeyListener {
     public void keyTyped(KeyEvent e) {}
 
     public void mouseExited(MouseEvent e) {}
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        System.out.println("released");
+        moving = null;
+    }
     public void mouseEntered(MouseEvent e) {}
     public void mousePressed(MouseEvent e) {}
+    public void mouseMoved(MouseEvent e) {}
+    public void mouseDragged(MouseEvent e) {
+        System.out.println("dragging");
+        if (moving == null) {
+            moving = ActionHandler.getSelectedWithPosition(camera, e, circuit);
+        }
+        else {
+            moving.drag(camera.getXMouse(e), camera.getYMouse(e));
+        }
+    }
     public void mouseClicked(MouseEvent e) {
         System.out.println(e.getX());
         System.out.println(e.getY());
@@ -185,8 +233,8 @@ public class View extends JFrame implements MouseListener, KeyListener {
 
     public void draw() {
         Graphics2D g = (Graphics2D) getBufferStrategy().getDrawGraphics();
-        camera.scale(g, 2.0, 2.0);
-//        camera.translate(g, -30, -100);
+        camera.zoom(2.0, 2.0);
+        camera.draw(g);
         circuit.draw(g);
 
         g.dispose();

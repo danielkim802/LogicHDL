@@ -1,6 +1,4 @@
-import Components.Literals.*;
-import Components.Modules.Fulladder;
-import Render.ResourceLibrary;
+import Render.View;
 
 public class Main {
 

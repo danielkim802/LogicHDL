@@ -11,10 +11,13 @@ import java.awt.event.MouseEvent;
  * Created by danielkim802 on 1/18/17.
  */
 public class ActionHandler {
+    private static boolean inRange(int x, int r0, int r1) {
+        return r0 <= x && x <= r1;
+    }
     public static boolean inBox(int searchx, int searchy, int width, int height, int x, int y) {
         int h = height / 2;
         int w = width / 2;
-        return x - w <= searchx && searchx <= x + w && y - h <= searchy && searchy <= y + h;
+        return inRange(searchx, x - w, x + w) && inRange(searchy, y - h, y + h);
     }
 
     public static Selectable getSelectedWithPosition(Camera c, MouseEvent e, Circuit circuit) {

@@ -88,4 +88,6 @@ public abstract class Drawable extends Selectable {
 
     // used to set position of dots relative to component
     public abstract void updateDots();
+
+    public void drag(int x, int y) {}
 }

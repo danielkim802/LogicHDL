@@ -48,7 +48,7 @@ public class Constant extends Component {
         drawSelected(g);
     }
 
-    public void actionClicked() {
+    public void click() {
         toggle();
     }
 

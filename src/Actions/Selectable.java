@@ -1,10 +1,5 @@
 package Actions;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 /**
  * Created by danielkim802 on 1/18/17.
  */
@@ -18,9 +13,6 @@ public abstract class Selectable {
         return selected;
     }
 
-    public void click() {
-        actionClicked();
-    }
-
-    public abstract void actionClicked();
+    public abstract void click();
+    public abstract void drag(int param1, int param2);
 }

@@ -96,5 +96,8 @@ public abstract class Component extends Drawable {
     public abstract Component copy();
     public abstract void propagate();
     public abstract void setIO(int ins, int outs);
-    public void actionClicked() {}
+    public void click() {}
+    public void drag(int x, int y) {
+        setXY(x, y);
+    }
 }

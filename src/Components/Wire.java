@@ -54,5 +54,5 @@ public class Wire extends Drawable {
         g.drawLine(fromDot.getX(), fromDot.getY(), connectDot.getX(), connectDot.getY());
     }
     public void updateDots() {}
-    public void actionClicked() {}
+    public void click() {}
 }
