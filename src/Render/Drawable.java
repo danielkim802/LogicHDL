@@ -46,7 +46,10 @@ public abstract class Drawable extends Selectable {
     }
 
     public void setImages(List<BufferedImage> imgs) {
-        images = imgs;
+        if (imgs != null) {
+            images = imgs;
+            setDimensions(getImage().getWidth(), getImage().getHeight());
+        }
     }
     public void setImageIndex(int index) {
         imageIndex = index;

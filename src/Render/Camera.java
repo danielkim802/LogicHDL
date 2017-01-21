@@ -19,18 +19,18 @@ public class Camera {
     public int getY() {
         return y;
     }
-    public double getxScale() {
+    public double getXScale() {
         return xScale;
     }
-    public double getyScale() {
+    public double getYScale() {
         return yScale;
     }
 
     public int getXMouse(MouseEvent e) {
-        return (e.getX() / (int) xScale) - x;
+        return x + (int) (e.getX() / xScale);
     }
     public int getYMouse(MouseEvent e) {
-        return (e.getY() / (int) yScale) - y;
+        return y + (int) (e.getY() / yScale);
     }
 
     public Camera(View view) {
@@ -42,19 +42,24 @@ public class Camera {
         this.y = y;
     }
 
-    public void zoom(double x, double y) {
+    public void scale(double x, double y) {
         xScale = x;
         yScale = y;
     }
 
+    public void zoom(double x, double y) {
+        xScale += x;
+        yScale += y;
+    }
+
     public void translate(int x, int y) {
-        this.x -= x;
-        this.y -= y;
+        this.x += x;
+        this.y += y;
     }
 
     public void draw(Graphics2D g) {
         g.clearRect(0, 0, view.getWidth(), view.getHeight());
         g.scale(xScale, yScale);
-        g.translate(x, y);
+        g.translate(-x, -y);
     }
 }

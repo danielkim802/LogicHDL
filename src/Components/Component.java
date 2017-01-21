@@ -1,5 +1,6 @@
 package Components;
 
+import Actions.Selectable;
 import Render.DrawHandler;
 import Render.Drawable;
 import Render.ResourceLibrary;
@@ -18,24 +19,19 @@ public abstract class Component extends Drawable {
     private Map<String, Dot> inputDots = new HashMap<>();
     private Map<String, List<Wire>> outputs = new HashMap<>();
     private Map<String, Dot> outputDots = new HashMap<>();
-    private boolean propagating = false;
 
     public Component(int inputlen, int outputlen) {
         setImages(ResourceLibrary.getImages(this.getClass()));
-
-        if (getImage() != null) {
-            setDimensions(getImage().getWidth(), getImage().getHeight());
-        }
 
         // make inputs and outputs
         setIO(inputlen, outputlen);
 
         // make dots
         for (String key : inputs.keySet()) {
-            inputDots.put(key, new Dot(this));
+            inputDots.put(key, new Dot(this, true, key));
         }
         for (String key : outputs.keySet()) {
-            outputDots.put(key, new Dot(this));
+            outputDots.put(key, new Dot(this, false, key));
         }
 
         // move dots to correct position
@@ -62,6 +58,7 @@ public abstract class Component extends Drawable {
         return dots;
     }
     public void connect(String output, String input, Component other) {
+        System.out.println("connecting: " + this + " " + other);
         Wire wire = new Wire(this, outputDots.get(output), other, other.inputDots.get(input));
         other.getInputs().put(input, wire);
         outputs.get(output).add(wire);

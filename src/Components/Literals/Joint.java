@@ -2,6 +2,7 @@ package Components.Literals;
 
 import Components.Component;
 import Components.Wire;
+import Render.DrawHandler;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -34,8 +35,17 @@ public class Joint extends Component {
         }
     }
 
-    public void draw(Graphics2D g) {}
-    public void updateDots() {}
+    public void draw(Graphics2D g) {
+        drawWires(g);
+        DrawHandler.drawImage(g, getImage(), getX(), getY());
+        drawDots(g);
+        drawSelected(g);
+    }
+
+    public void updateDots() {
+        getInputDots().get("from").setXY(getX() - 4, getY());
+        getOutputDots().get("to").setXY(getX() + 4, getY());
+    }
     public void setIO(int ins, int outs) {
         getInputs().put("from", new Wire());
         getOutputs().put("to", new ArrayList<>());

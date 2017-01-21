@@ -14,11 +14,16 @@ import java.util.function.LongUnaryOperator;
 public abstract class Gate extends Component {
     private LongBinaryOperator operator;
     private LongUnaryOperator finaloperator = a -> a;
+    private int bits;
 
     public Gate(int inputlen) {
         super(inputlen, 0);
+        bits = 1;
     }
 
+    public void setBits(int b) {
+        bits = b;
+    }
     public void setOp(LongBinaryOperator op) {
         operator = op;
     }
@@ -55,7 +60,9 @@ public abstract class Gate extends Component {
 
             // propagate result to outputs
             for (Wire wire : getOutputs().get("output")) {
-                wire.set(finaloperator.applyAsLong(result));
+
+                // cut down to appropriate number of bits and set
+                wire.set(finaloperator.applyAsLong(result) & (long) (Math.pow(2, bits) - 1));
             }
         }
     }

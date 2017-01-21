@@ -1,10 +1,12 @@
 package Render;
 
-import Actions.ActionHandler;
 import Actions.Constants;
+import Actions.MyCursor;
 import Actions.Selectable;
+import Actions.ActionHandler;
 import Components.Circuit;
 import Components.Component;
+import Components.Dot;
 import Components.Gates.*;
 import Components.Literals.*;
 import Components.Modules.*;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static java.awt.event.KeyEvent.*;
+import static java.lang.Math.max;
 
 /**
  * Created by danielkim802 on 1/16/17.
@@ -24,32 +27,11 @@ import static java.awt.event.KeyEvent.*;
 public class View extends JFrame implements MouseListener, KeyListener, MouseMotionListener {
     Circuit circuit = new Circuit();
     Camera camera = new Camera(this);
+    MyCursor cursor = new MyCursor();
     Constants.Component component = Constants.Component.AND;
     Constants.Mode mode = Constants.Mode.PLACE;
     Selectable selected;
     Selectable moving;
-
-//    MouseAdapter mouseHandler = new MouseAdapter() {
-//        @Override
-//        public void mouseReleased(MouseEvent e) {
-//            System.out.println("released");
-//            moving = null;
-//        }
-//        @Override
-//        public void mousePressed(MouseEvent e) {
-//            System.out.println("dragging");
-//            if (moving == null) {
-//                moving = ActionHandler.getSelectedWithPosition(camera, e, circuit);
-//            }
-//        }
-//        @Override
-//        public void mouseDragged(MouseEvent e) {
-//            System.out.println("moving");
-//            if (moving != null) {
-//                moving.drag(camera.getXMouse(e), camera.getYMouse(e));
-//            }
-//        }
-//    };
 
     {
 //        circuit.addInput("A", 1);
@@ -78,13 +60,13 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         Or or1 = new Or();
 
         circuit.getInput("A").connect("0", xor1);
-        circuit.getInput("A").connect("1", and2);
+        circuit.getInput("A").connect("0", and2);
         circuit.getInput("B").connect("1", xor1);
-        circuit.getInput("B").connect("0", and2);
+        circuit.getInput("B").connect("1", and2);
         circuit.getInput("C").connect("1", xor2);
-        circuit.getInput("C").connect("0", and1);
+        circuit.getInput("C").connect("1", and1);
         xor1.connect("0", xor2);
-        xor1.connect("1", and1);
+        xor1.connect("0", and1);
         and1.connect("0", or1);
         and2.connect("1", or1);
         xor2.connect("input", circuit.getOutput("S"));
@@ -120,44 +102,52 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         addMouseListener(this);
         addMouseMotionListener(this);
         addKeyListener(this);
+        setCursor(cursor.getCursor());
 
         new Thread(this::loop).start();
     }
 
     private void loop() {
+        long startTime;
         while (running) {
+            startTime = System.currentTimeMillis();
             update();
             draw();
+            try {
+                Thread.sleep(max(0, 1000 / 60 - System.currentTimeMillis() + startTime));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void keyPressed(KeyEvent e) {
         int speed = 5;
+        double zoomspeed = 0.1;
         System.out.println("pressed");
         System.out.println(e.getKeyCode());
         switch (e.getKeyCode()) {
-            case VK_RIGHT:
-                camera.translate(speed, 0);
+            case VK_RIGHT: camera.translate(speed, 0); break;
+            case VK_LEFT: camera.translate(-speed, 0); break;
+            case VK_UP: camera.translate(0, -speed); break;
+            case VK_DOWN: camera.translate(0, speed); break;
+            case VK_OPEN_BRACKET: camera.zoom(zoomspeed, zoomspeed); break;
+            case VK_CLOSE_BRACKET: camera.zoom(-zoomspeed, -zoomspeed); break;
+            case VK_0: component = Constants.Component.AND; break;
+            case VK_1: component = Constants.Component.NAND; break;
+            case VK_2: component = Constants.Component.NOR; break;
+            case VK_3: component = Constants.Component.NOT; break;
+            case VK_4: component = Constants.Component.OR; break;
+            case VK_5: component = Constants.Component.XNOR; break;
+            case VK_6: component = Constants.Component.XOR; break;
+            case VK_7: component = Constants.Component.CONSTANT; break;
+            case VK_8: component = Constants.Component.OUTPUT; break;
+            case VK_9:
+                setCursor(cursor.setIndex((cursor.getIndex() + 1) % 3));
+                mode = (mode == Constants.Mode.PLACE) ? Constants.Mode.SELECT : mode == Constants.Mode.SELECT ? Constants.Mode.CLICK : Constants.Mode.PLACE;
                 break;
-            case VK_LEFT:
-                camera.translate(-speed, 0);
-                break;
-            case VK_UP:
-                camera.translate(0, -speed);
-                break;
-            case VK_DOWN:
-                camera.translate(0, speed);
-                break;
-            case 48: component = Constants.Component.AND; break;
-            case 49: component = Constants.Component.NAND; break;
-            case 50: component = Constants.Component.NOR; break;
-            case 51: component = Constants.Component.NOT; break;
-            case 52: component = Constants.Component.OR; break;
-            case 53: component = Constants.Component.XNOR; break;
-            case 54: component = Constants.Component.XOR; break;
-            case 55: component = Constants.Component.CONSTANT; break;
-            case 56: component = Constants.Component.OUTPUT; break;
-            case 57: mode = (mode == Constants.Mode.PLACE) ? Constants.Mode.CLICK : Constants.Mode.PLACE;
+            case VK_MINUS: component = Constants.Component.JOINT; break;
+            case VK_C: circuit.clear(); break;
         }
     }
     public void keyReleased(KeyEvent e) {}
@@ -165,14 +155,12 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
 
     public void mouseExited(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {
-        System.out.println("released");
         moving = null;
     }
     public void mouseEntered(MouseEvent e) {}
     public void mousePressed(MouseEvent e) {}
     public void mouseMoved(MouseEvent e) {}
     public void mouseDragged(MouseEvent e) {
-        System.out.println("dragging");
         if (moving == null) {
             moving = ActionHandler.getSelectedWithPosition(camera, e, circuit);
         }
@@ -181,8 +169,6 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         }
     }
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getX());
-        System.out.println(e.getY());
         switch (mode) {
             case PLACE:
                 Component a = new And();
@@ -197,6 +183,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                     case CONSTANT: a = new Constant(0); break;
                     case OUTPUT: a = new Output(); break;
                     case FULLADDER: a = new Fulladder(); break;
+                    case JOINT: a = new Joint(); break;
                 }
                 System.out.println(a);
                 a.setXY(camera.getXMouse(e), camera.getYMouse(e));
@@ -204,19 +191,35 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 break;
             case SELECT:
                 Selectable newselected = ActionHandler.getSelectedWithPosition(camera, e, circuit);
-                if (newselected != null) {
-                    if (selected != null) {
+                System.out.println("selected: " + selected);
+                System.out.println("newselected: " + newselected);
+                if (selected != null) {
+                    if (newselected != null) {
+                        // toggle
                         if (selected == newselected) {
                             newselected.setSelected(!newselected.isSelected());
                         }
+                        // connect dots
+                        else if (selected instanceof Dot && newselected instanceof Dot) {
+                            ((Dot) selected).connect((Dot) newselected);
+                            selected.setSelected(false);
+                            newselected.setSelected(false);
+                            newselected = null;
+                        }
+                        // select something else
                         else {
                             selected.setSelected(false);
                             newselected.setSelected(true);
                         }
                     }
-
-                    selected = newselected;
+                    else {
+                        selected.setSelected(false);
+                    }
                 }
+                else if (newselected != null) {
+                    newselected.setSelected(true);
+                }
+                selected = newselected;
                 break;
             case CLICK:
                 Selectable clicked = ActionHandler.getSelectedWithPosition(camera, e, circuit);
@@ -233,7 +236,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
 
     public void draw() {
         Graphics2D g = (Graphics2D) getBufferStrategy().getDrawGraphics();
-        camera.zoom(2.0, 2.0);
+
         camera.draw(g);
         circuit.draw(g);
 

@@ -77,6 +77,12 @@ public class Circuit extends Component {
         return all;
     }
 
+    public void clear() {
+        inputs.clear();
+        outputs.clear();
+        components.clear();
+    }
+
     public Circuit copy() {
         Circuit copy = new Circuit();
         Map<Component, Component> map = new HashMap<>();

@@ -9,7 +9,7 @@ public class Constants {
         AND, NAND, NOR, NOT, OR, XNOR, XOR,
 
         // literals
-        CONSTANT, OUTPUT,
+        CONSTANT, OUTPUT, JOINT,
 
         // modules
         FULLADDER

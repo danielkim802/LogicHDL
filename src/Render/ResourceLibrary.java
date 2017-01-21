@@ -19,10 +19,6 @@ public class ResourceLibrary {
     private static Map<String, List<BufferedImage>> accessoryLibrary;
     private static ResourceLibrary resourceLibrary = new ResourceLibrary();
 
-//    public static ResourceLibrary library() {
-//        return resourceLibrary;
-//    }
-
     private void loadImages() {
         List<Class> allClasses = Arrays.asList(
                 // gates
@@ -55,7 +51,8 @@ public class ResourceLibrary {
 
     private void loadAccessories() {
         List<String> allAccessories = Arrays.asList(
-                "dot"
+                "dot",
+                "cursor"
         );
 
         for (String accessory : allAccessories) {

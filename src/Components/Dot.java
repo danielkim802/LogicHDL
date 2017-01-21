@@ -11,20 +11,39 @@ import java.awt.*;
  */
 public class Dot extends Drawable {
     private Component parent;
+    private boolean input;
+    private String key;
 
-    public Dot(Component p) {
+    public Dot(Component p, boolean type, String k) {
         parent = p;
+        input = type;
+        key = k;
         setImages(ResourceLibrary.getImages("dot"));
     }
-    public Dot(Component p, int xpos, int ypos) {
-        parent = p;
-        setXY(xpos, ypos);
-        setImages(ResourceLibrary.getImages("dot"));
+
+    public Component getParent() {
+        return parent;
+    }
+
+    public void connect(Dot dot) {
+        if (!input && dot.input) {
+            parent.connect(key, dot.key, dot.parent);
+        }
+        else if (input && !dot.input) {
+            dot.connect(this);
+        }
+    }
+
+    public void drawSelected(Graphics2D g) {
+        if (isSelected()) {
+            DrawHandler.drawRect(g, Color.red, 5, 5, getX(), getY());
+        }
     }
 
     public void draw(Graphics2D g) {
-        setImageIndex(isSelected() ? 1 : 0);
+        setImageIndex(input ? 0 : 1);
         DrawHandler.drawImage(g, getImage(), getX(), getY());
+        drawSelected(g);
     }
 
     public void updateDots() {}
