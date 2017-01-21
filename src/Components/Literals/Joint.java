@@ -2,9 +2,7 @@ package Components.Literals;
 
 import Components.Component;
 import Components.Wire;
-import Render.DrawHandler;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -28,18 +26,11 @@ public class Joint extends Component {
     }
 
     public void propagate() {
-        if (allInputsValid()) {
+        if (allInputsAssigned()) {
             for (Wire wire : getOutputs().get("to")) {
                 wire.set(getInputs().get("from").value());
             }
         }
-    }
-
-    public void draw(Graphics2D g) {
-        drawWires(g);
-        DrawHandler.drawImage(g, getImage(), getX(), getY());
-        drawDots(g);
-        drawSelected(g);
     }
 
     public void updateDots() {

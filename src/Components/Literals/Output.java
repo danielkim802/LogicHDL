@@ -24,7 +24,7 @@ public class Output extends Component {
     }
 
     public void propagate() {
-        if (allInputsValid()) {
+        if (allInputsAssigned()) {
             value = getInputs().get("input").value();
         }
     }

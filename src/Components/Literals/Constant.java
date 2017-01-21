@@ -43,7 +43,6 @@ public class Constant extends Component {
     public void draw(Graphics2D g) {
         setImageIndex(value == 0 ? 0 : 1);
         DrawHandler.drawImage(g, getImage(), getX(), getY());
-        drawWires(g);
         drawDots(g);
         drawSelected(g);
     }

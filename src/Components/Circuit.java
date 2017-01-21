@@ -76,13 +76,19 @@ public class Circuit extends Component {
         }
         return all;
     }
+    public List<Wire> getAllWires() {
+        List<Wire> all = new ArrayList<>();
+        for (Component component : getAllComponents()) {
+            all.addAll(component.getWires());
+        }
+        return all;
+    }
 
     public void clear() {
         inputs.clear();
         outputs.clear();
         components.clear();
     }
-
     public Circuit copy() {
         Circuit copy = new Circuit();
         Map<Component, Component> map = new HashMap<>();
@@ -132,15 +138,41 @@ public class Circuit extends Component {
 
         return copy;
     }
+    public void removeInput(String in) {
+        inputs.get(in).delete();
+        inputs.remove(in);
+    }
+    public void removeOutput(String out) {
+        outputs.get(out).delete();
+        outputs.remove(out);
+    }
+    public void remove(Component component) {
+        component.delete();
+        if (components.remove(component)) {
+            return;
+        }
+        for (String key : inputs.keySet()) {
+            if (inputs.get(key) == component) {
+                inputs.remove(key);
+                return;
+            }
+        }
+        for (String key : outputs.keySet()) {
+            if (outputs.get(key) == component) {
+                outputs.remove(key);
+                return;
+            }
+        }
+    }
 
     public void propagateLocal() {
-        for (Component component : getComponentList()) {
+        for (Component component : getAllComponents()) {
             component.propagate();
         }
     }
 
     public void propagate() {
-        if (allInputsValid()) {
+        if (allInputsAssigned()) {
             for (String name : inputs.keySet()) {
                 inputs.get(name).set(getInputs().get(name).value());
             }
@@ -158,6 +190,11 @@ public class Circuit extends Component {
 
             // draw components
             component.draw(g);
+
+            // draw all wires
+            for (Wire wire : getAllWires()) {
+                wire.draw(g);
+            }
         }
     }
     public void updateDots() {}

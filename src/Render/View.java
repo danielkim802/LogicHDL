@@ -148,6 +148,12 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 break;
             case VK_MINUS: component = Constants.Component.JOINT; break;
             case VK_C: circuit.clear(); break;
+            case VK_BACK_SPACE:
+                if (selected != null && selected instanceof Component) {
+                    circuit.remove((Component) selected);
+                    selected = null;
+                }
+                break;
         }
     }
     public void keyReleased(KeyEvent e) {}

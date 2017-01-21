@@ -57,7 +57,7 @@ public class Fulladder extends Component {
     }
 
     public void propagate() {
-        if (allInputsValid()) {
+        if (allInputsAssigned()) {
             fulladder.getInput("A").set(getInputs().get("A").value());
             fulladder.getInput("B").set(getInputs().get("B").value());
             fulladder.getInput("C").set(getInputs().get("C").value());

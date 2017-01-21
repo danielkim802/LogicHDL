@@ -1,8 +1,5 @@
 package Components;
 
-import Render.DrawHandler;
-
-import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.function.LongBinaryOperator;
@@ -54,7 +51,7 @@ public abstract class Gate extends Component {
     }
 
     public void propagate() {
-        if (allInputsValid()) {
+        if (allInputsAssigned()) {
             // map each input to a long |> apply operator to all values
             long result = getInputs().values().stream().mapToLong( a -> a.value() ).reduce( operator ).getAsLong();
 
@@ -91,12 +88,5 @@ public abstract class Gate extends Component {
             getInputs().put(""+i, new Wire());
         }
         getOutputs().put("output", new ArrayList<>());
-    }
-
-    public void draw(Graphics2D g) {
-        drawWires(g);
-        DrawHandler.drawImage(g, getImage(), getX(), getY());
-        drawDots(g);
-        drawSelected(g);
     }
 }
