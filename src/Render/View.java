@@ -103,6 +103,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         addMouseMotionListener(this);
         addKeyListener(this);
         setCursor(cursor.getCursor());
+        camera.scale(2.0, 2.0);
 
         new Thread(this::loop).start();
     }

@@ -54,7 +54,7 @@ public class Wire extends Drawable {
 
     public void draw(Graphics2D g) {
         if (fromDot != null && connectDot != null) {
-            g.setColor(value == 0 ? Color.black : Color.red);
+            g.setColor(value == 0 ? Color.black : Color.green);
             g.drawLine(fromDot.getX(), fromDot.getY(), connectDot.getX(), connectDot.getY());
         }
     }
