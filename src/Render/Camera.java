@@ -13,6 +13,10 @@ public class Camera {
     private double xScale = 1.0;
     private double yScale = 1.0;
 
+    public void setXY(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
     public int getX() {
         return x;
     }

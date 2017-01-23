@@ -33,6 +33,7 @@ public class Output extends Component {
         setImageIndex(value == 0 ? 0 : 1);
         DrawHandler.drawImage(g, getImage(), getX(), getY());
         drawDots(g);
+        drawSelected(g);
     }
     public void updateDots() {
         getInputDots().get("input").setXY(getX() - (getImage().getWidth() / 2), getY());

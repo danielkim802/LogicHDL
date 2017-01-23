@@ -68,9 +68,11 @@ public abstract class Component extends Drawable {
 
     // connects two components given an output key and input key
     public void connect(String output, String input, Component other) {
-        Wire wire = new Wire(this, outputDots.get(output), other, other.inputDots.get(input));
-        other.getInputs().put(input, wire);
-        outputs.get(output).add(wire);
+        if (!other.getInputs().get(input).isAssigned()) {
+            Wire wire = new Wire(this, outputDots.get(output), other, other.inputDots.get(input));
+            other.getInputs().put(input, wire);
+            outputs.get(output).add(wire);
+        }
     }
 
     // disconnects a wire given a wire object and boolean indicating whether

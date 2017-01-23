@@ -24,7 +24,7 @@ import static java.lang.Math.max;
 /**
  * Created by danielkim802 on 1/16/17.
  */
-public class View extends JFrame implements MouseListener, KeyListener, MouseMotionListener {
+public class View extends JFrame implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {
     Circuit circuit = new Circuit();
     Camera camera = new Camera(this);
     MyCursor cursor = new MyCursor();
@@ -32,6 +32,10 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     Constants.Mode mode = Constants.Mode.PLACE;
     Selectable selected;
     Selectable moving;
+
+    int mouseX = 0;
+    int mouseY = 0;
+    boolean movingView = false;
 
     {
 //        circuit.addInput("A", 1);
@@ -102,6 +106,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         addMouseListener(this);
         addMouseMotionListener(this);
         addKeyListener(this);
+        addMouseWheelListener(this);
         setCursor(cursor.getCursor());
         camera.scale(2.0, 2.0);
 
@@ -164,12 +169,29 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     public void mouseReleased(MouseEvent e) {
         moving = null;
     }
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        if (!e.isShiftDown()) {
+            double amt = e.getPreciseWheelRotation() / 10.0;
+            camera.zoom(amt, amt);
+        }
+    }
     public void mouseEntered(MouseEvent e) {}
     public void mousePressed(MouseEvent e) {}
     public void mouseMoved(MouseEvent e) {}
     public void mouseDragged(MouseEvent e) {
         if (moving == null) {
             moving = ActionHandler.getSelectedWithPosition(camera, e, circuit);
+
+            if (moving == null) {
+                if (movingView) {
+                    camera.setXY(mouseX - camera.getXMouse(e), mouseY - camera.getYMouse(e));
+                }
+                else {
+                    movingView = true;
+                    mouseX = camera.getXMouse(e);
+                    mouseY = camera.getYMouse(e);
+                }
+            }
         }
         else {
             moving.drag(camera.getXMouse(e), camera.getYMouse(e));
