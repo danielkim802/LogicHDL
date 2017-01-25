@@ -1,6 +1,10 @@
 package Render;
 
+import Actions.Constants;
+
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 /**
@@ -16,6 +20,33 @@ public class DrawHandler {
     public static void drawImage(Graphics2D g, BufferedImage img, int x, int y) {
         if (img != null) {
             g.drawImage(img, null, centerCoord(x, img.getWidth()), centerCoord(y, img.getHeight()));
+        }
+    }
+
+    public static void drawImage(Graphics2D g, BufferedImage img, Constants.Direction dir, int x, int y) {
+        if (img != null) {
+            double xpos = img.getWidth() / 2;
+            double ypos = img.getHeight() / 2;
+            double theta = Math.toRadians(0);
+            AffineTransform tx;
+            AffineTransformOp op;
+            switch (dir) {
+                case NORTH:
+                    theta = Math.toRadians(-90);
+                    break;
+                case EAST:
+                    theta = Math.toRadians(0);
+                    break;
+                case SOUTH:
+                    theta = Math.toRadians(90);
+                    break;
+                case WEST:
+                    theta = Math.toRadians(180);
+                    break;
+            }
+            tx = AffineTransform.getRotateInstance(theta, xpos, ypos);
+            op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+            g.drawImage(op.filter(img, null), centerCoord(x, img.getWidth()), centerCoord(y, img.getHeight()), null);
         }
     }
 

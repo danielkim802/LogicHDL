@@ -2,32 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c48302-b0a5-4351-8bd5-f4250ec98bf6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Actions/Constants.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Actions/Constants.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Circuit.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Circuit.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Component.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Component.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Dot.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Dot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Gate.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Gate.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Literals/Constant.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Literals/Constant.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Literals/Joint.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Literals/Joint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Literals/Output.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Literals/Output.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Modules/Fulladder.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Modules/Fulladder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/Camera.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/Camera.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/DrawHandler.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/DrawHandler.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/Drawable.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/Drawable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/View$1.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/View$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/View.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/View.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actions/Constants.java" afterPath="$PROJECT_DIR$/src/Actions/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Circuit.java" afterPath="$PROJECT_DIR$/src/Components/Circuit.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Component.java" afterPath="$PROJECT_DIR$/src/Components/Component.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Dot.java" afterPath="$PROJECT_DIR$/src/Components/Dot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Gate.java" afterPath="$PROJECT_DIR$/src/Components/Gate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Literals/Constant.java" afterPath="$PROJECT_DIR$/src/Components/Literals/Constant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Literals/Joint.java" afterPath="$PROJECT_DIR$/src/Components/Literals/Joint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Literals/Output.java" afterPath="$PROJECT_DIR$/src/Components/Literals/Output.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Modules/Fulladder.java" afterPath="$PROJECT_DIR$/src/Components/Modules/Fulladder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/Camera.java" afterPath="$PROJECT_DIR$/src/Render/Camera.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/DrawHandler.java" afterPath="$PROJECT_DIR$/src/Render/DrawHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/Drawable.java" afterPath="$PROJECT_DIR$/src/Render/Drawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/View.java" afterPath="$PROJECT_DIR$/src/Render/View.java" />
     </list>
     <ignored path="LogicHDL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,8 +34,8 @@
       <file leaf-file-name="Drawable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Render/Drawable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="144" column="33" selection-start-line="144" selection-start-column="33" selection-end-line="144" selection-end-column="33" />
+            <state relative-caret-position="289">
+              <caret line="131" column="25" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,26 +53,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Render/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="229" column="40" selection-start-line="229" selection-start-column="40" selection-end-line="229" selection-end-column="40" />
+            <state relative-caret-position="296">
+              <caret line="224" column="9" selection-start-line="224" selection-start-column="9" selection-end-line="224" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Output.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/Literals/Output.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
-              <folding>
-                <element signature="e#774#775#0" expanded="true" />
-                <element signature="e#862#863#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,6 +98,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="DrawHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Render/DrawHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Actions/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Wire.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Wire.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -142,21 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fulladder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/Modules/Fulladder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Component.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="220" column="5" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
+            <state relative-caret-position="199">
+              <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#drawSelected#0;class#Component#0" expanded="false" />
@@ -217,7 +197,6 @@
         <option value="$PROJECT_DIR$/src/Render/Renderer.java" />
         <option value="$PROJECT_DIR$/src/Constants.java" />
         <option value="$PROJECT_DIR$/src/Render/Mouse.java" />
-        <option value="$PROJECT_DIR$/src/Render/DrawHandler.java" />
         <option value="$PROJECT_DIR$/src/View.java" />
         <option value="$PROJECT_DIR$/src/Actions/ActionHandler.java" />
         <option value="$PROJECT_DIR$/src/Actions/Selectable.java" />
@@ -226,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/Actions/MyCursor.java" />
         <option value="$PROJECT_DIR$/src/Components/Wire.java" />
         <option value="$PROJECT_DIR$/src/Render/Camera.java" />
-        <option value="$PROJECT_DIR$/src/Actions/Constants.java" />
         <option value="$PROJECT_DIR$/src/Components/Circuit.java" />
         <option value="$PROJECT_DIR$/src/Components/Modules/Fulladder.java" />
         <option value="$PROJECT_DIR$/src/Components/Literals/Constant.java" />
@@ -235,9 +213,11 @@
         <option value="$PROJECT_DIR$/src/Components/Literals/Output.java" />
         <option value="$PROJECT_DIR$/src/Components/Gate.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Render/View.java" />
+        <option value="$PROJECT_DIR$/src/Actions/Constants.java" />
         <option value="$PROJECT_DIR$/src/Render/Drawable.java" />
         <option value="$PROJECT_DIR$/src/Components/Component.java" />
-        <option value="$PROJECT_DIR$/src/Render/View.java" />
+        <option value="$PROJECT_DIR$/src/Render/DrawHandler.java" />
       </list>
     </option>
   </component>
@@ -876,12 +856,12 @@
       <workItem from="1484469728823" duration="41514000" />
       <workItem from="1484717071929" duration="1973000" />
       <workItem from="1484719242329" duration="34825000" />
-      <workItem from="1484792790928" duration="62511000" />
+      <workItem from="1484792790928" duration="63843000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189112000" />
+    <option name="totallyTimeSpent" value="190444000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="24" width="1400" height="833" extended-state="0" />
@@ -1051,14 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Render/DrawHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="33" column="82" selection-start-line="33" selection-start-column="82" selection-end-line="33" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/src.zip!/java/util/AbstractList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1127,14 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actions/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Circuit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1184,6 +1148,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Literals/Output.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+          <folding>
+            <element signature="e#774#775#0" expanded="true" />
+            <element signature="e#862#863#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Wire.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Actions/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Actions/ActionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1192,13 +1193,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Literals/Output.java">
+    <entry file="file://$PROJECT_DIR$/src/Components/Gate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+        <state relative-caret-position="79">
+          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="224" column="9" selection-start-line="224" selection-start-column="9" selection-end-line="224" selection-end-column="9" />
           <folding>
-            <element signature="e#774#775#0" expanded="true" />
-            <element signature="e#862#863#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/Drawable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="131" column="25" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#drawSelected#0;class#Component#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1214,57 +1243,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Wire.java">
+    <entry file="file://$PROJECT_DIR$/src/Render/DrawHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Gate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Render/Drawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="144" column="33" selection-start-line="144" selection-start-column="33" selection-end-line="144" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="220" column="5" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#drawSelected#0;class#Component#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Render/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="229" column="40" selection-start-line="229" selection-start-column="40" selection-end-line="229" selection-end-column="40" />
+        <state relative-caret-position="229">
+          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

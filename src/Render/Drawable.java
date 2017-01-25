@@ -129,17 +129,8 @@ public abstract class Drawable extends Selectable {
     public int getHeight() {
         return height;
     }
-    public boolean facingNorth() {
-        return orientation == NORTH;
-    }
-    public boolean facingEast() {
-        return orientation == EAST;
-    }
-    public boolean facingSouth() {
-        return orientation == SOUTH;
-    }
-    public boolean facingWest() {
-        return orientation == WEST;
+    public Constants.Direction getDirection() {
+        return orientation;
     }
 
     public abstract void draw(Graphics2D g);

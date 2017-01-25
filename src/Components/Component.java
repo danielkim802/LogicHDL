@@ -215,7 +215,7 @@ public abstract class Component extends Drawable {
     }
 
     public void draw(Graphics2D g) {
-        DrawHandler.drawImage(g, getImage(), getX(), getY());
+        DrawHandler.drawImage(g, getImage(), getDirection(), getX(), getY());
         drawDots(g);
         drawSelected(g);
     }
