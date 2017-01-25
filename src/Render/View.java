@@ -195,8 +195,13 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     public void mouseReleased(MouseEvent e) {
         if (movingMouse) {
             selected = ActionHandler.getSelectedWithBox(camera, circuit, mouseX, mouseY, movingX, movingY);
-            for (Selectable s: selected) {
+            for (Selectable s : selected) {
                 s.setSelected(true);
+            }
+        }
+        else if (movingComp){
+            for (Selectable s : selected) {
+                ((Drawable) s).resetRelative();
             }
         }
         moving = null;
@@ -252,16 +257,21 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
             movingX = camera.getXMouse(e);
             movingY = camera.getYMouse(e);
         } else if (moving != null && movingComp) {
-            moving.setXY(movingX + camera.convertDistX(e.getX() - mouseX), movingY + camera.convertDistY(e.getY() - mouseY));
-        } else if (!movingComp && !movingView && !movingMouse) {
+            for (Selectable s : selected) {
+                ((Drawable) s).setXYRelative(camera.convertDistX(e.getX() - mouseX), camera.convertDistY(e.getY() - mouseY));
+            }
+        } else if (!movingComp && !movingView && !movingMouse && mode == SELECT) {
             moving = (Drawable) ActionHandler.getSelectedWithPosition(camera, e, circuit);
 
             if (moving == null && e.isShiftDown())
                 setInitialPositions(e, "view");
             else if (moving == null)
                 setInitialPositions(e, "mouse");
-            else if (moving != null && moving instanceof Component)
+            else if (moving != null && moving instanceof Component) {
                 setInitialPositions(e, "comp");
+                moving.setSelected(true);
+                selected.add(moving);
+            }
         }
     }
     public void mouseClicked(MouseEvent e) {

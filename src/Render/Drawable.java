@@ -15,7 +15,7 @@ import static Actions.Constants.Direction.*;
  * Created by danielkim802 on 1/16/17.
  */
 public abstract class Drawable extends Selectable {
-    private int x, y, x2, y2;
+    private int x, y, x2, y2, xRef, yRef;
     private int imageIndex = 0;
     private List<BufferedImage> images;
     private int width;
@@ -24,15 +24,29 @@ public abstract class Drawable extends Selectable {
 
     public void setX(int pos) {
         x = pos;
+        xRef = x;
         updateDots();
     }
     public void setY(int pos) {
         y = pos;
+        yRef = y;
         updateDots();
     }
     public void setXY(int xpos, int ypos) {
         x = xpos;
         y = ypos;
+        xRef = x;
+        yRef = y;
+        updateDots();
+    }
+    public void resetRelative() {
+        xRef = x;
+        yRef = y;
+    }
+
+    public void setXYRelative(int xpos, int ypos) {
+        x = xRef + xpos;
+        y = yRef + ypos;
         updateDots();
     }
 
