@@ -1,10 +1,15 @@
 package Render;
 
+import Actions.Constants;
 import Actions.Selectable;
+import Components.Component;
+import Components.Literals.Constant;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
+
+import static Actions.Constants.Direction.*;
 
 /**
  * Created by danielkim802 on 1/16/17.
@@ -15,7 +20,7 @@ public abstract class Drawable extends Selectable {
     private List<BufferedImage> images;
     private int width;
     private int height;
-    private int orientation = 0;
+    private Constants.Direction orientation = EAST;
 
     public void setX(int pos) {
         x = pos;
@@ -68,6 +73,44 @@ public abstract class Drawable extends Selectable {
         height = h;
     }
 
+    public int dirToInt() {
+        switch (orientation) {
+            case NORTH:
+                return 0;
+            case EAST:
+                return 1;
+            case SOUTH:
+                return 2;
+            case WEST:
+                return 3;
+        }
+
+        return 0;
+    }
+    public Constants.Direction intToDir(int i) {
+        int j = i % 4 >= 0 ? i % 4 : (i % 4) + 4;
+        System.out.println(j);
+        switch (j) {
+            case 0:
+                return NORTH;
+            case 1:
+                return EAST;
+            case 2:
+                return SOUTH;
+            case 3:
+                return WEST;
+        }
+
+        return NORTH;
+    }
+    public void rotate(int amt) {
+        orientation = intToDir((dirToInt() + amt));
+        if (this instanceof Component) {
+            ((Component) this).rotateDots(amt);
+        }
+        updateDots();
+    }
+
     public int getX() {
         return x;
     }
@@ -85,6 +128,18 @@ public abstract class Drawable extends Selectable {
     }
     public int getHeight() {
         return height;
+    }
+    public boolean facingNorth() {
+        return orientation == NORTH;
+    }
+    public boolean facingEast() {
+        return orientation == EAST;
+    }
+    public boolean facingSouth() {
+        return orientation == SOUTH;
+    }
+    public boolean facingWest() {
+        return orientation == WEST;
     }
 
     public abstract void draw(Graphics2D g);

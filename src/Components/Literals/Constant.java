@@ -51,8 +51,8 @@ public class Constant extends Component {
         toggle();
     }
 
-    public void updateDots() {
-        getOutputDots().get("output").setXY(getX() + (getImage().getWidth() / 2), getY());
+    public void setDotPositions() {
+        getOutputDots().get("output").setXYRelative(getImage().getWidth() / 2, 0);
     }
     public void setIO(int ins, int outs) {
         getOutputs().put("output", new ArrayList<>());

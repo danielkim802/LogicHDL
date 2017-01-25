@@ -5,19 +5,26 @@ import Render.DrawHandler;
 import Render.Drawable;
 import Render.ResourceLibrary;
 
+import javax.lang.model.type.NullType;
 import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ColorModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Created by danielkim802 on 1/16/17.
  */
 public abstract class Component extends Drawable {
     private Map<String, Wire> inputs = new HashMap<>();
-    private Map<String, Dot> inputDots = new HashMap<>();
     private Map<String, List<Wire>> outputs = new HashMap<>();
+    private Map<String, Dot> inputDots = new HashMap<>();
     private Map<String, Dot> outputDots = new HashMap<>();
 
     public Component(int inputlen, int outputlen) {
@@ -27,15 +34,20 @@ public abstract class Component extends Drawable {
         setIO(inputlen, outputlen);
 
         // make dots
+        makeDots();
+
+        // move dots to correct position
+        setDotPositions();
+        updateDots();
+    }
+
+    private void makeDots() {
         for (String key : inputs.keySet()) {
             inputDots.put(key, new Dot(this, true, key));
         }
         for (String key : outputs.keySet()) {
             outputDots.put(key, new Dot(this, false, key));
         }
-
-        // move dots to correct position
-        updateDots();
     }
 
     // input output methods
@@ -135,11 +147,68 @@ public abstract class Component extends Drawable {
             DrawHandler.drawRect(g, Color.red, getWidth(), getHeight(), getX(), getY());
         }
     }
+    public void rotateDots(int amt) {
+        System.out.println("rotate");
+        Function<Point, Point> mirrorXY = pos -> {
+            double tempx = pos.getX();
+            double tempy = pos.getY();
+            pos.setLocation(tempy, tempx);
+            return pos;
+        };
+
+        Function<Point, Point> mirrorNegXY = pos -> {
+            double tempx = pos.getX();
+            double tempy = pos.getY();
+            pos.setLocation(-tempy, -tempx);
+            return pos;
+        };
+
+        Function<Point, Point> mirrorX = pos -> {
+            pos.setLocation(pos.getX(), -pos.getY());
+            return pos;
+        };
+
+        Function<Point, Point> mirrorY = pos -> {
+            pos.setLocation(-pos.getX(), pos.getY());
+            return pos;
+        };
+
+        Function<Point, Point> rotateLeft = pos -> mirrorY.apply(mirrorXY.apply(pos));
+        Function<Point, Point> rotateRight = pos -> mirrorY.apply(mirrorNegXY.apply(pos));
+
+        List<Dot> dots = new ArrayList<>();
+        dots.addAll(inputDots.values());
+        dots.addAll(outputDots.values());
+        for (Dot dot : dots) {
+            Point pos = new Point(dot.getXRelative(), dot.getYRelative());
+
+            for (int j = 0; j < Math.abs(amt); j ++) {
+                if (amt > 0) {
+                    pos = rotateRight.apply(pos);
+                }
+                else if (amt < 0) {
+                    pos = rotateLeft.apply(pos);
+                }
+            }
+
+            dot.setXYRelative((int) pos.getX(), (int) pos.getY());
+        }
+    }
+
+    public void updateDots() {
+        List<Dot> dots = new ArrayList<>();
+        dots.addAll(inputDots.values());
+        dots.addAll(outputDots.values());
+        for (Dot dot : dots) {
+            dot.setXY(getX() + dot.getXRelative(), getY() - dot.getYRelative());
+        }
+    }
 
     // abstract
     public abstract Component copy();
     public abstract void propagate();
     public abstract void setIO(int ins, int outs);
+    public abstract void setDotPositions();
     public void click() {}
     public void drag(int x, int y) {
         setXY(x, y);

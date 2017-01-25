@@ -73,7 +73,7 @@ public class Fulladder extends Component {
     }
 
     public void draw(Graphics2D g) {}
-    public void updateDots() {}
+    public void setDotPositions() {}
     public void setIO(int ins, int outs) {
         getInputs().put("A", new Wire());
         getInputs().put("B", new Wire());

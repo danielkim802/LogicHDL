@@ -33,9 +33,9 @@ public class Joint extends Component {
         }
     }
 
-    public void updateDots() {
-        getInputDots().get("from").setXY(getX() - 4, getY());
-        getOutputDots().get("to").setXY(getX() + 4, getY());
+    public void setDotPositions() {
+        getInputDots().get("from").setXYRelative(-4, 0);
+        getOutputDots().get("to").setXYRelative(4, 0);
     }
     public void setIO(int ins, int outs) {
         getInputs().put("from", new Wire());

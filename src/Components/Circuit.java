@@ -197,6 +197,6 @@ public class Circuit extends Component {
             }
         }
     }
-    public void updateDots() {}
+    public void setDotPositions() {}
     public void setIO(int ins, int outs) {}
 }

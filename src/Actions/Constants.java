@@ -18,4 +18,8 @@ public class Constants {
     public enum Mode {
         SELECT, PLACE, CLICK
     }
+
+    public enum Direction {
+        NORTH, EAST, SOUTH, WEST
+    }
 }

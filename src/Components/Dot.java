@@ -13,6 +13,8 @@ public class Dot extends Drawable {
     private Component parent;
     private boolean input;
     private String key;
+    private int xRelative;
+    private int yRelative;
 
     public Dot(Component p, boolean type, String k) {
         parent = p;
@@ -23,6 +25,18 @@ public class Dot extends Drawable {
 
     public Component getParent() {
         return parent;
+    }
+
+    public int getXRelative() {
+        return xRelative;
+    }
+    public int getYRelative() {
+        return yRelative;
+    }
+
+    public void setXYRelative(int x, int y) {
+        xRelative = x;
+        yRelative = y;
     }
 
     public void connect(Dot dot) {

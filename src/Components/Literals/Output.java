@@ -35,8 +35,8 @@ public class Output extends Component {
         drawDots(g);
         drawSelected(g);
     }
-    public void updateDots() {
-        getInputDots().get("input").setXY(getX() - (getImage().getWidth() / 2), getY());
+    public void setDotPositions() {
+        getInputDots().get("input").setXYRelative(-getImage().getWidth() / 2, 0);
     }
     public void setIO(int ins, int outs) {
         getInputs().put("input", new Wire());

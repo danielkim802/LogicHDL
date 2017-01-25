@@ -64,23 +64,19 @@ public abstract class Gate extends Component {
         }
     }
 
-    public void updateDots() {
-        try {
-            int height = getImage().getHeight();
-            int width = getImage().getWidth();
-            int inputs = getInputs().size();
-            int offset = 0;
-            int adjusty = height / 2;
-            int adjustx = width / 2;
-            int spacing = height / inputs;
+    public void setDotPositions() {
+        int height = getImage().getHeight();
+        int width = getImage().getWidth();
+        int inputs = getInputs().size();
+        int offset = 0;
+        int adjusty = height / 2;
+        int adjustx = width / 2;
+        int spacing = height / inputs;
 
-            for (int i = 0; i < getInputDots().size(); i ++) {
-                getInputDots().get(""+i).setXY(getX() + offset - adjustx, getY() + (i * spacing) + (spacing / 2) - adjusty);
-            }
-
-            getOutputDots().get("output").setXY(getX() + width - offset - adjustx, getY() + (height / 2) - adjusty);
+        for (int i = 0; i < getInputDots().size(); i ++) {
+            getInputDots().get(""+i).setXYRelative(offset - adjustx, -(i * spacing) - (spacing / 2) + adjusty);
         }
-        catch (NullPointerException e) {}
+        getOutputDots().get("output").setXYRelative(width - offset - adjustx, -(height / 2) + adjusty);
     }
 
     public void setIO(int inputlen, int outputlen) {
