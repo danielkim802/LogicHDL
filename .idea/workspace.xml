@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c48302-b0a5-4351-8bd5-f4250ec98bf6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Component.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Component.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/DrawHandler.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/DrawHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/Drawable.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/Drawable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Component.java" afterPath="$PROJECT_DIR$/src/Components/Component.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Actions/ActionHandler.java" afterPath="$PROJECT_DIR$/src/Actions/ActionHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/DrawHandler.java" afterPath="$PROJECT_DIR$/src/Render/DrawHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/Drawable.java" afterPath="$PROJECT_DIR$/src/Render/Drawable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/View.java" afterPath="$PROJECT_DIR$/src/Render/View.java" />
     </list>
     <ignored path="LogicHDL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,13 +49,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Render/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="224" column="9" selection-start-line="224" selection-start-column="9" selection-end-line="224" selection-end-column="9" />
+            <state relative-caret-position="169">
+              <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Render/Camera.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+              <folding>
+                <element signature="method#setXY#0;class#Camera#0" expanded="false" />
+                <element signature="e#993#994#0" expanded="true" />
+                <element signature="e#1042#1043#0" expanded="true" />
+                <element signature="method#move#0;class#Camera#0" expanded="false" />
+                <element signature="method#scale#0;class#Camera#0" expanded="false" />
+                <element signature="method#zoom#0;class#Camera#0" expanded="false" />
+                <element signature="method#translate#0;class#Camera#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -68,9 +82,12 @@
       <file leaf-file-name="ActionHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Actions/ActionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="424">
+              <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+              <folding>
+                <element signature="e#341#342#0" expanded="true" />
+                <element signature="e#382#383#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrawHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DrawHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Render/DrawHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+            <state relative-caret-position="319">
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -116,18 +133,6 @@
             <state relative-caret-position="345">
               <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Wire.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/Wire.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -198,7 +203,6 @@
         <option value="$PROJECT_DIR$/src/Constants.java" />
         <option value="$PROJECT_DIR$/src/Render/Mouse.java" />
         <option value="$PROJECT_DIR$/src/View.java" />
-        <option value="$PROJECT_DIR$/src/Actions/ActionHandler.java" />
         <option value="$PROJECT_DIR$/src/Actions/Selectable.java" />
         <option value="$PROJECT_DIR$/src/Render/ResourceLibrary.java" />
         <option value="$PROJECT_DIR$/src/Actions/Cursor.java" />
@@ -213,11 +217,12 @@
         <option value="$PROJECT_DIR$/src/Components/Literals/Output.java" />
         <option value="$PROJECT_DIR$/src/Components/Gate.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/Render/View.java" />
         <option value="$PROJECT_DIR$/src/Actions/Constants.java" />
         <option value="$PROJECT_DIR$/src/Render/Drawable.java" />
         <option value="$PROJECT_DIR$/src/Components/Component.java" />
+        <option value="$PROJECT_DIR$/src/Actions/ActionHandler.java" />
         <option value="$PROJECT_DIR$/src/Render/DrawHandler.java" />
+        <option value="$PROJECT_DIR$/src/Render/View.java" />
       </list>
     </option>
   </component>
@@ -856,12 +861,12 @@
       <workItem from="1484469728823" duration="41514000" />
       <workItem from="1484717071929" duration="1973000" />
       <workItem from="1484719242329" duration="34825000" />
-      <workItem from="1484792790928" duration="63843000" />
+      <workItem from="1484792790928" duration="69100000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190444000" />
+    <option name="totallyTimeSpent" value="195701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="24" width="1400" height="833" extended-state="0" />
@@ -1080,25 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Render/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="45" column="39" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
-          <folding>
-            <element signature="method#setXY#0;class#Camera#0" expanded="false" />
-            <element signature="e#1042#1043#0" expanded="true" />
-            <element signature="e#1082#1083#0" expanded="true" />
-            <element signature="e#1131#1132#0" expanded="true" />
-            <element signature="method#move#0;class#Camera#0" expanded="false" />
-            <element signature="method#scale#0;class#Camera#0" expanded="false" />
-            <element signature="method#zoom#0;class#Camera#0" expanded="false" />
-            <element signature="method#translate#0;class#Camera#0" expanded="false" />
-            <element signature="e#1589#1590#0" expanded="true" />
-            <element signature="e#1657#1658#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Circuit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1185,39 +1171,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actions/ActionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Gate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="79">
           <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Render/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="224" column="9" selection-start-line="224" selection-start-column="9" selection-end-line="224" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Render/Drawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="131" column="25" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1243,10 +1201,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding>
+            <element signature="method#setXY#0;class#Camera#0" expanded="false" />
+            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#1042#1043#0" expanded="true" />
+            <element signature="method#move#0;class#Camera#0" expanded="false" />
+            <element signature="method#scale#0;class#Camera#0" expanded="false" />
+            <element signature="method#zoom#0;class#Camera#0" expanded="false" />
+            <element signature="method#translate#0;class#Camera#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Render/DrawHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+        <state relative-caret-position="319">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/Drawable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="131" column="25" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Actions/ActionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+          <folding>
+            <element signature="e#341#342#0" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

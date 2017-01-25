@@ -30,9 +30,10 @@ public class DrawHandler {
             double theta = Math.toRadians(0);
             AffineTransform tx;
             AffineTransformOp op;
+
             switch (dir) {
                 case NORTH:
-                    theta = Math.toRadians(-90);
+                    theta = Math.toRadians(270);
                     break;
                 case EAST:
                     theta = Math.toRadians(0);
@@ -44,6 +45,7 @@ public class DrawHandler {
                     theta = Math.toRadians(180);
                     break;
             }
+
             tx = AffineTransform.getRotateInstance(theta, xpos, ypos);
             op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
             g.drawImage(op.filter(img, null), centerCoord(x, img.getWidth()), centerCoord(y, img.getHeight()), null);

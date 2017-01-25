@@ -18,6 +18,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.awt.event.KeyEvent.*;
 import static java.lang.Math.max;
@@ -31,7 +32,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     MyCursor cursor = new MyCursor();
     Constants.Component component = AND;
     Constants.Mode mode = Constants.Mode.PLACE;
-    Selectable selected;
+    List<Selectable> selected = new ArrayList<>();
     Drawable moving;
 
     int mouseX = 0;
@@ -40,6 +41,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     int movingY = 0;
     boolean movingView = false;
     boolean movingComp = false;
+    boolean movingMouse = false;
 
     {
 //        circuit.addInput("A", 1);
@@ -138,13 +140,21 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         System.out.println(e.getKeyCode());
         switch (e.getKeyCode()) {
             case VK_RIGHT:
-                if (selected != null && selected instanceof Component) {
-                    ((Drawable) selected).rotate(1);
+                if (selected.size() != 0) {
+                    for (Selectable s : selected) {
+                        if (s instanceof Component) {
+                            ((Drawable) s).rotate(1);
+                        }
+                    }
                 }
                 break;
             case VK_LEFT:
-                if (selected != null && selected instanceof Component) {
-                    ((Drawable) selected).rotate(-1);
+                if (selected.size() != 0) {
+                    for (Selectable s : selected) {
+                        if (s instanceof Component) {
+                            ((Drawable) s).rotate(-1);
+                        }
+                    }
                 }
                 break;
             case VK_UP: camera.translate(0, -speed); break;
@@ -167,9 +177,13 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
             case VK_MINUS: component = JOINT; break;
             case VK_C: circuit.clear(); break;
             case VK_BACK_SPACE:
-                if (selected != null && selected instanceof Component) {
-                    circuit.remove((Component) selected);
-                    selected = null;
+                if (selected.size() != 0) {
+                    for (Selectable s : selected) {
+                        if (s instanceof Component) {
+                            circuit.remove((Component) s);
+                        }
+                    }
+                    selected.clear();
                 }
                 break;
         }
@@ -179,9 +193,16 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
 
     public void mouseExited(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {
+        if (movingMouse) {
+            selected = ActionHandler.getSelectedWithBox(camera, circuit, mouseX, mouseY, movingX, movingY);
+            for (Selectable s: selected) {
+                s.setSelected(true);
+            }
+        }
         moving = null;
         movingView = false;
         movingComp = false;
+        movingMouse = false;
     }
     public void mouseWheelMoved(MouseWheelEvent e) {
         if (!e.isShiftDown()) {
@@ -193,35 +214,54 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     public void mousePressed(MouseEvent e) {}
     public void mouseMoved(MouseEvent e) {}
 
-    private void setInitialPositions(MouseEvent e, boolean view) {
-        if (view) {
-            movingView = true;
-            movingComp = false;
-            movingX = camera.getX();
-            movingY = camera.getY();
-        } else {
-            movingComp = true;
-            movingView = false;
-            movingX = moving.getX();
-            movingY = moving.getY();
-        }
+    private void setInitialPositions(MouseEvent e, String s) {
         mouseX = e.getX();
         mouseY = e.getY();
+
+        if (s == "view") {
+            movingView = true;
+            movingComp = false;
+            movingMouse = false;
+            movingX = camera.getX();
+            movingY = camera.getY();
+        } else if (s == "comp") {
+            movingComp = true;
+            movingView = false;
+            movingMouse = false;
+            movingX = moving.getX();
+            movingY = moving.getY();
+        } else if (s == "mouse") {
+            movingComp = false;
+            movingView = false;
+            movingMouse = true;
+            mouseX = camera.getXMouse(e);
+            mouseY = camera.getYMouse(e);
+            movingX = camera.getXMouse(e);
+            movingY = camera.getYMouse(e);
+        }
     }
     public void mouseDragged(MouseEvent e) {
+        System.out.println("x - " + movingX);
+        System.out.println("y - " + movingY);
+//        System.out.println(movingMouse);
 //        System.out.println(camera.getXMouse(e));
 //        System.out.println(camera.getYMouse(e));
         if (moving == null && movingView && e.isShiftDown()) {
             camera.setXY(movingX + camera.convertDistX(mouseX - e.getX()), movingY + camera.convertDistY(mouseY - e.getY()));
+        } else if (moving == null && movingMouse) {
+            movingX = camera.getXMouse(e);
+            movingY = camera.getYMouse(e);
         } else if (moving != null && movingComp) {
             moving.setXY(movingX + camera.convertDistX(e.getX() - mouseX), movingY + camera.convertDistY(e.getY() - mouseY));
-        } else if (!movingComp && ! movingView) {
+        } else if (!movingComp && !movingView && !movingMouse) {
             moving = (Drawable) ActionHandler.getSelectedWithPosition(camera, e, circuit);
 
-            if (moving == null)
-                setInitialPositions(e, true);
+            if (moving == null && e.isShiftDown())
+                setInitialPositions(e, "view");
+            else if (moving == null)
+                setInitialPositions(e, "mouse");
             else if (moving != null && moving instanceof Component)
-                setInitialPositions(e, false);
+                setInitialPositions(e, "comp");
         }
     }
     public void mouseClicked(MouseEvent e) {
@@ -249,33 +289,42 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 Selectable newselected = ActionHandler.getSelectedWithPosition(camera, e, circuit);
 //                System.out.println("selected: " + selected);
 //                System.out.println("newselected: " + newselected);
-                if (selected != null) {
+                if (selected.size() != 0) {
                     if (newselected != null) {
                         // toggle
-                        if (selected == newselected) {
+                        if (selected.get(0) == newselected) {
                             newselected.setSelected(!newselected.isSelected());
                         }
                         // connect dots
-                        else if (selected instanceof Dot && newselected instanceof Dot) {
-                            ((Dot) selected).connect((Dot) newselected);
-                            selected.setSelected(false);
+                        else if (selected.get(0) instanceof Dot && newselected instanceof Dot) {
+                            ((Dot) selected.get(0)).connect((Dot) newselected);
+                            selected.get(0).setSelected(false);
                             newselected.setSelected(false);
                             newselected = null;
                         }
                         // select something else
                         else {
-                            selected.setSelected(false);
+                            selected.get(0).setSelected(false);
                             newselected.setSelected(true);
                         }
                     }
                     else {
-                        selected.setSelected(false);
+                        selected.get(0).setSelected(false);
                     }
                 }
                 else if (newselected != null) {
                     newselected.setSelected(true);
                 }
-                selected = newselected;
+
+                for (Selectable s : selected) {
+                    s.setSelected(false);
+                }
+                selected.clear();
+
+                if (newselected != null) {
+                    newselected.setSelected(true);
+                    selected.add(newselected);
+                }
                 break;
             case CLICK:
                 Selectable clicked = ActionHandler.getSelectedWithPosition(camera, e, circuit);
@@ -296,6 +345,27 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         camera.clear(g);
         camera.draw(g);
         circuit.draw(g);
+
+        if (movingMouse) {
+            g.setColor(Color.red);
+
+            int mx = mouseX;
+            int my = mouseY;
+            int mvx = movingX - mouseX;
+            int mvy = movingY - mouseY;
+
+            if (mvx < 0) {
+                mx += mvx;
+                mvx = Math.abs(mvx);
+            }
+            if (mvy < 0) {
+                my += mvy;
+                mvy = Math.abs(mvy);
+            }
+
+            g.drawRect(mx, my, mvx, mvy);
+            g.setColor(Color.black);
+        }
 
         g.dispose();
         getBufferStrategy().show();
