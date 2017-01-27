@@ -1,5 +1,6 @@
 package Components;
 
+import Actions.GUIElement;
 import Actions.Selectable;
 import Render.DrawHandler;
 import Render.Drawable;
@@ -21,7 +22,7 @@ import java.util.function.Function;
 /**
  * Created by danielkim802 on 1/16/17.
  */
-public abstract class Component extends Drawable {
+public abstract class Component extends GUIElement {
     private Map<String, Wire> inputs = new HashMap<>();
     private Map<String, List<Wire>> outputs = new HashMap<>();
     private Map<String, Dot> inputDots = new HashMap<>();

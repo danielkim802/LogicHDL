@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c48302-b0a5-4351-8bd5-f4250ec98bf6" name="Default" comment="">
+<<<<<<< Updated upstream
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Actions/GUIElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Component.java" afterPath="$PROJECT_DIR$/src/Components/Component.java" />
+>>>>>>> Stashed changes
     </list>
     <ignored path="LogicHDL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,42 +34,78 @@
       <file leaf-file-name="Drawable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Render/Drawable.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="225">
               <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+=======
+            <state relative-caret-position="364">
+              <caret line="152" column="25" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
               <folding />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Render/View.java">
+      <file leaf-file-name="GUIElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Actions/GUIElement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+            <state relative-caret-position="394">
+              <caret line="160" column="44" selection-start-line="160" selection-start-column="44" selection-end-line="160" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#setX#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#setY#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#setXY#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#resetRelative#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#setXYRelative#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#setX2#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#setY2#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#setXY2#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#updateDots#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#setImages#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#getImage#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#setDimensions#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#dirToInt#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#intToDir#0;class#GUIElement#0" expanded="false" />
+                <element signature="method#rotate#0;class#GUIElement#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Component.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+            <state relative-caret-position="555">
+              <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+=======
+            <state relative-caret-position="154">
+              <caret line="200" column="40" selection-start-line="200" selection-start-column="40" selection-end-line="200" selection-end-column="40" />
+>>>>>>> Stashed changes
+              <folding>
+                <element signature="method#drawSelected#0;class#Component#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Actions/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
               <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
+=======
+      <file leaf-file-name="Selectable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Actions/Selectable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="18" column="54" selection-start-line="8" selection-start-column="4" selection-end-line="18" selection-end-column="54" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -120,11 +162,25 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="825">
               <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+<<<<<<< Updated upstream
+=======
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Actions/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+>>>>>>> Stashed changes
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="Component.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -137,6 +193,8 @@
           </provider>
         </entry>
       </file>
+=======
+>>>>>>> Stashed changes
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -159,7 +217,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Error/GateEvaluationError.java" />
         <option value="$PROJECT_DIR$/src/ComponentError/WireError.java" />
         <option value="$PROJECT_DIR$/src/Wire.java" />
         <option value="$PROJECT_DIR$/src/Gate.java" />
@@ -204,12 +261,18 @@
         <option value="$PROJECT_DIR$/src/Components/Literals/Output.java" />
         <option value="$PROJECT_DIR$/src/Components/Gate.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/src/Components/Component.java" />
+=======
+        <option value="$PROJECT_DIR$/src/Actions/Constants.java" />
+>>>>>>> Stashed changes
         <option value="$PROJECT_DIR$/src/Actions/ActionHandler.java" />
         <option value="$PROJECT_DIR$/src/Render/DrawHandler.java" />
         <option value="$PROJECT_DIR$/src/Render/Drawable.java" />
         <option value="$PROJECT_DIR$/src/Actions/Constants.java" />
         <option value="$PROJECT_DIR$/src/Render/View.java" />
+        <option value="$PROJECT_DIR$/src/Components/Component.java" />
+        <option value="$PROJECT_DIR$/src/Actions/GUIElement.java" />
       </list>
     </option>
   </component>
@@ -257,7 +320,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< Updated upstream
       <pane id="Scratches" />
+=======
+      <pane id="PackagesPane" />
+>>>>>>> Stashed changes
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -390,7 +457,11 @@
           </PATH>
         </subPane>
       </pane>
+<<<<<<< Updated upstream
       <pane id="PackagesPane" />
+=======
+      <pane id="Scratches" />
+>>>>>>> Stashed changes
       <pane id="Scope">
         <subPane subId="Problems">
           <PATH>
@@ -849,13 +920,22 @@
       <workItem from="1484717071929" duration="1973000" />
       <workItem from="1484719242329" duration="34825000" />
       <workItem from="1484792790928" duration="72607000" />
+<<<<<<< Updated upstream
       <workItem from="1485391881778" duration="3363000" />
       <workItem from="1485548823478" duration="50000" />
+=======
+      <workItem from="1485391881778" duration="2483000" />
+      <workItem from="1485495058226" duration="1933000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="202621000" />
+=======
+    <option name="totallyTimeSpent" value="203624000" />
+>>>>>>> Stashed changes
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="24" width="1400" height="833" extended-state="0" />
@@ -910,7 +990,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AndGUI.java" />
     <entry file="file://$PROJECT_DIR$/src/INPUT.java" />
     <entry file="file://$PROJECT_DIR$/src/OUTPUT.java" />
     <entry file="file://$PROJECT_DIR$/src/NOT.java" />
@@ -1025,14 +1104,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actions/Selectable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Render/ResourceLibrary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-551">
@@ -1129,9 +1200,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+<<<<<<< Updated upstream
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -1178,6 +1268,7 @@
         <state relative-caret-position="825">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding />
+<<<<<<< Updated upstream
         </state>
       </provider>
     </entry>
@@ -1198,6 +1289,8 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -1217,12 +1310,62 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/Render/View.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/Actions/Selectable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" column="54" selection-start-line="8" selection-start-column="4" selection-end-line="18" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/Drawable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="152" column="25" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Actions/GUIElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="160" column="44" selection-start-line="160" selection-start-column="44" selection-end-line="160" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#setX#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setY#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setXY#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#resetRelative#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setXYRelative#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setX2#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setY2#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setXY2#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#updateDots#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setImages#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#getImage#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setDimensions#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#dirToInt#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#intToDir#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#rotate#0;class#GUIElement#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="200" column="40" selection-start-line="200" selection-start-column="40" selection-end-line="200" selection-end-column="40" />
+          <folding>
+            <element signature="method#drawSelected#0;class#Component#0" expanded="false" />
+>>>>>>> Stashed changes
           </folding>
         </state>
       </provider>
