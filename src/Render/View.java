@@ -10,8 +10,6 @@ import Components.Dot;
 import Components.Gates.*;
 import Components.Literals.*;
 import Components.Modules.*;
-import static Actions.Constants.Component.*;
-import static Actions.Constants.Mode.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +17,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static Actions.Constants.Component.*;
+import static Actions.Constants.Mode.*;
 
 import static java.awt.event.KeyEvent.*;
 import static java.lang.Math.max;
@@ -31,7 +32,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     Camera camera = new Camera(this);
     MyCursor cursor = new MyCursor();
     Constants.Component component = AND;
-    Constants.Mode mode = Constants.Mode.PLACE;
+    Constants.Mode mode = PLACE;
     List<Selectable> selected = new ArrayList<>();
     Drawable moving;
 
@@ -136,8 +137,8 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     public void keyPressed(KeyEvent e) {
         int speed = 5;
         double zoomspeed = 0.1;
-        System.out.println("pressed");
-        System.out.println(e.getKeyCode());
+//        System.out.println("pressed");
+//        System.out.println(e.getKeyCode());
         switch (e.getKeyCode()) {
             case VK_RIGHT:
                 if (selected.size() != 0) {
@@ -246,8 +247,8 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         }
     }
     public void mouseDragged(MouseEvent e) {
-        System.out.println("x - " + movingX);
-        System.out.println("y - " + movingY);
+//        System.out.println("x - " + movingX);
+//        System.out.println("y - " + movingY);
 //        System.out.println(movingMouse);
 //        System.out.println(camera.getXMouse(e));
 //        System.out.println(camera.getYMouse(e));
