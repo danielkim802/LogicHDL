@@ -28,36 +28,23 @@ import static java.lang.Math.max;
  * Created by danielkim802 on 1/16/17.
  */
 public class View extends JFrame implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {
-    Circuit circuit = new Circuit();
-    Camera camera = new Camera(this);
-    MyCursor cursor = new MyCursor();
-    Constants.Component component = AND;
-    Constants.Mode mode = PLACE;
-    List<Selectable> selected = new ArrayList<>();
-    Drawable moving;
+    // view components
+    private Circuit circuit = new Circuit();
+    private Camera camera = new Camera(this);
+    private MyCursor cursor = new MyCursor();
 
-    int mouseX = 0;
-    int mouseY = 0;
-    int movingX = 0;
-    int movingY = 0;
-    boolean movingView = false;
-    boolean movingComp = false;
-    boolean movingMouse = false;
+    // settings and modes
+    private Constants.Component component = AND;
+    private Constants.Mode mode = SELECT;
+    private List<Selectable> selected = new ArrayList<>();
+    private Constants.MovingMode movingMode;
+    private double zoomSpeed = 0.1;
 
-    {
-//        circuit.addInput("A", 1);
-//        circuit.getInput("A").setXY(150, 280);
-//        circuit.addInput("B", 1);
-//        circuit.getInput("B").setXY(150, 320);
-//        circuit.addOutput("C");
-//        circuit.getOutput("C").setXY(400, 300);
-//        Or and1 = new Or();
-//        circuit.addComponent(and1);
-//        circuit.getInput("A").connect("0", and1);
-//        circuit.getInput("B").connect("1", and1);
-//        and1.connect("input", circuit.getOutput("C"));
-//        and1.setXY(300, 300);
+    // helper variables
+    int mouseXRef = 0;
+    int mouseYRef = 0;
 
+    private void initCircuit() {
         circuit.addInput("A", 1);
         circuit.addInput("B", 1);
         circuit.addInput("C", 1);
@@ -102,6 +89,8 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     private boolean running = true;
 
     public View() {
+        initCircuit();
+
         setTitle("LogicSim");
         setSize(900, 600);
         setLocationRelativeTo(null);
@@ -135,10 +124,6 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     }
 
     public void keyPressed(KeyEvent e) {
-        int speed = 5;
-        double zoomspeed = 0.1;
-//        System.out.println("pressed");
-//        System.out.println(e.getKeyCode());
         switch (e.getKeyCode()) {
             case VK_RIGHT:
                 if (selected.size() != 0) {
@@ -158,15 +143,21 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                     }
                 }
                 break;
-            case VK_UP: camera.translate(0, -speed); break;
-            case VK_DOWN: camera.translate(0, speed); break;
-            case VK_OPEN_BRACKET: camera.zoom(zoomspeed, zoomspeed); break;
-            case VK_CLOSE_BRACKET: camera.zoom(-zoomspeed, -zoomspeed); break;
-            case VK_0: component = AND; break;
-            case VK_1: component = NAND; break;
-            case VK_2: component = NOR; break;
-            case VK_3: component = NOT; break;
-            case VK_4: component = OR; break;
+            case VK_0:
+                component = AND;
+                break;
+            case VK_1:
+                component = NAND;
+                break;
+            case VK_2:
+                component = NOR;
+                break;
+            case VK_3:
+                component = NOT;
+                break;
+            case VK_4:
+                component = OR;
+                break;
             case VK_5: component = XNOR; break;
             case VK_6: component = XOR; break;
             case VK_7: component = CONSTANT; break;

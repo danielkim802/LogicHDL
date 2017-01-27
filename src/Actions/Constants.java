@@ -19,6 +19,10 @@ public class Constants {
         SELECT, PLACE, CLICK
     }
 
+    public enum MovingMode {
+        MOVING_CAMERA, MOVING_COMPONENT, MOVING_SELECT
+    }
+
     public enum Direction {
         NORTH, EAST, SOUTH, WEST
     }
