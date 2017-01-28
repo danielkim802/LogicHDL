@@ -2,9 +2,11 @@ package Components.Literals;
 
 import Components.Component;
 import Components.Wire;
+import Render.Camera;
 import Render.DrawHandler;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by danielkim802 on 1/16/17.
@@ -19,26 +21,26 @@ public class Output extends Component {
     public long value() {
         return value;
     }
+
+    // abstract methods
     public Output copy() {
         return new Output();
     }
-
     public void propagate() {
         if (allInputsAssigned()) {
             value = getInputs().get("input").value();
         }
     }
-
-    public void draw(Graphics2D g) {
-        setImageIndex(value == 0 ? 0 : 1);
-        DrawHandler.drawImage(g, getImage(), getX(), getY());
-        drawDots(g);
-        drawSelected(g);
-    }
     public void setDotPositions() {
-        getInputDots().get("input").setXYRelative(-getImage().getWidth() / 2, 0);
+        getInputDots().get("input").setXYOffset(-getImage().getWidth() / 2, 0);
     }
     public void setIO(int ins, int outs) {
         getInputs().put("input", new Wire());
+    }
+    public void draw(Graphics2D g) {
+        setImageIndex(value == 0 ? 0 : 1);
+        drawImage(g);
+        drawDots(g);
+        drawSelected(g);
     }
 }

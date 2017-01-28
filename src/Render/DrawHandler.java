@@ -1,6 +1,7 @@
 package Render;
 
 import Actions.Constants;
+import Actions.GUIElement;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -52,7 +53,7 @@ public class DrawHandler {
         }
     }
 
-    public static void drawImageRelative(Graphics2D g, BufferedImage img, Drawable relative, int x, int y) {
+    public static void drawImageRelative(Graphics2D g, BufferedImage img, GUIElement relative, int x, int y) {
         int normalx = centerCoord(relative.getX(), relative.getImage().getWidth());
         int normaly = centerCoord(relative.getY(), relative.getImage().getHeight());
         drawImage(g, img, normalx + x, normaly + y);
@@ -61,6 +62,15 @@ public class DrawHandler {
     public static void drawRect(Graphics2D g, Color c, int width, int height, int x, int y) {
         g.setColor(c);
         g.drawRect(centerCoord(x, width), centerCoord(y, height), width, height);
+        g.setColor(defaultColor);
+    }
+    public static void drawRectPoint(Graphics2D g, Color c, int x1, int y1, int x2, int y2) {
+        g.setColor(c);
+        int x1p = Math.min(x1, x2);
+        int x2p = Math.max(x1, x2);
+        int y1p = Math.min(y1, y2);
+        int y2p = Math.max(y1, y2);
+        g.drawRect(x1p, y1p, x2p - x1p, y2p - y1p);
         g.setColor(defaultColor);
     }
     public static void clearRect(Graphics2D g, int width, int height, int x, int y) {

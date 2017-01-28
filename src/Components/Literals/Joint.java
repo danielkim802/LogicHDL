@@ -2,7 +2,9 @@ package Components.Literals;
 
 import Components.Component;
 import Components.Wire;
+import Render.Camera;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
@@ -21,10 +23,10 @@ public class Joint extends Component {
         outputs ++;
     }
 
+    // abstract methods
     public Joint copy() {
         return new Joint();
     }
-
     public void propagate() {
         if (allInputsAssigned()) {
             for (Wire wire : getOutputs().get("to")) {
@@ -32,10 +34,9 @@ public class Joint extends Component {
             }
         }
     }
-
     public void setDotPositions() {
-        getInputDots().get("from").setXYRelative(-4, 0);
-        getOutputDots().get("to").setXYRelative(4, 0);
+        getInputDots().get("from").setXYOffset(-4, 0);
+        getOutputDots().get("to").setXYOffset(4, 0);
     }
     public void setIO(int ins, int outs) {
         getInputs().put("from", new Wire());

@@ -1,26 +1,38 @@
 package Actions;
 
 import Components.Component;
+import Components.Dot;
+import Render.DrawHandler;
+import Render.ResourceLibrary;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
 import static Actions.Constants.Direction.*;
-import static Actions.Constants.Direction.NORTH;
 
 /**
  * Created by danielkim802 on 1/27/17.
  */
 public abstract class GUIElement {
-    private int x, y, x2, y2, xRef, yRef;
+    private int x, y, x2, y2, xOffset, yOffset;
+    private boolean offsetSet = false;
     private int imageIndex = 0;
     private List<BufferedImage> images;
-    private int width;
-    private int height;
     private Constants.Direction orientation = EAST;
     private boolean selected = false;
 
+    public GUIElement() {
+        setImages(ResourceLibrary.getImages(this.getClass()));
+    }
+
+    private void updateDots() {
+        if (this instanceof Component) {
+            ((Component) this).updateDots();
+        }
+    }
+
+    // selection methods
     public void setSelected(boolean bool) {
         selected = bool;
     }
@@ -31,28 +43,15 @@ public abstract class GUIElement {
     // position methods
     public void setX(int pos) {
         x = pos;
-        xRef = x;
         updateDots();
     }
     public void setY(int pos) {
         y = pos;
-        yRef = y;
         updateDots();
     }
     public void setXY(int xpos, int ypos) {
         x = xpos;
         y = ypos;
-        xRef = x;
-        yRef = y;
-        updateDots();
-    }
-    public void resetRelative() {
-        xRef = x;
-        yRef = y;
-    }
-    public void setXYRelative(int xpos, int ypos) {
-        x = xRef + xpos;
-        y = yRef + ypos;
         updateDots();
     }
     public void setX2(int pos) {
@@ -68,11 +67,35 @@ public abstract class GUIElement {
         y2 = ypos;
         updateDots();
     }
+    public void setXYOffset(int xpos, int ypos) {
+        xOffset = xpos;
+        yOffset = ypos;
+        offsetSet = true;
+        updateDots();
+    }
+    public void resetXY() {
+        x = getX();
+        y = getY();
+        xOffset = 0;
+        yOffset = 0;
+        offsetSet = false;
+    }
+    public void setDirection(Constants.Direction dir) {
+        orientation = dir;
+        updateDots();
+    }
+    public void rotate(int amt) {
+        orientation = getIntAsDirection((getDirectionAsInt() + amt));
+        if (this instanceof Component) {
+            ((Component) this).rotateDots(amt);
+        }
+        updateDots();
+    }
     public int getX() {
-        return x;
+        return x + xOffset;
     }
     public int getY() {
-        return y;
+        return y - yOffset;
     }
     public int getX2() {
         return x2;
@@ -80,26 +103,35 @@ public abstract class GUIElement {
     public int getY2() {
         return y2;
     }
+    public int getXOffset() {
+        return xOffset;
+    }
+    public int getYOffset() {
+        return yOffset;
+    }
+    public boolean isOffsetSet() {
+        return offsetSet;
+    }
+    public int getXWithoutOffset() {
+        return x;
+    }
+    public int getYWithoutOffset() {
+        return y;
+    }
     public int getWidth() {
-        return width;
+        return getImage().getWidth();
     }
     public int getHeight() {
-        return height;
+        return getImage().getHeight();
     }
     public Constants.Direction getDirection() {
         return orientation;
-    }
-    private void updateDots() {
-        if (this instanceof Component) {
-            ((Component) this).updateDots();
-        }
     }
 
     // image methods
     public void setImages(List<BufferedImage> imgs) {
         if (imgs != null) {
             images = imgs;
-            setDimensions(getImage().getWidth(), getImage().getHeight());
         }
     }
     public void setImageIndex(int index) {
@@ -113,50 +145,49 @@ public abstract class GUIElement {
             return null;
         }
     }
-    public void setDimensions(int w, int h) {
-        width = w;
-        height = h;
-    }
 
     // helper methods
-    public int dirToInt() {
+    public int getDirectionAsInt() {
         switch (orientation) {
             case NORTH:
-                return 0;
-            case EAST:
-                return 1;
-            case SOUTH:
-                return 2;
-            case WEST:
                 return 3;
+            case EAST:
+                return 0;
+            case SOUTH:
+                return 1;
+            case WEST:
+                return 2;
         }
 
         return 0;
     }
-    public Constants.Direction intToDir(int i) {
+    public Constants.Direction getIntAsDirection(int i) {
         int j = i % 4 >= 0 ? i % 4 : (i % 4) + 4;
-        System.out.println(j);
         switch (j) {
-            case 0:
-                return NORTH;
-            case 1:
-                return EAST;
-            case 2:
-                return SOUTH;
             case 3:
+                return NORTH;
+            case 0:
+                return EAST;
+            case 1:
+                return SOUTH;
+            case 2:
                 return WEST;
         }
 
         return NORTH;
     }
-    public void rotate(int amt) {
-        orientation = intToDir((dirToInt() + amt));
-        if (this instanceof Component) {
-            ((Component) this).rotateDots(amt);
-        }
-        updateDots();
-    }
 
-    // abstract methods
+    // draw methods
+    public void drawImage(Graphics2D g) {
+        DrawHandler.drawImage(g, getImage(), orientation, x + xOffset, y - yOffset);
+    }
+    public void drawSelected(Graphics2D g) {
+        if (selected) {
+            DrawHandler.drawRect(g, Color.red, getWidth(), getHeight(), getX(), getY());
+        }
+    }
     public abstract void draw(Graphics2D g);
+
+    // action methods
+    public abstract void click();
 }

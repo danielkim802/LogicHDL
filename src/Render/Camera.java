@@ -8,8 +8,7 @@ import java.awt.event.MouseEvent;
  */
 public class Camera {
     private View view;
-    private int x = 0;
-    private int y = 0;
+    private int x, y, xSave, ySave;
     private double xScale = 1.0;
     private double yScale = 1.0;
     private double scale = 1.2;
@@ -23,6 +22,20 @@ public class Camera {
     }
     public int getY() {
         return y;
+    }
+    public void savePoint() {
+        xSave = x;
+        ySave = y;
+    }
+    public void resetSave() {
+        xSave = 0;
+        ySave = 0;
+    }
+    public int getXSave() {
+        return xSave;
+    }
+    public int getYSave() {
+        return ySave;
     }
     public double getRealXScale() {
         return xScale;

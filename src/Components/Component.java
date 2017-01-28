@@ -1,18 +1,8 @@
 package Components;
 
 import Actions.GUIElement;
-import Actions.Selectable;
-import Render.DrawHandler;
-import Render.Drawable;
-import Render.ResourceLibrary;
 
-import javax.lang.model.type.NullType;
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ColorModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +18,16 @@ public abstract class Component extends GUIElement {
     private Map<String, Dot> inputDots = new HashMap<>();
     private Map<String, Dot> outputDots = new HashMap<>();
 
+    private void makeDots() {
+        for (String key : inputs.keySet()) {
+            inputDots.put(key, new Dot(this, true, key));
+        }
+        for (String key : outputs.keySet()) {
+            outputDots.put(key, new Dot(this, false, key));
+        }
+    }
     public Component(int inputlen, int outputlen) {
-        setImages(ResourceLibrary.getImages(this.getClass()));
+        super();
 
         // make inputs and outputs
         setIO(inputlen, outputlen);
@@ -40,15 +38,6 @@ public abstract class Component extends GUIElement {
         // move dots to correct position
         setDotPositions();
         updateDots();
-    }
-
-    private void makeDots() {
-        for (String key : inputs.keySet()) {
-            inputDots.put(key, new Dot(this, true, key));
-        }
-        for (String key : outputs.keySet()) {
-            outputDots.put(key, new Dot(this, false, key));
-        }
     }
 
     // input output methods
@@ -143,45 +132,47 @@ public abstract class Component extends GUIElement {
             dot.draw(g);
         }
     }
-    public void drawSelected(Graphics2D g) {
-        if (isSelected()) {
-            DrawHandler.drawRect(g, Color.red, getWidth(), getHeight(), getX(), getY());
+
+    // dot methods
+    public void unselectDots() {
+        for (Dot dot : inputDots.values()) {
+            dot.setSelected(false);
+        }
+        for (Dot dot : outputDots.values()) {
+            dot.setSelected(false);
         }
     }
     public void rotateDots(int amt) {
-        System.out.println("rotate");
+        // transform functions
         Function<Point, Point> mirrorXY = pos -> {
             double tempx = pos.getX();
             double tempy = pos.getY();
             pos.setLocation(tempy, tempx);
             return pos;
         };
-
         Function<Point, Point> mirrorNegXY = pos -> {
             double tempx = pos.getX();
             double tempy = pos.getY();
             pos.setLocation(-tempy, -tempx);
             return pos;
         };
-
         Function<Point, Point> mirrorX = pos -> {
             pos.setLocation(pos.getX(), -pos.getY());
             return pos;
         };
-
         Function<Point, Point> mirrorY = pos -> {
             pos.setLocation(-pos.getX(), pos.getY());
             return pos;
         };
-
         Function<Point, Point> rotateLeft = pos -> mirrorY.apply(mirrorXY.apply(pos));
         Function<Point, Point> rotateRight = pos -> mirrorY.apply(mirrorNegXY.apply(pos));
 
+        // apply transforms
         List<Dot> dots = new ArrayList<>();
         dots.addAll(inputDots.values());
         dots.addAll(outputDots.values());
         for (Dot dot : dots) {
-            Point pos = new Point(dot.getXRelative(), dot.getYRelative());
+            Point pos = new Point(dot.getXOffset(), dot.getYOffset());
 
             for (int j = 0; j < Math.abs(amt); j ++) {
                 if (amt > 0) {
@@ -192,17 +183,23 @@ public abstract class Component extends GUIElement {
                 }
             }
 
-            dot.setXYRelative((int) pos.getX(), (int) pos.getY());
+            dot.setXYOffset((int) pos.getX(), (int) pos.getY());
         }
     }
-
     public void updateDots() {
+        // reset relative dot positions
+        setDotPositions();
+
+        // update dot positions relative to the component
         List<Dot> dots = new ArrayList<>();
         dots.addAll(inputDots.values());
         dots.addAll(outputDots.values());
         for (Dot dot : dots) {
-            dot.setXY(getX() + dot.getXRelative(), getY() - dot.getYRelative());
+            dot.update();
         }
+
+        // rotate dots to the correct direction
+        rotateDots(getDirectionAsInt());
     }
 
     // abstract
@@ -210,14 +207,12 @@ public abstract class Component extends GUIElement {
     public abstract void propagate();
     public abstract void setIO(int ins, int outs);
     public abstract void setDotPositions();
-    public void click() {}
-    public void drag(int x, int y) {
-        setXY(x, y);
-    }
-
     public void draw(Graphics2D g) {
-        DrawHandler.drawImage(g, getImage(), getDirection(), getX(), getY());
+        drawImage(g);
         drawDots(g);
         drawSelected(g);
     }
+
+    // action methods
+    public void click() {}
 }

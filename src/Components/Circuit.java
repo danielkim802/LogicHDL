@@ -1,9 +1,12 @@
 package Components;
 
+import Actions.GUIElement;
 import Components.Literals.Constant;
 import Components.Literals.Output;
+import Render.Camera;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.List;
 
@@ -22,8 +25,58 @@ public class Circuit extends Component {
         components = new ArrayList<>();
     }
 
+    // IO methods
+    public void addInput(String name, long value) {
+        inputs.put(name, new Constant(value));
+        getInputs().put(name, new Wire());
+    }
+    public void addOutput(String name) {
+        outputs.put(name, new Output());
+        getOutputs().put(name, new ArrayList<>());
+    }
+    public void removeInput(String in) {
+        inputs.get(in).delete();
+        inputs.remove(in);
+
+    }
+    public void removeOutput(String out) {
+        outputs.get(out).delete();
+        outputs.remove(out);
+    }
+    public Constant getInput(String name) {
+        return inputs.get(name);
+    }
+    public Output getOutput(String name) {
+        return outputs.get(name);
+    }
+    public Map<String, Constant> getCircuitInputs() {
+        return inputs;
+    }
+    public Map<String, Output> getCircuitOutputs() {
+        return outputs;
+    }
+
+    // component methods
     public void addComponent(Component comp) {
         components.add(comp);
+    }
+    public void remove(Component component) {
+        component.delete();
+        if (components.remove(component)) {
+            return;
+        }
+        for (String key : inputs.keySet()) {
+            if (inputs.get(key) == component) {
+                inputs.remove(key);
+                return;
+            }
+        }
+        for (String key : outputs.keySet()) {
+            if (outputs.get(key) == component) {
+                outputs.remove(key);
+                return;
+            }
+        }
     }
     public void setComponents(ArrayList<Component> comps) {
         components = comps;
@@ -41,27 +94,6 @@ public class Circuit extends Component {
         }
         return comps;
     }
-    public void addInput(String name, long value) {
-        inputs.put(name, new Constant(value));
-        getInputs().put(name, new Wire());
-    }
-    public void addOutput(String name) {
-        outputs.put(name, new Output());
-        getOutputs().put(name, new ArrayList<>());
-    }
-    public Constant getInput(String name) {
-        return inputs.get(name);
-    }
-    public Map<String, Constant> getCircuitInputs() {
-        return inputs;
-    }
-    public Output getOutput(String name) {
-        return outputs.get(name);
-    }
-    public Map<String, Output> getCircuitOutputs() {
-        return outputs;
-    }
-
     public List<Component> getAllComponents() {
         List<Component> all = new ArrayList<>();
         all.addAll(inputs.values());
@@ -84,11 +116,56 @@ public class Circuit extends Component {
         return all;
     }
 
+    // select methods
+    public List<GUIElement> getAllSelected() {
+        List<GUIElement> all = new ArrayList<>();
+        all.addAll(getAllSelectedComponents());
+        all.addAll(getAllSelectedDots());
+        return all;
+    }
+    public List<GUIElement> getAllSelectedComponents() {
+        List<GUIElement> all = new ArrayList<>();
+        for (Component component : getAllComponents()) {
+            if (component.isSelected()) {
+                all.add(component);
+            }
+        }
+        return all;
+    }
+    public List<GUIElement> getAllSelectedDots() {
+        List<GUIElement> all = new ArrayList<>();
+        for (Dot dot : getAllDots()) {
+            if (dot.isSelected()) {
+                all.add(dot);
+            }
+        }
+        return all;
+    }
+    public void unselectAllDots() {
+        for (Dot dot : getAllDots()) {
+            dot.setSelected(false);
+        }
+    }
+    public void unselectAll() {
+        for (Component component : getAllComponents()) {
+            component.setSelected(false);
+            component.unselectDots();
+        }
+    }
+
+    // circuit methods
     public void clear() {
         inputs.clear();
         outputs.clear();
         components.clear();
     }
+    public void propagateLocal() {
+        for (Component component : getAllComponents()) {
+            component.propagate();
+        }
+    }
+
+    // abstract methods
     public Circuit copy() {
         Circuit copy = new Circuit();
         Map<Component, Component> map = new HashMap<>();
@@ -138,39 +215,6 @@ public class Circuit extends Component {
 
         return copy;
     }
-    public void removeInput(String in) {
-        inputs.get(in).delete();
-        inputs.remove(in);
-    }
-    public void removeOutput(String out) {
-        outputs.get(out).delete();
-        outputs.remove(out);
-    }
-    public void remove(Component component) {
-        component.delete();
-        if (components.remove(component)) {
-            return;
-        }
-        for (String key : inputs.keySet()) {
-            if (inputs.get(key) == component) {
-                inputs.remove(key);
-                return;
-            }
-        }
-        for (String key : outputs.keySet()) {
-            if (outputs.get(key) == component) {
-                outputs.remove(key);
-                return;
-            }
-        }
-    }
-
-    public void propagateLocal() {
-        for (Component component : getAllComponents()) {
-            component.propagate();
-        }
-    }
-
     public void propagate() {
         if (allInputsAssigned()) {
             for (String name : inputs.keySet()) {
@@ -184,7 +228,8 @@ public class Circuit extends Component {
             propagateLocal();
         }
     }
-
+    public void setDotPositions() {}
+    public void setIO(int ins, int outs) {}
     public void draw(Graphics2D g) {
         for (Component component : getComponentList()) {
 
@@ -197,6 +242,4 @@ public class Circuit extends Component {
             }
         }
     }
-    public void setDotPositions() {}
-    public void setIO(int ins, int outs) {}
 }

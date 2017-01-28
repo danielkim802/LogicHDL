@@ -1,9 +1,7 @@
 package Actions;
 
 import Components.Circuit;
-import Components.Component;
 import Render.Camera;
-import Render.Drawable;
 
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -23,28 +21,28 @@ public class ActionHandler {
         return inRange(searchx, x - w, x + w) && inRange(searchy, y - h, y + h);
     }
 
-    public static Selectable getSelectedWithPosition(Camera c, MouseEvent e, Circuit circuit) {
+    public static GUIElement getSelectedWithPosition(Camera c, MouseEvent e, Circuit circuit) {
         int mousex = c.getXMouse(e);
         int mousey = c.getYMouse(e);
 
-        Selectable selected = null;
+        GUIElement selected = null;
 
         // check inputs
-        for (Drawable s : circuit.getAllComponents()) {
-            selected = inBox(mousex, mousey, s.getWidth(), s.getHeight(), s.getX(), s.getY()) ? s : selected;
+        for (GUIElement element : circuit.getAllComponents()) {
+            selected = inBox(mousex, mousey, element.getWidth(), element.getHeight(), element.getX(), element.getY()) ? element : selected;
         }
-        for (Drawable s : circuit.getAllDots()) {
-            selected = inBox(mousex, mousey, s.getWidth(), s.getHeight(), s.getX(), s.getY()) ? s : selected;
+        for (GUIElement element : circuit.getAllDots()) {
+            selected = inBox(mousex, mousey, element.getWidth(), element.getHeight(), element.getX(), element.getY()) ? element : selected;
         }
 
         return selected;
     }
 
-    public static List<Selectable> getSelectedWithBox(Camera c, Circuit circuit, int x1, int y1, int x2, int y2) {
-        List<Selectable> selected = new ArrayList<>();
+    public static List<GUIElement> getSelectedWithBox(Camera c, Circuit circuit, int x1, int y1, int x2, int y2) {
+        List<GUIElement> selected = new ArrayList<>();
 
         // check inputs
-        for (Drawable s : circuit.getAllComponents()) {
+        for (GUIElement s : circuit.getAllComponents()) {
             if (inBox(s.getX(), s.getY(), Math.abs(x1 - x2), Math.abs(y1 - y2), (x1 + x2) / 2, (y1 + y2) / 2))
                 selected.add(s);
         }
