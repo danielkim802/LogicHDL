@@ -42,7 +42,9 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     private boolean running = true;
 
     // temporary storage
-    private List<GUIElement> selectStorage;
+    private List<GUIElement> selectedComponents = new ArrayList<>();
+    private List<GUIElement> selectedDots = new ArrayList<>();
+    private List<GUIElement> selectedElements = new ArrayList<>();
 
     private void initCircuit() {
         circuit.addInput("A", 1);
@@ -176,7 +178,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         return null;
     }
     private void setSelectedDirection(Constants.Direction dir) {
-        for (GUIElement selected : circuit.getAllSelected()) {
+        for (GUIElement selected : selectedComponents) {
             selected.setDirection(dir);
         }
     }
@@ -236,8 +238,9 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         if (draggingMode == DRAGGING_SELECT) {
             List<GUIElement> selected = ActionHandler.getSelectedWithBox(camera, circuit, cursor.getXSave(), cursor.getYSave(), cursor.getX(), cursor.getY());
             for (GUIElement s : selected) {
-                s.setSelected(true);
+                selectElement(s);
             }
+            unselectDots();
         }
 
         cursor.resetSave();
@@ -252,12 +255,51 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     public void mousePressed(MouseEvent e) {}
     public void mouseMoved(MouseEvent e) {}
 
+    private void selectElement(GUIElement element) {
+        element.setSelected(true);
+        if (element instanceof Component) {
+            selectedComponents.add(element);
+        }
+        if (element instanceof Dot) {
+            selectedDots.add(element);
+        }
+        selectedElements.add(element);
+    }
+    private void unselectElement(GUIElement element) {
+        element.setSelected(false);
+        if (element instanceof Component) {
+            selectedComponents.remove(element);
+        }
+        if (element instanceof Dot) {
+            selectedDots.remove(element);
+        }
+        selectedElements.remove(element);
+    }
+    private void unselectAll() {
+        for (GUIElement element : selectedElements) {
+            element.setSelected(false);
+        }
+        selectedComponents.clear();
+        selectedDots.clear();
+        selectedElements.clear();
+    }
+    private void unselectDots() {
+        for (GUIElement element : selectedElements) {
+            if (element instanceof Dot) {
+                element.setSelected(false);
+            }
+        }
+        for (GUIElement element : selectedDots) {
+            element.setSelected(false);
+            selectedElements.remove(element);
+        }
+        selectedDots.clear();
+    }
     public void mouseDragged(MouseEvent e) {
         switch (mouseMode) {
             case SELECT:
                 // initialize a mode
                 if (draggingMode == DRAGGING_NONE) {
-                    List<GUIElement> selectedComps = circuit.getAllSelectedComponents();
                     GUIElement selected = ActionHandler.getSelectedWithPosition(camera, e, circuit);
 
                     if (selected == null) {
@@ -276,29 +318,35 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                         camera.savePoint();
                     }
                     else {
-                        if (selectedComps.size() == 0) {
-                            selected.setSelected(true);
+                        if (selectedComponents.size() == 0) {
+                            selectElement(selected);
 
                             // set position relative to mouse at this time
                             selected.setXYOffset(selected.getX() - camera.getXMouse(e), camera.getYMouse(e) - selected.getY());
                             selected.setXY(camera.getXMouse(e), camera.getYMouse(e));
-                        } else if (selectedComps.size() == 1) {
-                            selectedComps.get(0).setSelected(selectedComps.get(0) == selected);
-                            selected.setSelected(true);
+                        } else if (selectedComponents.size() == 1) {
+                            if (selectedComponents.get(0) != selected) {
+                                unselectElement(selectedComponents.get(0));
+                                selectElement(selected);
+                            }
                         } else {
-                            for (GUIElement element : selectedComps) {
+                            if (!selected.isSelected()) {
+                                unselectAll();
+                                selectElement(selected);
+                            }
+                            for (GUIElement element : selectedComponents) {
                                 element.setXYOffset(element.getX() - camera.getXMouse(e), camera.getYMouse(e) - element.getY());
                                 element.setXY(camera.getXMouse(e), camera.getYMouse(e));
                             }
                         }
-                        circuit.unselectAllDots();
+
+                        unselectDots();
+
                         draggingMode = DRAGGING_COMPONENT;
                     }
-
-                    selectStorage = circuit.getAllSelectedComponents();
                 }
                 else if (draggingMode == DRAGGING_COMPONENT) {
-                    for (GUIElement element : selectStorage) {
+                    for (GUIElement element : selectedComponents) {
                         element.setXY(camera.getXMouse(e), camera.getYMouse(e));
                     }
                 }
@@ -320,36 +368,41 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 break;
             case SELECT:
                 GUIElement selected = ActionHandler.getSelectedWithPosition(camera, e, circuit);
-                List<GUIElement> selectedComps = circuit.getAllSelected();
 
                 // check if we have selected anything
                 if (selected != null) {
                     // if multiple are selected, select only the one that is clicked on
-                    if (selectedComps.size() > 1) {
-                        circuit.unselectAll();
-                        selected.setSelected(true);
+                    if (selectedElements.size() > 1) {
+
+                        for (GUIElement element : selectedElements) {
+                            element.setSelected(false);
+                        }
+                        unselectAll();
+                        selectElement(selected);
                     }
 
                     // if the only component that is selected is selected again, then unselect;
                     // else select another component
-                    else if (selectedComps.size() == 1) {
+                    else if (selectedElements.size() == 1) {
 
                         // check if we are connecting dots
-                        if (selectedComps.get(0) instanceof Dot && selected instanceof Dot) {
-                            circuit.unselectAll();
-                            ((Dot) selected).connect((Dot) selectedComps.get(0));
+                        if (selectedElements.get(0) instanceof Dot && selected instanceof Dot) {
+                            ((Dot) selected).connect((Dot) selectedElements.get(0));
+                            unselectAll();
                         } else {
-                            circuit.unselectAll();
-                            selected.setSelected(selectedComps.get(0) != selected);
+                            if (selectedElements.get(0) != selected) {
+                                unselectElement(selectedElements.get(0));
+                                selectElement(selected);
+                            }
                         }
                     }
 
                     // if no components are selected then select the component
-                    else if (selectedComps.size() == 0) {
-                        selected.setSelected(true);
+                    else if (selectedElements.size() == 0) {
+                        selectElement(selected);
                     }
                 } else {
-                    circuit.unselectAll();
+                    unselectAll();
                 }
                 break;
             case CLICK:
@@ -380,5 +433,9 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
 
         g.dispose();
         getBufferStrategy().show();
+    }
+
+    public static void main(String[] args) {
+        new View();
     }
 }
