@@ -1,5 +1,8 @@
 package Components;
 
+import Render.Camera;
+
+import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.function.LongBinaryOperator;
@@ -18,6 +21,7 @@ public abstract class Gate extends Component {
         bits = 1;
     }
 
+    // operator methods
     public void setBits(int b) {
         bits = b;
     }
@@ -32,6 +36,7 @@ public abstract class Gate extends Component {
         connect("output", input, c);
     }
 
+    // abstract methods
     public Gate copy() {
         try {
             Gate copy;
@@ -49,7 +54,6 @@ public abstract class Gate extends Component {
             return null;
         }
     }
-
     public void propagate() {
         if (allInputsAssigned()) {
             // map each input to a long |> apply operator to all values
@@ -63,7 +67,6 @@ public abstract class Gate extends Component {
             }
         }
     }
-
     public void setDotPositions() {
         int height = getImage().getHeight();
         int width = getImage().getWidth();
@@ -74,11 +77,10 @@ public abstract class Gate extends Component {
         int spacing = height / inputs;
 
         for (int i = 0; i < getInputDots().size(); i ++) {
-            getInputDots().get(""+i).setXYRelative(offset - adjustx, -(i * spacing) - (spacing / 2) + adjusty);
+            getInputDots().get(""+i).setXYOffset(offset - adjustx, -(i * spacing) - (spacing / 2) + adjusty);
         }
-        getOutputDots().get("output").setXYRelative(width - offset - adjustx, -(height / 2) + adjusty);
+        getOutputDots().get("output").setXYOffset(width - offset - adjustx, -(height / 2) + adjusty);
     }
-
     public void setIO(int inputlen, int outputlen) {
         for (int i = 0; i < inputlen; i ++) {
             getInputs().put(""+i, new Wire());

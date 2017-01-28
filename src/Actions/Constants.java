@@ -15,8 +15,12 @@ public class Constants {
         FULLADDER
     }
 
-    public enum Mode {
+    public enum MouseMode {
         SELECT, PLACE, CLICK
+    }
+
+    public enum DraggingMode {
+        DRAGGING_NONE, DRAGGING_CAMERA, DRAGGING_COMPONENT, DRAGGING_SELECT
     }
 
     public enum Direction {

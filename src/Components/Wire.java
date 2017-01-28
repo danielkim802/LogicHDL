@@ -1,13 +1,13 @@
 package Components;
 
-import Render.Drawable;
+import Actions.GUIElement;
 
 import java.awt.*;
 
 /**
  * Created by danielkim802 on 1/16/17.
  */
-public class Wire extends Drawable {
+public class Wire extends GUIElement {
     private long value;
     private boolean assigned;
     private Component from;
@@ -16,9 +16,11 @@ public class Wire extends Drawable {
     private Dot connectDot;
 
     public Wire() {
+        super();
         assigned = false;
     }
     public Wire(Component f, Dot fdot, Component c, Dot cdot) {
+        super();
         from = f;
         fromDot = fdot;
         connect = c;
@@ -58,6 +60,6 @@ public class Wire extends Drawable {
             g.drawLine(fromDot.getX(), fromDot.getY(), connectDot.getX(), connectDot.getY());
         }
     }
-    public void updateDots() {}
+
     public void click() {}
 }

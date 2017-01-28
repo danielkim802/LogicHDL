@@ -1,42 +1,32 @@
 package Components;
 
-import Render.DrawHandler;
-import Render.Drawable;
+import Actions.GUIElement;
+import Render.Camera;
 import Render.ResourceLibrary;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by danielkim802 on 1/18/17.
  */
-public class Dot extends Drawable {
+public class Dot extends GUIElement {
     private Component parent;
     private boolean input;
     private String key;
-    private int xRelative;
-    private int yRelative;
 
     public Dot(Component p, boolean type, String k) {
+        super();
+
         parent = p;
         input = type;
         key = k;
         setImages(ResourceLibrary.getImages("dot"));
+        setXY(parent.getX(), parent.getY());
     }
 
     public Component getParent() {
         return parent;
-    }
-
-    public int getXRelative() {
-        return xRelative;
-    }
-    public int getYRelative() {
-        return yRelative;
-    }
-
-    public void setXYRelative(int x, int y) {
-        xRelative = x;
-        yRelative = y;
     }
 
     public void connect(Dot dot) {
@@ -47,19 +37,19 @@ public class Dot extends Drawable {
             dot.connect(this);
         }
     }
-
-    public void drawSelected(Graphics2D g) {
-        if (isSelected()) {
-            DrawHandler.drawRect(g, Color.red, 5, 5, getX(), getY());
-        }
+    public void update() {
+        setXY(parent.getX(), parent.getY());
     }
 
+    public void press(MouseEvent e, Camera c) {}
+    public void click() {
+        setSelected(true);
+    }
+    public void drag(MouseEvent e, Camera c) {}
+    public void release(MouseEvent e, Camera c) {}
     public void draw(Graphics2D g) {
         setImageIndex(input ? 0 : 1);
-        DrawHandler.drawImage(g, getImage(), getX(), getY());
+        drawImage(g);
         drawSelected(g);
     }
-
-    public void updateDots() {}
-    public void click() {}
 }

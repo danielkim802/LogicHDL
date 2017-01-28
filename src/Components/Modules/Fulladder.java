@@ -55,7 +55,6 @@ public class Fulladder extends Component {
         copy.fulladder = fulladder.copy();
         return copy;
     }
-
     public void propagate() {
         if (allInputsAssigned()) {
             fulladder.getInput("A").set(getInputs().get("A").value());
@@ -71,8 +70,6 @@ public class Fulladder extends Component {
             }
         }
     }
-
-    public void draw(Graphics2D g) {}
     public void setDotPositions() {}
     public void setIO(int ins, int outs) {
         getInputs().put("A", new Wire());
