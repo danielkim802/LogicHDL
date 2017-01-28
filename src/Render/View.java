@@ -41,6 +41,9 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     private double zoomSpeed = 0.1;
     private boolean running = true;
 
+    // temporary storage
+    private List<GUIElement> selectStorage;
+
     private void initCircuit() {
         circuit.addInput("A", 1);
         circuit.addInput("B", 1);
@@ -291,9 +294,11 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                         circuit.unselectAllDots();
                         draggingMode = DRAGGING_COMPONENT;
                     }
+
+                    selectStorage = circuit.getAllSelectedComponents();
                 }
                 else if (draggingMode == DRAGGING_COMPONENT) {
-                    for (GUIElement element : circuit.getAllSelectedComponents()) {
+                    for (GUIElement element : selectStorage) {
                         element.setXY(camera.getXMouse(e), camera.getYMouse(e));
                     }
                 }
