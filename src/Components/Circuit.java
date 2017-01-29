@@ -1,12 +1,10 @@
 package Components;
 
-import Actions.GUIElement;
 import Components.Literals.Constant;
 import Components.Literals.Output;
-import Render.Camera;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 

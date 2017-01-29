@@ -9,6 +9,7 @@ import Components.Dot;
 import Components.Gates.*;
 import Components.Literals.*;
 import Components.Modules.*;
+import IO.IOHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -211,9 +212,14 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 setSelectedDirection(SOUTH);
                 break;
             case VK_S:
-                setMouseMode(SELECT);
+                if (e.isShiftDown()) {
+                    circuit.assignName("c");
+                    IOHandler.saveCircuit(circuit);
+                } else {
+                    setMouseMode(SELECT);
+                }
                 break;
-            case VK_C:
+            case VK_D:
                 setMouseMode(CLICK);
                 break;
             case VK_A:
@@ -223,8 +229,13 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 circuit.clear();
                 break;
             case VK_BACK_SPACE:
+                List<GUIElement> selected = new ArrayList<>();
                 for (GUIElement element : selectedComponents) {
                     circuit.remove((Component) element);
+                    selected.add(element);
+                }
+                for (GUIElement element : selected) {
+                    unselectElement(element);
                 }
                 break;
         }

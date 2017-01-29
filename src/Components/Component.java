@@ -17,6 +17,7 @@ public abstract class Component extends GUIElement {
     private Map<String, List<Wire>> outputs = new HashMap<>();
     private Map<String, Dot> inputDots = new HashMap<>();
     private Map<String, Dot> outputDots = new HashMap<>();
+    private String name = "";
 
     private void makeDots() {
         for (String key : inputs.keySet()) {
@@ -38,6 +39,13 @@ public abstract class Component extends GUIElement {
         // move dots to correct position
         setDotPositions();
         updateDots();
+    }
+
+    public void assignName(String n) {
+        name = n;
+    }
+    public String getName() {
+        return name;
     }
 
     // input output methods

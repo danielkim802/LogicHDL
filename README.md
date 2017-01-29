@@ -2,23 +2,24 @@
 A simple simulator with GUI for creating digital logic circuits.
 
 Controls:
-  - Shift+drag - move the view around
-  - scroll - zoom in and out
-  - A - Place component mode
-  - S - Select component mode
-  - C - Click mode (toggle inputs)
+  - Shift+drag : move the view around
+  - scroll : zoom in and out
+  - X : Clear the circuit
+  - A : Place component mode
+  - S : Select component mode
+  - D : Click mode (toggle inputs)
   
 In place mode:
-  - 1 - And gate
-  - 2 - Or gate
-  - 3 - Not gate
-  - 4 - Nand gate
-  - 5 - Nor gate
-  - 6 - Xor gate
-  - 7 - Xnor gate
-  - 8 - Joint
-  - I - Input
-  - O - Output
+  - 1 : And gate
+  - 2 : Or gate
+  - 3 : Not gate
+  - 4 : Nand gate
+  - 5 : Nor gate
+  - 6 : Xor gate
+  - 7 : Xnor gate
+  - 8 : Joint
+  - I : Input
+  - O : Output
 
 In select mode:
   - Click component to select
