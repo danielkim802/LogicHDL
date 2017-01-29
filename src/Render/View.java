@@ -124,6 +124,9 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         }
     }
 
+    public void keyReleased(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {}
+
     private Constants.Component mapKeyToComponent(KeyEvent e) {
         switch (e.getKeyCode()) {
             case VK_1:
@@ -186,7 +189,6 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         mouseMode = mode;
         cursor.setMode(mode);
     }
-
     public void keyPressed(KeyEvent e) {
         Constants.Component comp = mapKeyToComponent(e);
         if (comp != null) {
@@ -226,31 +228,8 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 break;
         }
     }
-    public void keyReleased(KeyEvent e) {}
-    public void keyTyped(KeyEvent e) {}
 
     public void mouseExited(MouseEvent e) {}
-    public void mouseReleased(MouseEvent e) {
-        for (GUIElement element : circuit.getAllComponents()) {
-            element.resetXY();
-        }
-
-        if (draggingMode == DRAGGING_SELECT) {
-            List<GUIElement> selected = ActionHandler.getSelectedWithBox(camera, circuit, cursor.getXSave(), cursor.getYSave(), cursor.getX(), cursor.getY());
-            for (GUIElement s : selected) {
-                selectElement(s);
-            }
-            unselectDots();
-        }
-
-        cursor.resetSave();
-        camera.resetSave();
-        draggingMode = DRAGGING_NONE;
-    }
-    public void mouseWheelMoved(MouseWheelEvent e) {
-        double amt = e.getPreciseWheelRotation() / 10.0;
-        camera.zoom(amt, amt);
-    }
     public void mouseEntered(MouseEvent e) {}
     public void mousePressed(MouseEvent e) {}
     public void mouseMoved(MouseEvent e) {}
@@ -329,6 +308,10 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                                 unselectElement(selectedComponents.get(0));
                                 selectElement(selected);
                             }
+
+                            // set position relative to mouse at this time
+                            selected.setXYOffset(selected.getX() - camera.getXMouse(e), camera.getYMouse(e) - selected.getY());
+                            selected.setXY(camera.getXMouse(e), camera.getYMouse(e));
                         } else {
                             if (!selected.isSelected()) {
                                 unselectAll();
@@ -412,6 +395,27 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 }
                 break;
         }
+    }
+    public void mouseReleased(MouseEvent e) {
+        for (GUIElement element : circuit.getAllComponents()) {
+            element.resetXY();
+        }
+
+        if (draggingMode == DRAGGING_SELECT) {
+            List<GUIElement> selected = ActionHandler.getSelectedWithBox(camera, circuit, cursor.getXSave(), cursor.getYSave(), cursor.getX(), cursor.getY());
+            for (GUIElement s : selected) {
+                selectElement(s);
+            }
+            unselectDots();
+        }
+
+        cursor.resetSave();
+        camera.resetSave();
+        draggingMode = DRAGGING_NONE;
+    }
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        double amt = e.getPreciseWheelRotation() / 10.0;
+        camera.zoom(amt, amt);
     }
 
     public void update() {
