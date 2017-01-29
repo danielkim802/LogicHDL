@@ -2,6 +2,7 @@ package Render;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 
 /**
  * Created by danielkim802 on 1/19/17.
@@ -13,6 +14,9 @@ public class Camera {
     private double yScale = 1.0;
     private double scale = 1.2;
 
+    public Camera(View view) {
+        this.view = view;
+    }
     public void setXY(int x, int y) {
         this.x = x;
         this.y = y;
@@ -61,10 +65,6 @@ public class Camera {
     }
     public int convertDistY(int dist) {
         return (int) (dist / getYScale());
-    }
-
-    public Camera(View view) {
-        this.view = view;
     }
 
     public void move(int x, int y) {

@@ -1,7 +1,6 @@
 package Actions;
 
 import Components.Component;
-import Components.Dot;
 import Render.DrawHandler;
 import Render.ResourceLibrary;
 

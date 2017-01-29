@@ -23,7 +23,6 @@ import static Actions.Constants.DraggingMode.*;
 import static Actions.Constants.MouseMode.*;
 
 import static java.awt.event.KeyEvent.*;
-import static java.lang.Math.max;
 
 /**
  * Created by danielkim802 on 1/16/17.
@@ -38,8 +37,10 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     private Constants.Component placingComponent = AND;
     private Constants.MouseMode mouseMode = SELECT;
     private Constants.DraggingMode draggingMode = DRAGGING_NONE;
-    private double zoomSpeed = 0.1;
     private boolean running = true;
+
+    // loop settings
+    private int FPS = 60;
 
     // temporary storage
     private List<GUIElement> selectedComponents = new ArrayList<>();
@@ -111,15 +112,15 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     }
 
     private void loop() {
-        long startTime;
+        // initialize fps variables
+        int sleepTime = 1000 / FPS;
+        long start = System.currentTimeMillis();
+
         while (running) {
-            startTime = System.currentTimeMillis();
-            update();
-            draw();
-            try {
-                Thread.sleep(max(0, 1000 / 60 - System.currentTimeMillis() + startTime));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (System.currentTimeMillis() - start > sleepTime) {
+                start = System.currentTimeMillis();
+                update();
+                draw();
             }
         }
     }
@@ -222,8 +223,8 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 circuit.clear();
                 break;
             case VK_BACK_SPACE:
-                for (GUIElement selected : circuit.getAllSelectedComponents()) {
-                    circuit.remove((Component) selected);
+                for (GUIElement element : selectedComponents) {
+                    circuit.remove((Component) element);
                 }
                 break;
         }
@@ -418,13 +419,14 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         camera.zoom(amt, amt);
     }
 
-    public void update() {
-        circuit.propagateLocal();
-    }
-
     private void drawSelectSquare(Graphics2D g) {
         if (draggingMode == DRAGGING_SELECT) {
             DrawHandler.drawRectPoint(g, Color.red, cursor.getXSave(), cursor.getYSave(), cursor.getX(), cursor.getY());
+        }
+    }
+    private void drawSelectComponentSquares(Graphics2D g) {
+        for (GUIElement element : selectedElements) {
+            element.drawSelected(g);
         }
     }
     public void draw() {
@@ -433,13 +435,19 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         camera.clear(g);
         camera.draw(g);
         circuit.draw(g);
+        drawSelectComponentSquares(g);
         drawSelectSquare(g);
 
         g.dispose();
         getBufferStrategy().show();
     }
+    public void update() {
+        circuit.propagateLocal();
+    }
 
     public static void main(String[] args) {
         new View();
     }
+
+
 }

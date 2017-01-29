@@ -81,19 +81,6 @@ public class Circuit extends Component {
     public void setComponents(ArrayList<Component> comps) {
         components = comps;
     }
-    public List<Component> getComponentList() {
-        List<Component> comps = new ArrayList<>();
-        for (Component c : components) {
-            comps.add(c);
-        }
-        for (Constant c : inputs.values()) {
-            comps.add(c);
-        }
-        for (Output c : outputs.values()) {
-            comps.add(c);
-        }
-        return comps;
-    }
     public List<Component> getAllComponents() {
         List<Component> all = new ArrayList<>();
         all.addAll(inputs.values());
@@ -114,43 +101,6 @@ public class Circuit extends Component {
             all.addAll(component.getWires());
         }
         return all;
-    }
-
-    // select methods
-    public List<GUIElement> getAllSelected() {
-        List<GUIElement> all = new ArrayList<>();
-        all.addAll(getAllSelectedComponents());
-        all.addAll(getAllSelectedDots());
-        return all;
-    }
-    public List<GUIElement> getAllSelectedComponents() {
-        List<GUIElement> all = new ArrayList<>();
-        for (Component component : getAllComponents()) {
-            if (component.isSelected()) {
-                all.add(component);
-            }
-        }
-        return all;
-    }
-    public List<GUIElement> getAllSelectedDots() {
-        List<GUIElement> all = new ArrayList<>();
-        for (Dot dot : getAllDots()) {
-            if (dot.isSelected()) {
-                all.add(dot);
-            }
-        }
-        return all;
-    }
-    public void unselectAllDots() {
-        for (Dot dot : getAllDots()) {
-            dot.setSelected(false);
-        }
-    }
-    public void unselectAll() {
-        for (Component component : getAllComponents()) {
-            component.setSelected(false);
-            component.unselectDots();
-        }
     }
 
     // circuit methods
@@ -231,15 +181,18 @@ public class Circuit extends Component {
     public void setDotPositions() {}
     public void setIO(int ins, int outs) {}
     public void draw(Graphics2D g) {
-        for (Component component : getComponentList()) {
+        List<Wire> wires = new ArrayList<>();
 
-            // draw components
+        // draw components
+        for (Component component : getAllComponents()) {
             component.draw(g);
 
-            // draw all wires
-            for (Wire wire : getAllWires()) {
-                wire.draw(g);
-            }
+            wires.addAll(component.getInputWires());
+        }
+
+        // draw wires
+        for (Wire wire : wires) {
+            wire.draw(g);
         }
     }
 }

@@ -67,6 +67,18 @@ public abstract class Component extends GUIElement {
         }
         return all;
     }
+    public List<Wire> getInputWires() {
+        List<Wire> wires = new ArrayList<>();
+        wires.addAll(inputs.values());
+        return wires;
+    }
+    public List<Wire> getOutputWires() {
+        List<Wire> wires = new ArrayList<>();
+        for (List<Wire> wirelist : outputs.values()) {
+            wires.addAll(wirelist);
+        }
+        return wires;
+    }
 
     // connects two components given an output key and input key
     public void connect(String output, String input, Component other) {
@@ -134,72 +146,64 @@ public abstract class Component extends GUIElement {
     }
 
     // dot methods
-    public void unselectDots() {
-        for (Dot dot : inputDots.values()) {
-            dot.setSelected(false);
+    private Point mirrorXY(Point pos) {
+        double tempx = pos.getX();
+        double tempy = pos.getY();
+        pos.setLocation(tempy, tempx);
+        return pos;
+    }
+    private Point mirrorNegXY(Point pos) {
+        double tempx = pos.getX();
+        double tempy = pos.getY();
+        pos.setLocation(-tempy, -tempx);
+        return pos;
+    }
+    private Point mirrorY(Point pos) {
+        pos.setLocation(-pos.getX(), pos.getY());
+        return pos;
+    }
+    private Point rotateLeft(Point pos) {
+        return mirrorY(mirrorXY(pos));
+    }
+    private Point rotateRight(Point pos) {
+        return mirrorY(mirrorNegXY(pos));
+    }
+    public void rotateDot(Dot dot, int amt) {
+        Point pos = new Point(dot.getXOffset(), dot.getYOffset());
+
+        for (int j = 0; j < Math.abs(amt); j ++) {
+            if (amt > 0) {
+                pos = rotateRight(pos);
+            }
+            else if (amt < 0) {
+                pos = rotateLeft(pos);
+            }
         }
-        for (Dot dot : outputDots.values()) {
-            dot.setSelected(false);
-        }
+
+        dot.setXYOffset((int) pos.getX(), (int) pos.getY());
     }
     public void rotateDots(int amt) {
-        // transform functions
-        Function<Point, Point> mirrorXY = pos -> {
-            double tempx = pos.getX();
-            double tempy = pos.getY();
-            pos.setLocation(tempy, tempx);
-            return pos;
-        };
-        Function<Point, Point> mirrorNegXY = pos -> {
-            double tempx = pos.getX();
-            double tempy = pos.getY();
-            pos.setLocation(-tempy, -tempx);
-            return pos;
-        };
-        Function<Point, Point> mirrorX = pos -> {
-            pos.setLocation(pos.getX(), -pos.getY());
-            return pos;
-        };
-        Function<Point, Point> mirrorY = pos -> {
-            pos.setLocation(-pos.getX(), pos.getY());
-            return pos;
-        };
-        Function<Point, Point> rotateLeft = pos -> mirrorY.apply(mirrorXY.apply(pos));
-        Function<Point, Point> rotateRight = pos -> mirrorY.apply(mirrorNegXY.apply(pos));
+        if (amt == 0) return;
 
         // apply transforms
-        List<Dot> dots = new ArrayList<>();
-        dots.addAll(inputDots.values());
-        dots.addAll(outputDots.values());
+        List<Dot> dots = getDots();
         for (Dot dot : dots) {
-            Point pos = new Point(dot.getXOffset(), dot.getYOffset());
-
-            for (int j = 0; j < Math.abs(amt); j ++) {
-                if (amt > 0) {
-                    pos = rotateRight.apply(pos);
-                }
-                else if (amt < 0) {
-                    pos = rotateLeft.apply(pos);
-                }
-            }
-
-            dot.setXYOffset((int) pos.getX(), (int) pos.getY());
+            rotateDot(dot, amt);
         }
     }
     public void updateDots() {
         // reset relative dot positions
         setDotPositions();
 
-        // update dot positions relative to the component
-        List<Dot> dots = new ArrayList<>();
-        dots.addAll(inputDots.values());
-        dots.addAll(outputDots.values());
-        for (Dot dot : dots) {
+        // update dot positions relative to the component and rotate
+        for (Dot dot : inputDots.values()) {
             dot.update();
+            rotateDot(dot, getDirectionAsInt());
         }
-
-        // rotate dots to the correct direction
-        rotateDots(getDirectionAsInt());
+        for (Dot dot : outputDots.values()) {
+            dot.update();
+            rotateDot(dot, getDirectionAsInt());
+        }
     }
 
     // abstract
@@ -210,7 +214,6 @@ public abstract class Component extends GUIElement {
     public void draw(Graphics2D g) {
         drawImage(g);
         drawDots(g);
-        drawSelected(g);
     }
 
     // action methods
