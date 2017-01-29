@@ -351,7 +351,6 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 System.out.println(a);
                 break;
             case SELECT:
-                System.out.println(e.getPoint());
                 GUIElement selected = ActionHandler.getSelectedWithPosition(camera, e, circuit);
 
                 // check if we have selected anything
@@ -449,4 +448,6 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     public static void main(String[] args) {
         new View();
     }
+
+
 }
