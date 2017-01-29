@@ -214,7 +214,6 @@ public abstract class Component extends GUIElement {
     public void draw(Graphics2D g) {
         drawImage(g);
         drawDots(g);
-        drawSelected(g);
     }
 
     // action methods

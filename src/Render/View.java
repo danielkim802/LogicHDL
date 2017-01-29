@@ -112,18 +112,15 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     }
 
     private void loop() {
-
         // initialize fps variables
         int sleepTime = 1000 / FPS;
-        long updateTime = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
 
         while (running) {
-
-            while (System.currentTimeMillis() > updateTime) {
+            if (System.currentTimeMillis() - start > sleepTime) {
+                start = System.currentTimeMillis();
                 update();
                 draw();
-
-                updateTime += sleepTime;
             }
         }
     }
@@ -354,6 +351,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 System.out.println(a);
                 break;
             case SELECT:
+                System.out.println(e.getPoint());
                 GUIElement selected = ActionHandler.getSelectedWithPosition(camera, e, circuit);
 
                 // check if we have selected anything
@@ -427,12 +425,18 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
             DrawHandler.drawRectPoint(g, Color.red, cursor.getXSave(), cursor.getYSave(), cursor.getX(), cursor.getY());
         }
     }
+    private void drawSelectComponentSquares(Graphics2D g) {
+        for (GUIElement element : selectedElements) {
+            element.drawSelected(g);
+        }
+    }
     public void draw() {
         Graphics2D g = (Graphics2D) getBufferStrategy().getDrawGraphics();
 
         camera.clear(g);
         camera.draw(g);
         circuit.draw(g);
+        drawSelectComponentSquares(g);
         drawSelectSquare(g);
 
         g.dispose();
