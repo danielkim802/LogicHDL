@@ -37,12 +37,10 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     private Constants.Component placingComponent = AND;
     private Constants.MouseMode mouseMode = SELECT;
     private Constants.DraggingMode draggingMode = DRAGGING_NONE;
-    private double zoomSpeed = 0.1;
     private boolean running = true;
 
     // loop settings
     private int FPS = 60;
-    private int maxFrameSkip = 10;
 
     // temporary storage
     private List<GUIElement> selectedComponents = new ArrayList<>();

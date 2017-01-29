@@ -41,12 +41,9 @@ public class Dot extends GUIElement {
         setXY(parent.getX(), parent.getY());
     }
 
-    public void press(MouseEvent e, Camera c) {}
     public void click() {
         setSelected(true);
     }
-    public void drag(MouseEvent e, Camera c) {}
-    public void release(MouseEvent e, Camera c) {}
     public void draw(Graphics2D g) {
         setImageIndex(input ? 0 : 1);
         drawImage(g);
