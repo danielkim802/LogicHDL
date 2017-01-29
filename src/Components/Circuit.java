@@ -116,43 +116,6 @@ public class Circuit extends Component {
         return all;
     }
 
-    // select methods
-    public List<GUIElement> getAllSelected() {
-        List<GUIElement> all = new ArrayList<>();
-        all.addAll(getAllSelectedComponents());
-        all.addAll(getAllSelectedDots());
-        return all;
-    }
-    public List<GUIElement> getAllSelectedComponents() {
-        List<GUIElement> all = new ArrayList<>();
-        for (Component component : getAllComponents()) {
-            if (component.isSelected()) {
-                all.add(component);
-            }
-        }
-        return all;
-    }
-    public List<GUIElement> getAllSelectedDots() {
-        List<GUIElement> all = new ArrayList<>();
-        for (Dot dot : getAllDots()) {
-            if (dot.isSelected()) {
-                all.add(dot);
-            }
-        }
-        return all;
-    }
-    public void unselectAllDots() {
-        for (Dot dot : getAllDots()) {
-            dot.setSelected(false);
-        }
-    }
-    public void unselectAll() {
-        for (Component component : getAllComponents()) {
-            component.setSelected(false);
-            component.unselectDots();
-        }
-    }
-
     // circuit methods
     public void clear() {
         inputs.clear();
