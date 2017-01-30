@@ -42,7 +42,9 @@ public class SerializedCircuit implements Serializable, SerializableComponent {
     private void addConnections(Component component) {
         for (String key : component.getOutputs().keySet()) {
             for (Wire wire : component.getOutputs().get(key)) {
-                connections.add(new Connection(component.hashCode(), key, wire.getConnect().hashCode(), wire.getConnectDot().getKey()));
+                if (wire.isAssigned()) {
+                    connections.add(new Connection(component.hashCode(), key, wire.getConnect().hashCode(), wire.getConnectDot().getKey()));
+                }
             }
         }
     }
