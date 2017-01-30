@@ -1,6 +1,6 @@
 package Render;
 
-import Components.Dot;
+import Components.Circuit;
 import Components.Gates.*;
 import Components.Literals.*;
 import Components.Modules.*;
@@ -29,7 +29,7 @@ public class ResourceLibrary {
                 Constant.class, Joint.class, Output.class,
 
                 // modules
-                Fulladder.class
+                Circuit.class, Fulladder.class
         );
 
         for (Class clazz : allClasses) {

@@ -19,14 +19,6 @@ public abstract class Component extends GUIElement {
     private Map<String, Dot> outputDots = new HashMap<>();
     private String name = "";
 
-    private void makeDots() {
-        for (String key : inputs.keySet()) {
-            inputDots.put(key, new Dot(this, true, key));
-        }
-        for (String key : outputs.keySet()) {
-            outputDots.put(key, new Dot(this, false, key));
-        }
-    }
     public Component(int inputlen, int outputlen) {
         super();
 
@@ -39,6 +31,15 @@ public abstract class Component extends GUIElement {
         // move dots to correct position
         setDotPositions();
         updateDots();
+    }
+
+    public void makeDots() {
+        for (String key : inputs.keySet()) {
+            inputDots.put(key, new Dot(this, true, key));
+        }
+        for (String key : outputs.keySet()) {
+            outputDots.put(key, new Dot(this, false, key));
+        }
     }
 
     public void assignName(String n) {

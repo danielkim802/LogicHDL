@@ -19,12 +19,13 @@ public class Constant extends Component {
 
     public void set(long val) {
         value = val;
+        setImageIndex(value == 0 ? 0 : 1);
     }
     public void connect(String input, Component c) {
         connect("output", input, c);
     }
     public void toggle() {
-        value = value == 0 ? 1 : 0;
+        set(value == 0 ? 1 : 0);
     }
 
     // abstract methods
@@ -43,12 +44,6 @@ public class Constant extends Component {
     }
     public void setIO(int ins, int outs) {
         getOutputs().put("output", new ArrayList<>());
-    }
-    public void draw(Graphics2D g) {
-        setImageIndex(value == 0 ? 0 : 1);
-        drawImage(g);
-        drawDots(g);
-        drawSelected(g);
     }
 
     public void click() {

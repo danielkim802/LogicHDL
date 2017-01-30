@@ -89,23 +89,24 @@ public class Circuit extends Component {
     // collapses circuit down to a single component
     public void collapse() {
 
-        // clear original component inputs and outputs
-        getInputs().clear();
-        getOutputs().clear();
+        // do commands in constructor
+        setIO(0, 0);
+        makeDots();
+        setDotPositions();
+        updateDots();
 
-        // assign inputs and outputs at circuit level and component level
-        for (Component component : components) {
-            if (component instanceof Constant) {
-                inputs.put(component.getName(), (Constant) component);
-                getInputs().put(component.getName(), new Wire());
-            } else if (component instanceof Output) {
-                outputs.put(component.getName(), (Output) component);
-                getOutputs().put(component.getName(), new ArrayList<>());
-            }
-        }
         collapsed = true;
     }
     public void expand() {
+
+        // clear everything
+        inputs.clear();
+        outputs.clear();
+        getInputs().clear();
+        getOutputs().clear();
+        getInputDots().clear();
+        getOutputDots().clear();
+
         collapsed = false;
     }
 
@@ -172,21 +173,64 @@ public class Circuit extends Component {
             propagateLocal();
         }
     }
-    public void setDotPositions() {}
-    public void setIO(int ins, int outs) {}
-    public void draw(Graphics2D g) {
-        List<Wire> wires = new ArrayList<>();
-
-        // draw components
-        for (Component component : components) {
-            component.draw(g);
-
-            wires.addAll(component.getInputWires());
+    public void setDotPositions() {
+        if (getInputs().size() == 0 || getOutputs().size() == 0) {
+            return;
         }
 
-        // draw wires
-        for (Wire wire : wires) {
-            wire.draw(g);
+        int height = getImage().getHeight();
+        int width = getImage().getWidth();
+        int inspacing = height / getInputs().size();
+        int outspacing = height / getOutputs().size();
+        int offset = 0;
+        int adjusty = height / 2;
+        int adjustx = width / 2;
+
+        int i = 0;
+        for (String key : getInputDots().keySet()) {
+            getInputDots().get(key).setXYOffset(offset - adjustx, -(i * inspacing) - (inspacing / 2) + adjusty);
+            i ++;
+        }
+        i = 0;
+        for (String key : getOutputDots().keySet()) {
+            getOutputDots().get(key).setXYOffset(width - offset - adjustx, -(i * outspacing) - (outspacing / 2) + adjusty);
+            i ++;
+        }
+    }
+    public void setIO(int ins, int outs) {
+        if (components == null) {
+            return;
+        }
+        // assign inputs and outputs at circuit level and component level
+        for (Component component : components) {
+            if (component instanceof Constant) {
+                inputs.put(component.getName(), (Constant) component);
+                getInputs().put(component.getName(), new Wire());
+            } else if (component instanceof Output) {
+                outputs.put(component.getName(), (Output) component);
+                getOutputs().put(component.getName(), new ArrayList<>());
+            }
+        }
+    }
+    public void draw(Graphics2D g) {
+        if (collapsed) {
+            drawImage(g);
+            drawDots(g);
+        } else {
+            List<Wire> wires = new ArrayList<>();
+            List<Component> copy = new ArrayList<>(components);
+
+            // draw components
+            for (Component component : copy) {
+                component.draw(g);
+
+                wires.addAll(component.getInputWires());
+            }
+
+            // draw wires
+            for (Wire wire : wires) {
+                wire.draw(g);
+            }
         }
     }
 }

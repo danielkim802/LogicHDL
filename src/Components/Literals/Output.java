@@ -29,6 +29,7 @@ public class Output extends Component {
     public void propagate() {
         if (allInputsAssigned()) {
             value = getInputs().get("input").value();
+            setImageIndex(value == 0 ? 0 : 1);
         }
     }
     public void setDotPositions() {
@@ -36,11 +37,5 @@ public class Output extends Component {
     }
     public void setIO(int ins, int outs) {
         getInputs().put("input", new Wire());
-    }
-    public void draw(Graphics2D g) {
-        setImageIndex(value == 0 ? 0 : 1);
-        drawImage(g);
-        drawDots(g);
-        drawSelected(g);
     }
 }
