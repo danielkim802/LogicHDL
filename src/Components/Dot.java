@@ -28,6 +28,9 @@ public class Dot extends GUIElement {
     public Component getParent() {
         return parent;
     }
+    public String getKey() {
+        return key;
+    }
 
     public void connect(Dot dot) {
         if (!input && dot.input) {

@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class Constant extends Component {
     private long value = 0;
 
-    public Constant(long val) {
+    public Constant() {
         super(0, 0);
-        value = val;
+        value = 0;
     }
 
     public void set(long val) {
@@ -29,7 +29,9 @@ public class Constant extends Component {
 
     // abstract methods
     public Constant copy() {
-        return new Constant(value);
+        Constant c = new Constant();
+        c.set(value);
+        return c;
     }
     public void propagate() {
         for (Wire wire : getOutputs().get("output")) {

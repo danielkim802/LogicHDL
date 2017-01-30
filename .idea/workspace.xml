@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c48302-b0a5-4351-8bd5-f4250ec98bf6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IO/IOHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IO/SerializedCircuit.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IO/SerializedComponent.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/View$1.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/View$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/View.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/View.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Circuit.java" afterPath="$PROJECT_DIR$/src/Components/Circuit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Component.java" afterPath="$PROJECT_DIR$/src/Components/Component.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Dot.java" afterPath="$PROJECT_DIR$/src/Components/Dot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Literals/Constant.java" afterPath="$PROJECT_DIR$/src/Components/Literals/Constant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IO/IOHandler.java" afterPath="$PROJECT_DIR$/src/IO/IOHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/View.java" afterPath="$PROJECT_DIR$/src/Render/View.java" />
     </list>
     <ignored path="LogicHDL.iws" />
@@ -32,15 +34,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GUIElement.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GUIElement.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Actions/GUIElement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="134" column="5" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
+            <state relative-caret-position="255">
+              <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#588#589#0" expanded="true" />
-                <element signature="e#657#658#0" expanded="true" />
                 <element signature="method#updateDots#0;class#GUIElement#0" expanded="false" />
                 <element signature="method#setX#0;class#GUIElement#0" expanded="false" />
                 <element signature="method#setY#0;class#GUIElement#0" expanded="false" />
@@ -61,16 +61,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyCursor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Render/MyCursor.java">
+      <file leaf-file-name="Circuit.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Circuit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            <state relative-caret-position="-113">
+              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
               <folding>
-                <element signature="method#setXY#0;class#MyCursor#0" expanded="false" />
-                <element signature="method#getImage#0;class#MyCursor#0" expanded="false" />
-                <element signature="method#savePoint#0;class#MyCursor#0" expanded="false" />
-                <element signature="method#resetSave#0;class#MyCursor#0" expanded="false" />
+                <element signature="method#remove#0;class#Circuit#0" expanded="false" />
+                <element signature="method#getAllComponents#0;class#Circuit#0" expanded="false" />
+                <element signature="method#getAllDots#0;class#Circuit#0" expanded="false" />
+                <element signature="method#getAllWires#0;class#Circuit#0" expanded="false" />
+                <element signature="method#clear#0;class#Circuit#0" expanded="false" />
+                <element signature="method#propagateLocal#0;class#Circuit#0" expanded="false" />
+                <element signature="method#copy#0;class#Circuit#0" expanded="false" />
+                <element signature="method#propagate#0;class#Circuit#0" expanded="false" />
+                <element signature="method#draw#0;class#Circuit#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -79,8 +84,8 @@
       <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Render/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="213" column="22" selection-start-line="213" selection-start-column="22" selection-end-line="213" selection-end-column="22" />
+            <state relative-caret-position="277">
+              <caret line="460" column="0" selection-start-line="460" selection-start-column="0" selection-end-line="460" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#mapKeyToComponent#0;class#View#0" expanded="false" />
@@ -98,45 +103,77 @@
                 <element signature="method#drawSelectSquare#0;class#View#0" expanded="false" />
                 <element signature="method#drawSelectComponentSquares#0;class#View#0" expanded="false" />
                 <element signature="method#draw#0;class#View#0" expanded="false" />
+                <element signature="e#16106#16107#0" expanded="true" />
+                <element signature="e#16152#16153#0" expanded="true" />
+                <element signature="e#16178#16179#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrawHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Render/DrawHandler.java">
+      <file leaf-file-name="Wire.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Wire.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+            <state relative-caret-position="255">
+              <caret line="43" column="31" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResourceLibrary.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Render/ResourceLibrary.java">
+      <file leaf-file-name="Dot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Dot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="19" column="75" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Circuit.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/Circuit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+            <state relative-caret-position="308">
+              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
               <folding>
-                <element signature="method#getAllComponents#0;class#Circuit#0" expanded="false" />
-                <element signature="method#getAllDots#0;class#Circuit#0" expanded="false" />
-                <element signature="method#getAllWires#0;class#Circuit#0" expanded="false" />
-                <element signature="method#clear#0;class#Circuit#0" expanded="false" />
-                <element signature="method#propagateLocal#0;class#Circuit#0" expanded="false" />
-                <element signature="method#copy#0;class#Circuit#0" expanded="false" />
-                <element signature="method#propagate#0;class#Circuit#0" expanded="false" />
-                <element signature="method#draw#0;class#Circuit#0" expanded="false" />
+                <element signature="method#connect#0;class#Dot#0" expanded="false" />
+                <element signature="method#draw#0;class#Dot#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SerializedCircuit.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IO/SerializedCircuit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#addConnections#0;class#SerializedCircuit#0" expanded="false" />
+                <element signature="method#SerializedCircuit#0;class#SerializedCircuit#0" expanded="false" />
+                <element signature="method#make#0;class#SerializedCircuit#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SerializedComponent.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/IO/SerializedComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#SerializedComponent#0;class#SerializedComponent#0" expanded="false" />
+                <element signature="method#make#0;class#SerializedComponent#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Literals/Constant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding>
+                <element signature="method#copy#0;class#Constant#0" expanded="false" />
+                <element signature="method#propagate#0;class#Constant#0" expanded="false" />
+                <element signature="method#draw#0;class#Constant#0" expanded="false" />
+                <element signature="e#1218#1219#0" expanded="true" />
+                <element signature="e#1242#1243#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,14 +182,10 @@
       <file leaf-file-name="Component.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
+            <state relative-caret-position="110">
               <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
               <folding>
                 <element signature="method#makeDots#0;class#Component#0" expanded="false" />
-                <element signature="e#1154#1155#0" expanded="true" />
-                <element signature="e#1178#1179#0" expanded="true" />
-                <element signature="e#1208#1209#0" expanded="true" />
-                <element signature="e#1235#1236#0" expanded="true" />
                 <element signature="method#getDots#0;class#Component#0" expanded="false" />
                 <element signature="method#getWires#0;class#Component#0" expanded="false" />
                 <element signature="method#getInputWires#0;class#Component#0" expanded="false" />
@@ -176,21 +209,11 @@
       <file leaf-file-name="IOHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IO/IOHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+            <state relative-caret-position="232">
+              <caret line="29" column="63" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Fulladder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/Modules/Fulladder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -215,15 +238,19 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Components/Dot.java" />
         <option value="$PROJECT_DIR$/src/Components/Modules/Fulladder.java" />
         <option value="$PROJECT_DIR$/src/Render/Camera.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Components/Component.java" />
-        <option value="$PROJECT_DIR$/src/IO/IOHandler.java" />
-        <option value="$PROJECT_DIR$/src/Render/View.java" />
-        <option value="$PROJECT_DIR$/src/Components/Circuit.java" />
         <option value="$PROJECT_DIR$/src/Actions/GUIElement.java" />
+        <option value="$PROJECT_DIR$/src/IO/CircuitSerializer.java" />
+        <option value="$PROJECT_DIR$/src/Components/Literals/Constant.java" />
+        <option value="$PROJECT_DIR$/src/Components/Dot.java" />
+        <option value="$PROJECT_DIR$/src/IO/IOHandler.java" />
+        <option value="$PROJECT_DIR$/src/Components/Circuit.java" />
+        <option value="$PROJECT_DIR$/src/Render/View.java" />
+        <option value="$PROJECT_DIR$/src/IO/SerializedComponent.java" />
+        <option value="$PROJECT_DIR$/src/IO/SerializedCircuit.java" />
       </list>
     </option>
   </component>
@@ -264,22 +291,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope">
-        <subPane subId="Problems">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="LogicHDL">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -311,22 +322,8 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="LogicHDL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LogicHDL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Render" />
+              <option name="myItemId" value="SaveFiles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -343,13 +340,43 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Components" />
+              <option name="myItemId" value="LogicHDL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LogicHDL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IO" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Problems">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="LogicHDL">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -806,26 +833,27 @@
       <workItem from="1485650696401" duration="4299000" />
       <workItem from="1485656136626" duration="5682000" />
       <workItem from="1485727516542" duration="2900000" />
+      <workItem from="1485731898437" duration="14180000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14628000" />
+    <option name="totallyTimeSpent" value="28808000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="24" width="1400" height="833" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2617801" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25910932" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2874494" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17948718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28475034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17948718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2569956" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -866,8 +894,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/NAND.java" />
-    <entry file="file://$PROJECT_DIR$/src/XNOR.java" />
     <entry file="file://$PROJECT_DIR$/src/XOR.java" />
     <entry file="file://$PROJECT_DIR$/src/Resources/spr_gate_and_0.png" />
     <entry file="file://$PROJECT_DIR$/src/ImageHandler.java" />
@@ -1008,17 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Literals/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding>
-            <element signature="method#propagate#0;class#Constant#0" expanded="false" />
-            <element signature="method#draw#0;class#Constant#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Actions/ActionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -1044,45 +1059,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Wire.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#725#726#0" expanded="false" />
-            <element signature="e#755#756#0" expanded="false" />
-            <element signature="e#788#789#0" expanded="false" />
-            <element signature="e#821#822#0" expanded="false" />
-            <element signature="e#854#855#0" expanded="false" />
-            <element signature="e#881#882#0" expanded="false" />
-            <element signature="e#917#918#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-            <element signature="e#979#980#0" expanded="false" />
-            <element signature="e#1006#1007#0" expanded="false" />
-            <element signature="e#1032#1033#0" expanded="false" />
-            <element signature="e#1060#1061#0" expanded="false" />
-            <element signature="e#1094#1095#0" expanded="false" />
-            <element signature="e#1125#1126#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-24065">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/Dot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="method#draw#0;class#Dot#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1106,7 +1087,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,7 +1105,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Modules/Fulladder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
+        <state relative-caret-position="615">
           <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
           <folding />
         </state>
@@ -1141,16 +1121,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Render/ResourceLibrary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="150">
           <caret line="19" column="75" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/MyCursor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="method#setXY#0;class#MyCursor#0" expanded="false" />
+            <element signature="method#getImage#0;class#MyCursor#0" expanded="false" />
+            <element signature="method#savePoint#0;class#MyCursor#0" expanded="false" />
+            <element signature="method#resetSave#0;class#MyCursor#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Actions/GUIElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#updateDots#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setX#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setY#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setXY#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setX2#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setY2#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setXY2#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setXYOffset#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#resetXY#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#setDirection#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#rotate#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#getImage#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#getDirectionAsInt#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#getIntAsDirection#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#drawSelected#0;class#GUIElement#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Literals/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="method#copy#0;class#Constant#0" expanded="false" />
+            <element signature="method#propagate#0;class#Constant#0" expanded="false" />
+            <element signature="method#draw#0;class#Constant#0" expanded="false" />
+            <element signature="e#1218#1219#0" expanded="true" />
+            <element signature="e#1242#1243#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Dot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+          <folding>
+            <element signature="method#connect#0;class#Dot#0" expanded="false" />
+            <element signature="method#draw#0;class#Dot#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Wire.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="43" column="31" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Render/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="213" column="22" selection-start-line="213" selection-start-column="22" selection-end-line="213" selection-end-column="22" />
+        <state relative-caret-position="277">
+          <caret line="460" column="0" selection-start-line="460" selection-start-column="0" selection-end-line="460" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#mapKeyToComponent#0;class#View#0" expanded="false" />
@@ -1168,38 +1219,19 @@
             <element signature="method#drawSelectSquare#0;class#View#0" expanded="false" />
             <element signature="method#drawSelectComponentSquares#0;class#View#0" expanded="false" />
             <element signature="method#draw#0;class#View#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IO/IOHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Render/MyCursor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-          <folding>
-            <element signature="method#setXY#0;class#MyCursor#0" expanded="false" />
-            <element signature="method#getImage#0;class#MyCursor#0" expanded="false" />
-            <element signature="method#savePoint#0;class#MyCursor#0" expanded="false" />
-            <element signature="method#resetSave#0;class#MyCursor#0" expanded="false" />
+            <element signature="e#16106#16107#0" expanded="true" />
+            <element signature="e#16152#16153#0" expanded="true" />
+            <element signature="e#16178#16179#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Circuit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+        <state relative-caret-position="-113">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
           <folding>
+            <element signature="method#remove#0;class#Circuit#0" expanded="false" />
             <element signature="method#getAllComponents#0;class#Circuit#0" expanded="false" />
             <element signature="method#getAllDots#0;class#Circuit#0" expanded="false" />
             <element signature="method#getAllWires#0;class#Circuit#0" expanded="false" />
@@ -1212,16 +1244,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/IO/IOHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="29" column="63" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
+        <state relative-caret-position="110">
           <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
           <folding>
             <element signature="method#makeDots#0;class#Component#0" expanded="false" />
-            <element signature="e#1154#1155#0" expanded="true" />
-            <element signature="e#1178#1179#0" expanded="true" />
-            <element signature="e#1208#1209#0" expanded="true" />
-            <element signature="e#1235#1236#0" expanded="true" />
             <element signature="method#getDots#0;class#Component#0" expanded="false" />
             <element signature="method#getWires#0;class#Component#0" expanded="false" />
             <element signature="method#getInputWires#0;class#Component#0" expanded="false" />
@@ -1241,29 +1279,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Actions/GUIElement.java">
+    <entry file="file://$PROJECT_DIR$/src/IO/SerializedCircuit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="134" column="5" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
+        <state relative-caret-position="270">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#588#589#0" expanded="true" />
-            <element signature="e#657#658#0" expanded="true" />
-            <element signature="method#updateDots#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#setX#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#setY#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#setXY#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#setX2#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#setY2#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#setXY2#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#setXYOffset#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#resetXY#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#setDirection#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#rotate#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#getImage#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#getDirectionAsInt#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#getIntAsDirection#0;class#GUIElement#0" expanded="false" />
-            <element signature="method#drawSelected#0;class#GUIElement#0" expanded="false" />
+            <element signature="method#addConnections#0;class#SerializedCircuit#0" expanded="false" />
+            <element signature="method#SerializedCircuit#0;class#SerializedCircuit#0" expanded="false" />
+            <element signature="method#make#0;class#SerializedCircuit#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IO/SerializedComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#SerializedComponent#0;class#SerializedComponent#0" expanded="false" />
+            <element signature="method#make#0;class#SerializedComponent#0" expanded="false" />
           </folding>
         </state>
       </provider>

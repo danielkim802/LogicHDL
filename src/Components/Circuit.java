@@ -1,10 +1,10 @@
 package Components;
 
+import Actions.Constants;
 import Components.Literals.Constant;
 import Components.Literals.Output;
 
 import java.awt.*;
-import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 
@@ -25,11 +25,19 @@ public class Circuit extends Component {
 
     // IO methods
     public void addInput(String name, long value) {
-        inputs.put(name, new Constant(value));
+        inputs.put(name, new Constant());
         getInputs().put(name, new Wire());
     }
     public void addOutput(String name) {
         outputs.put(name, new Output());
+        getOutputs().put(name, new ArrayList<>());
+    }
+    public void setInput(String name, Constant constant) {
+        inputs.put(name, constant);
+        getInputs().put(name, new Wire());
+    }
+    public void setOutput(String name, Output output) {
+        outputs.put(name, output);
         getOutputs().put(name, new ArrayList<>());
     }
     public void removeInput(String in) {
@@ -78,6 +86,9 @@ public class Circuit extends Component {
     }
     public void setComponents(ArrayList<Component> comps) {
         components = comps;
+    }
+    public List<Component> getComponents() {
+        return components;
     }
     public List<Component> getAllComponents() {
         List<Component> all = new ArrayList<>();

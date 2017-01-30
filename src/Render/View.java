@@ -171,7 +171,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
             case XOR:
                 return new Xor();
             case CONSTANT:
-                return new Constant(0);
+                return new Constant();
             case OUTPUT:
                 return new Output();
             case FULLADDER:
@@ -213,10 +213,15 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 break;
             case VK_S:
                 if (e.isShiftDown()) {
-                    circuit.assignName("c");
+                    circuit.assignName("fulladder");
                     IOHandler.saveCircuit(circuit);
-                } else {
-                    setMouseMode(SELECT);
+                    break;
+                }
+                setMouseMode(SELECT);
+                break;
+            case VK_L:
+                if (e.isShiftDown()) {
+                    circuit = IOHandler.loadCircuit("fulladder");
                 }
                 break;
             case VK_D:
