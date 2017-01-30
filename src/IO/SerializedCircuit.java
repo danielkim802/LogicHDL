@@ -18,8 +18,6 @@ import java.util.*;
 public class SerializedCircuit implements Serializable, SerializableComponent {
 
     private List<Connection> connections;
-    private Map<Integer, String> inputs;
-    private Map<Integer, String> outputs;
     private Map<Integer, SerializedComponent> unconvertedComponents;
     private Map<Integer, Component> convertedComponents;
 
@@ -51,8 +49,6 @@ public class SerializedCircuit implements Serializable, SerializableComponent {
 
     public SerializedCircuit(Circuit circuit) {
         connections = new ArrayList<>();
-        inputs = new HashMap<>();
-        outputs = new HashMap<>();
         unconvertedComponents = new HashMap<>();
         convertedComponents = new HashMap<>();
 
@@ -64,20 +60,6 @@ public class SerializedCircuit implements Serializable, SerializableComponent {
         Circuit circuit = (Circuit) comp;
 
         // convert all components to serialized components
-        for (String key : circuit.getCircuitInputs().keySet()) {
-            Component component = circuit.getCircuitInputs().get(key);
-            SerializedComponent serialized = new SerializedComponent(component);
-            inputs.put(component.hashCode(), key);
-            unconvertedComponents.put(component.hashCode(), serialized);
-            addConnections(component);
-        }
-        for (String key : circuit.getCircuitOutputs().keySet()) {
-            Component component = circuit.getCircuitOutputs().get(key);
-            SerializedComponent serialized = new SerializedComponent(component);
-            outputs.put(component.hashCode(), key);
-            unconvertedComponents.put(component.hashCode(), serialized);
-            addConnections(component);
-        }
         for (Component component : circuit.getComponents()) {
             SerializedComponent serialized = new SerializedComponent(component);
             unconvertedComponents.put(component.hashCode(), serialized);
@@ -102,17 +84,7 @@ public class SerializedCircuit implements Serializable, SerializableComponent {
         }
 
         // add components to circuit
-        for (int key : convertedComponents.keySet()) {
-            Component component = convertedComponents.get(key);
-
-            if (component instanceof Constant) {
-                circuit.setInput(inputs.get(key), (Constant) component);
-            } else if (component instanceof Output) {
-                circuit.setOutput(outputs.get(key), (Output) component);
-            } else {
-                circuit.addComponent(component);
-            }
-        }
+        circuit.setComponents(new ArrayList<>(convertedComponents.values()));
 
         return circuit;
     }

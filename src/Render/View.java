@@ -49,11 +49,17 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     private List<GUIElement> selectedElements = new ArrayList<>();
 
     private void initCircuit() {
-        circuit.addInput("A", 1);
-        circuit.addInput("B", 1);
-        circuit.addInput("C", 1);
-        circuit.addOutput("S");
-        circuit.addOutput("Cout");
+        Constant A = new Constant();
+        Constant B = new Constant();
+        Constant C = new Constant();
+        A.assignName("A");
+        B.assignName("B");
+        C.assignName("C");
+
+        Output S = new Output();
+        Output Cout = new Output();
+        S.assignName("S");
+        Cout.assignName("Cout");
 
         Xor xor1 = new Xor();
         Xor xor2 = new Xor();
@@ -61,33 +67,33 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         And and2 = new And();
         Or or1 = new Or();
 
-        circuit.getInput("A").connect("0", xor1);
-        circuit.getInput("A").connect("0", and2);
-        circuit.getInput("B").connect("1", xor1);
-        circuit.getInput("B").connect("1", and2);
-        circuit.getInput("C").connect("1", xor2);
-        circuit.getInput("C").connect("1", and1);
+        A.connect("0", xor1);
+        A.connect("1", and2);
+        B.connect("1", xor1);
+        B.connect("0", and2);
+        C.connect("1", xor2);
+        C.connect("0", and1);
         xor1.connect("0", xor2);
-        xor1.connect("0", and1);
+        xor1.connect("1", and1);
         and1.connect("0", or1);
         and2.connect("1", or1);
-        xor2.connect("input", circuit.getOutput("S"));
-        or1.connect("input", circuit.getOutput("Cout"));
+        xor2.connect("input", S);
+        or1.connect("input", Cout);
 
-        ArrayList<Component> comps = new ArrayList<>();
-        comps.addAll(Arrays.asList(xor1, xor2, and1, and2, or1));
-        circuit.setComponents(comps);
-
-        circuit.getInput("A").setXY(50, 50);
-        circuit.getInput("B").setXY(50, 100);
-        circuit.getInput("C").setXY(50, 150);
+        A.setXY(50, 50);
+        B.setXY(50, 100);
+        C.setXY(50, 150);
         xor1.setXY(100, 70);
         xor2.setXY(150, 70);
         and1.setXY(200, 130);
         and2.setXY(200, 180);
         or1.setXY(250, 155);
-        circuit.getOutput("S").setXY(300, 70);
-        circuit.getOutput("Cout").setXY(300, 155);
+        S.setXY(300, 70);
+        Cout.setXY(300, 155);
+
+        ArrayList<Component> comps = new ArrayList<>();
+        comps.addAll(Arrays.asList(xor1, xor2, and1, and2, or1, A, B, C, S, Cout));
+        circuit.setComponents(comps);
     }
 
     public View() {
@@ -221,7 +227,9 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 break;
             case VK_L:
                 if (e.isShiftDown()) {
-                    circuit = IOHandler.loadCircuit("fulladder");
+                    Circuit adding = IOHandler.loadCircuit("fulladder");
+                    adding.collapse();
+                    circuit.addComponent(adding);
                 }
                 break;
             case VK_D:
@@ -414,7 +422,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         }
     }
     public void mouseReleased(MouseEvent e) {
-        for (GUIElement element : circuit.getAllComponents()) {
+        for (GUIElement element : circuit.getComponents()) {
             element.resetXY();
         }
 

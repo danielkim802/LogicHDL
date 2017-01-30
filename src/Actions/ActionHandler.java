@@ -28,7 +28,7 @@ public class ActionHandler {
         GUIElement selected = null;
 
         // check inputs
-        for (GUIElement element : circuit.getAllComponents()) {
+        for (GUIElement element : circuit.getComponents()) {
             selected = inBox(mousex, mousey, element.getWidth(), element.getHeight(), element.getX(), element.getY()) ? element : selected;
         }
         for (GUIElement element : circuit.getAllDots()) {
@@ -42,7 +42,7 @@ public class ActionHandler {
         List<GUIElement> selected = new ArrayList<>();
 
         // check inputs
-        for (GUIElement s : circuit.getAllComponents()) {
+        for (GUIElement s : circuit.getComponents()) {
             if (inBox(s.getX(), s.getY(), Math.abs(x1 - x2), Math.abs(y1 - y2), (x1 + x2) / 2, (y1 + y2) / 2))
                 selected.add(s);
         }

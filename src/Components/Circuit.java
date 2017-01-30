@@ -1,6 +1,5 @@
 package Components;
 
-import Actions.Constants;
 import Components.Literals.Constant;
 import Components.Literals.Output;
 
@@ -15,46 +14,17 @@ public class Circuit extends Component {
     private Map<String, Constant> inputs;
     private Map<String, Output> outputs;
     private List<Component> components;
+    private boolean collapsed;
 
     public Circuit() {
         super(0, 0);
         inputs = new HashMap<>();
         outputs = new HashMap<>();
         components = new ArrayList<>();
+        collapsed = false;
     }
 
     // IO methods
-    public void addInput(String name, long value) {
-        inputs.put(name, new Constant());
-        getInputs().put(name, new Wire());
-    }
-    public void addOutput(String name) {
-        outputs.put(name, new Output());
-        getOutputs().put(name, new ArrayList<>());
-    }
-    public void setInput(String name, Constant constant) {
-        inputs.put(name, constant);
-        getInputs().put(name, new Wire());
-    }
-    public void setOutput(String name, Output output) {
-        outputs.put(name, output);
-        getOutputs().put(name, new ArrayList<>());
-    }
-    public void removeInput(String in) {
-        inputs.get(in).delete();
-        inputs.remove(in);
-
-    }
-    public void removeOutput(String out) {
-        outputs.get(out).delete();
-        outputs.remove(out);
-    }
-    public Constant getInput(String name) {
-        return inputs.get(name);
-    }
-    public Output getOutput(String name) {
-        return outputs.get(name);
-    }
     public Map<String, Constant> getCircuitInputs() {
         return inputs;
     }
@@ -90,23 +60,16 @@ public class Circuit extends Component {
     public List<Component> getComponents() {
         return components;
     }
-    public List<Component> getAllComponents() {
-        List<Component> all = new ArrayList<>();
-        all.addAll(inputs.values());
-        all.addAll(outputs.values());
-        all.addAll(components);
-        return all;
-    }
     public List<Dot> getAllDots() {
         List<Dot> all = new ArrayList<>();
-        for (Component component : getAllComponents()) {
+        for (Component component : getComponents()) {
             all.addAll(component.getDots());
         }
         return all;
     }
     public List<Wire> getAllWires() {
         List<Wire> all = new ArrayList<>();
-        for (Component component : getAllComponents()) {
+        for (Component component : getComponents()) {
             all.addAll(component.getWires());
         }
         return all;
@@ -119,9 +82,31 @@ public class Circuit extends Component {
         components.clear();
     }
     public void propagateLocal() {
-        for (Component component : getAllComponents()) {
+        for (Component component : getComponents()) {
             component.propagate();
         }
+    }
+    // collapses circuit down to a single component
+    public void collapse() {
+
+        // clear original component inputs and outputs
+        getInputs().clear();
+        getOutputs().clear();
+
+        // assign inputs and outputs at circuit level and component level
+        for (Component component : components) {
+            if (component instanceof Constant) {
+                inputs.put(component.getName(), (Constant) component);
+                getInputs().put(component.getName(), new Wire());
+            } else if (component instanceof Output) {
+                outputs.put(component.getName(), (Output) component);
+                getOutputs().put(component.getName(), new ArrayList<>());
+            }
+        }
+        collapsed = true;
+    }
+    public void expand() {
+        collapsed = false;
     }
 
     // abstract methods
@@ -193,7 +178,7 @@ public class Circuit extends Component {
         List<Wire> wires = new ArrayList<>();
 
         // draw components
-        for (Component component : getAllComponents()) {
+        for (Component component : components) {
             component.draw(g);
 
             wires.addAll(component.getInputWires());

@@ -14,6 +14,7 @@ public class SerializedComponent implements Serializable, SerializableComponent 
     private int x, y;
     private Constants.Direction orientation;
     private Class clazz;
+    private String name;
 
     public int getCode() {
         return hashcode;
@@ -29,6 +30,7 @@ public class SerializedComponent implements Serializable, SerializableComponent 
         orientation = component.getDirection();
         hashcode = component.hashCode();
         clazz = component.getClass();
+        name = component.getName();
     }
 
     public Component make() {
@@ -36,6 +38,7 @@ public class SerializedComponent implements Serializable, SerializableComponent 
             Component component = (Component) clazz.asSubclass(clazz).getConstructor().newInstance();
             component.setXY(x, y);
             component.setDirection(orientation);
+            component.assignName(name);
             return component;
         } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
