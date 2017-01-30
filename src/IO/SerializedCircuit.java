@@ -15,7 +15,13 @@ import java.util.*;
 
 // takes all info of a circuit and converts into a serializable object that
 // can be used to reconstruct the circuit again
-public class SerializedCircuit implements Serializable {
+public class SerializedCircuit implements Serializable, SerializableComponent {
+
+    private List<Connection> connections;
+    private Map<Integer, String> inputs;
+    private Map<Integer, String> outputs;
+    private Map<Integer, SerializedComponent> unconvertedComponents;
+    private Map<Integer, Component> convertedComponents;
 
     // class connection representing a wire
     class Connection implements Serializable {
@@ -32,12 +38,6 @@ public class SerializedCircuit implements Serializable {
         }
     }
 
-    private List<Connection> connections;
-    private Map<Integer, String> inputs;
-    private Map<Integer, String> outputs;
-    private Map<Integer, SerializedComponent> unconvertedComponents;
-    private Map<Integer, Component> convertedComponents;
-
     // adds connections from output of one component to inputs of another
     private void addConnections(Component component) {
         for (String key : component.getOutputs().keySet()) {
@@ -47,15 +47,19 @@ public class SerializedCircuit implements Serializable {
         }
     }
 
-    // stores relevant information of the circuit
     public SerializedCircuit(Circuit circuit) {
-
-        // initialize variables
         connections = new ArrayList<>();
         inputs = new HashMap<>();
         outputs = new HashMap<>();
         unconvertedComponents = new HashMap<>();
         convertedComponents = new HashMap<>();
+
+        serialize(circuit);
+    }
+
+    // stores relevant information of the circuit
+    public void serialize(Component comp) {
+        Circuit circuit = (Circuit) comp;
 
         // convert all components to serialized components
         for (String key : circuit.getCircuitInputs().keySet()) {

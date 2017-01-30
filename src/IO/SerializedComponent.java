@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Created by danielkim802 on 1/29/17.
  */
-public class SerializedComponent implements Serializable {
+public class SerializedComponent implements Serializable, SerializableComponent {
     private int hashcode;
     private int x, y;
     private Constants.Direction orientation;
@@ -20,6 +20,10 @@ public class SerializedComponent implements Serializable {
     }
 
     public SerializedComponent(Component component) {
+        serialize(component);
+    }
+
+    public void serialize(Component component) {
         x = component.getX();
         y = component.getY();
         orientation = component.getDirection();
