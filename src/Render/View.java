@@ -24,7 +24,6 @@ import static Actions.Constants.DraggingMode.*;
 import static Actions.Constants.MouseMode.*;
 
 import static java.awt.event.KeyEvent.*;
-import static java.lang.Math.max;
 
 /**
  * Created by danielkim802 on 1/16/17.
@@ -42,7 +41,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     private boolean running = true;
 
     // loop settings
-    private int FPS = 60;
+    private int FPS = 50;
 
     // temporary storage
     private List<GUIElement> selectedComponents = new ArrayList<>();
@@ -222,22 +221,25 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
                 if (e.isShiftDown()) {
                     if (selectedComponents.size() == 1 && selectedComponents.get(0) instanceof Circuit) {
                         circuit.getComponents().addAll(((Circuit) selectedComponents.get(0)).getComponents());
-                        circuit.remove((Component) selectedComponents.get(0));
+                        circuit.getComponents().remove(selectedComponents.get(0));
                         unselectElement(selectedComponents.get(0));
                     }
                     if (selectedComponents.size() > 0) {
                         Circuit circ = new Circuit();
+                        Point avgxy = ActionHandler.getAverageCoordinates(selectedComponents);
+                        circ.setXY((int) avgxy.getX(), (int) avgxy.getY());
                         for (GUIElement element : selectedComponents) {
                             circ.addComponent((Component) element);
-                            circuit.remove((Component) element);
+                            circuit.getComponents().remove(element);
                         }
-                        for (GUIElement element : new ArrayList<GUIElement>(selectedComponents)) {
+                        for (GUIElement element : new ArrayList<>(selectedComponents)) {
                             unselectElement(element);
                         }
                         circ.collapse();
                         circuit.addComponent(circ);
                     }
                 }
+                break;
             case VK_S:
                 if (e.isShiftDown()) {
                     circuit.assignName("fulladder");

@@ -3,6 +3,7 @@ package Actions;
 import Components.Circuit;
 import Render.Camera;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,5 +49,17 @@ public class ActionHandler {
         }
 
         return selected;
+    }
+
+    public static Point getAverageCoordinates(List<GUIElement> elements) {
+        int avgx = 0;
+        int avgy = 0;
+
+        for (GUIElement element : elements) {
+            avgx += element.getX();
+            avgy += element.getY();
+        }
+
+        return new Point(avgx / elements.size(), avgy / elements.size());
     }
 }
