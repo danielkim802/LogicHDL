@@ -39,9 +39,10 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     private Constants.MouseMode mouseMode = SELECT;
     private Constants.DraggingMode draggingMode = DRAGGING_NONE;
     private boolean running = true;
+    private Color background = new Color(90, 90, 90);
 
     // loop settings
-    private int FPS = 50;
+    private int FPS = 60;
 
     // temporary storage
     private List<GUIElement> selectedComponents = new ArrayList<>();
@@ -126,8 +127,13 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
         while (running) {
             if (System.currentTimeMillis() - start > sleepTime) {
                 start = System.currentTimeMillis();
+
                 update();
+                long updated = System.currentTimeMillis() - start;
+                //System.out.println(updated);
+
                 draw();
+                //System.out.println(System.currentTimeMillis() - updated - start);
             }
         }
     }
@@ -251,7 +257,6 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
             case VK_L:
                 if (e.isShiftDown()) {
                     Circuit adding = IOHandler.loadCircuit("fulladder");
-                    adding.collapse();
                     circuit.addComponent(adding);
                 }
                 break;
@@ -478,6 +483,7 @@ public class View extends JFrame implements MouseListener, KeyListener, MouseMot
     }
     public void draw() {
         Graphics2D g = (Graphics2D) getBufferStrategy().getDrawGraphics();
+        g.setBackground(background);
 
         camera.clear(g);
         camera.draw(g);

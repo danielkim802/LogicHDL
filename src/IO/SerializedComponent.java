@@ -20,10 +20,6 @@ public class SerializedComponent implements Serializable, SerializableComponent 
         return hashcode;
     }
 
-    public SerializedComponent(Component component) {
-        serialize(component);
-    }
-
     public void serialize(Component component) {
         x = component.getX();
         y = component.getY();

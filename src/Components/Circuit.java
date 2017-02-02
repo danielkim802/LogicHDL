@@ -82,7 +82,7 @@ public class Circuit extends Component {
         components.clear();
     }
     public void propagateLocal() {
-        for (Component component : getComponents()) {
+        for (Component component : new ArrayList<>(getComponents())) {
             component.propagate();
         }
     }
@@ -160,17 +160,37 @@ public class Circuit extends Component {
 
         return copy;
     }
+    // propagates all inputs to outputs within a single function, important
+    // for update call in view
+    private void propagateToOutput(Component output) {
+
+        // for all inputs get values or propagate previous if not assigned
+        for (Wire wire : output.getInputs().values()) {
+            propagateToOutput(wire.getFrom());
+        }
+
+        output.propagate();
+    }
     public void propagate() {
         if (allInputsAssigned()) {
+
+            // set circuit-level inputs to values of component-level inputs
             for (String name : inputs.keySet()) {
                 inputs.get(name).set(getInputs().get(name).value());
             }
+
+            // propagate inputs to outputs and assign values to component output wires
             for (String name : outputs.keySet()) {
-                for (Wire wire : getOutputs().get(name)) {
-                    wire.set(outputs.get(name).value());
+                if (getOutputs().get(name).size() > 0) {
+                    // propagate input to this output
+                    propagateToOutput(outputs.get(name));
+
+                    // propagate value of output to wire
+                    for (Wire wire : getOutputs().get(name)) {
+                        wire.set(outputs.get(name).value());
+                    }
                 }
             }
-            propagateLocal();
         }
     }
     public void setDotPositions() {

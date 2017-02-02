@@ -91,6 +91,7 @@ public abstract class Component extends GUIElement {
 
     // connects two components given an output key and input key
     public void connect(String output, String input, Component other) {
+//        System.out.println("" + this + " " + output + " --> " + other + " " + input);
         if (!other.getInputs().get(input).isAssigned()) {
             Wire wire = new Wire(this, outputDots.get(output), other, other.inputDots.get(input));
             other.getInputs().put(input, wire);

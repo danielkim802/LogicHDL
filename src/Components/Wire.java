@@ -45,7 +45,9 @@ public class Wire extends GUIElement {
         return connect;
     }
     public void set(long val) {
-        value = val;
+        if (assigned) {
+            value = val;
+        }
     }
     public long value() {
         return value;

@@ -15,7 +15,7 @@ import java.util.*;
 
 // takes all info of a circuit and converts into a serializable object that
 // can be used to reconstruct the circuit again
-public class SerializedCircuit implements Serializable, SerializableComponent {
+public class SerializedCircuit extends SerializedComponent implements Serializable, SerializableComponent {
 
     private List<Connection> connections;
     private Map<Integer, SerializedComponent> unconvertedComponents;
@@ -47,29 +47,26 @@ public class SerializedCircuit implements Serializable, SerializableComponent {
         }
     }
 
-    public SerializedCircuit(Circuit circuit) {
+    public SerializedCircuit() {
         connections = new ArrayList<>();
         unconvertedComponents = new HashMap<>();
         convertedComponents = new HashMap<>();
-
-        serialize(circuit);
     }
 
     // stores relevant information of the circuit
     public void serialize(Component comp) {
-        Circuit circuit = (Circuit) comp;
+        super.serialize(comp);
 
         // convert all components to serialized components
-        for (Component component : circuit.getComponents()) {
-            SerializedComponent serialized = new SerializedComponent(component);
-            unconvertedComponents.put(component.hashCode(), serialized);
+        for (Component component : ((Circuit) comp).getComponents()) {
+            unconvertedComponents.put(component.hashCode(), IOHandler.serializeComponent(component));
             addConnections(component);
         }
     }
 
     // recreates circuit based on stored information
     public Circuit make() {
-        Circuit circuit = new Circuit();
+        Circuit circuit = (Circuit) super.make();
 
         // convert all unconverted components
         for (int key : unconvertedComponents.keySet()) {
@@ -85,6 +82,9 @@ public class SerializedCircuit implements Serializable, SerializableComponent {
 
         // add components to circuit
         circuit.setComponents(new ArrayList<>(convertedComponents.values()));
+
+        // collapse to set component level outputs and inputs
+        circuit.collapse();
 
         return circuit;
     }
