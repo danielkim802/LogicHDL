@@ -2,46 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c48302-b0a5-4351-8bd5-f4250ec98bf6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Circuit.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Circuit.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Component.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Component.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Components/Wire.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Components/Wire.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/IO/IOHandler.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/IO/IOHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/IO/SerializedCircuit.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/IO/SerializedCircuit.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/IO/SerializedComponent.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/IO/SerializedComponent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/ResourceLibrary.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/ResourceLibrary.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/View$1.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/View$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Render/View.class" afterPath="$PROJECT_DIR$/out/production/LogicSim/Render/View.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/And_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/And_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Joint_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Joint_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Nand_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Nand_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Nor_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Nor_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Not_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Not_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Or_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Or_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Output_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Output_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Output_1.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Output_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Xnor_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Xnor_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/Resources/Xor_0.png" afterPath="$PROJECT_DIR$/out/production/LogicSim/Resources/Xor_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LogicSim/SaveFiles/fulladder.circuit" afterPath="$PROJECT_DIR$/out/production/LogicSim/SaveFiles/fulladder.circuit" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/And_0.png" afterPath="$PROJECT_DIR$/src/Resources/And_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Joint_0.png" afterPath="$PROJECT_DIR$/src/Resources/Joint_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Nand_0.png" afterPath="$PROJECT_DIR$/src/Resources/Nand_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Nor_0.png" afterPath="$PROJECT_DIR$/src/Resources/Nor_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Not_0.png" afterPath="$PROJECT_DIR$/src/Resources/Not_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Or_0.png" afterPath="$PROJECT_DIR$/src/Resources/Or_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Output_0.png" afterPath="$PROJECT_DIR$/src/Resources/Output_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Output_1.png" afterPath="$PROJECT_DIR$/src/Resources/Output_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Xnor_0.png" afterPath="$PROJECT_DIR$/src/Resources/Xnor_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Resources/Xor_0.png" afterPath="$PROJECT_DIR$/src/Resources/Xor_0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SaveFiles/fulladder.circuit" afterPath="$PROJECT_DIR$/src/SaveFiles/fulladder.circuit" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Circuit.java" afterPath="$PROJECT_DIR$/src/Components/Circuit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Component.java" afterPath="$PROJECT_DIR$/src/Components/Component.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Components/Wire.java" afterPath="$PROJECT_DIR$/src/Components/Wire.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IO/IOHandler.java" afterPath="$PROJECT_DIR$/src/IO/IOHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IO/SerializedCircuit.java" afterPath="$PROJECT_DIR$/src/IO/SerializedCircuit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IO/SerializedComponent.java" afterPath="$PROJECT_DIR$/src/IO/SerializedComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/ResourceLibrary.java" afterPath="$PROJECT_DIR$/src/Render/ResourceLibrary.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Render/View.java" afterPath="$PROJECT_DIR$/src/Render/View.java" />
     </list>
     <ignored path="LogicHDL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -156,40 +117,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Render/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state relative-caret-position="278">
+              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#365#366#0" expanded="false" />
-                <element signature="e#397#398#0" expanded="false" />
                 <element signature="method#setXY#0;class#Camera#0" expanded="false" />
-                <element signature="e#553#554#0" expanded="false" />
-                <element signature="e#577#578#0" expanded="false" />
                 <element signature="method#savePoint#0;class#Camera#0" expanded="false" />
                 <element signature="method#resetSave#0;class#Camera#0" expanded="false" />
-                <element signature="e#753#754#0" expanded="false" />
-                <element signature="e#781#782#0" expanded="false" />
-                <element signature="e#809#810#0" expanded="false" />
-                <element signature="e#837#838#0" expanded="false" />
-                <element signature="e#873#874#0" expanded="false" />
-                <element signature="e#902#903#0" expanded="false" />
-                <element signature="e#938#939#0" expanded="false" />
-                <element signature="e#967#968#0" expanded="false" />
-                <element signature="e#999#1000#0" expanded="false" />
-                <element signature="e#1045#1046#0" expanded="false" />
-                <element signature="e#1077#1078#0" expanded="false" />
-                <element signature="e#1123#1124#0" expanded="false" />
-                <element signature="e#1165#1166#0" expanded="false" />
-                <element signature="e#1214#1215#0" expanded="false" />
-                <element signature="e#1255#1256#0" expanded="false" />
-                <element signature="e#1304#1305#0" expanded="false" />
-                <element signature="e#1344#1345#0" expanded="false" />
-                <element signature="e#1393#1394#0" expanded="false" />
-                <element signature="e#1433#1434#0" expanded="false" />
-                <element signature="e#1482#1483#0" expanded="false" />
                 <element signature="method#move#0;class#Camera#0" expanded="false" />
                 <element signature="method#scale#0;class#Camera#0" expanded="false" />
                 <element signature="method#zoom#0;class#Camera#0" expanded="false" />
@@ -269,11 +205,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Component.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Component.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+            <state relative-caret-position="12">
+              <caret line="124" column="5" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
               <folding>
                 <element signature="method#getDots#0;class#Component#0" expanded="false" />
                 <element signature="method#getWires#0;class#Component#0" expanded="false" />
@@ -1015,16 +951,16 @@
       <workItem from="1485727516542" duration="2900000" />
       <workItem from="1485731898437" duration="20836000" />
       <workItem from="1485797733311" duration="18540000" />
-      <workItem from="1485982082019" duration="6555000" />
+      <workItem from="1485982082019" duration="7515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60559000" />
+    <option name="totallyTimeSpent" value="61519000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="24" y="40" width="1400" height="833" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1034,12 +970,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25506073" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42375168" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25506073" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13360325" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2569956" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14304993" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19703104" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1311,47 +1247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Render/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#365#366#0" expanded="false" />
-            <element signature="e#397#398#0" expanded="false" />
-            <element signature="method#setXY#0;class#Camera#0" expanded="false" />
-            <element signature="e#553#554#0" expanded="false" />
-            <element signature="e#577#578#0" expanded="false" />
-            <element signature="method#savePoint#0;class#Camera#0" expanded="false" />
-            <element signature="method#resetSave#0;class#Camera#0" expanded="false" />
-            <element signature="e#753#754#0" expanded="false" />
-            <element signature="e#781#782#0" expanded="false" />
-            <element signature="e#809#810#0" expanded="false" />
-            <element signature="e#837#838#0" expanded="false" />
-            <element signature="e#873#874#0" expanded="false" />
-            <element signature="e#902#903#0" expanded="false" />
-            <element signature="e#938#939#0" expanded="false" />
-            <element signature="e#967#968#0" expanded="false" />
-            <element signature="e#999#1000#0" expanded="false" />
-            <element signature="e#1045#1046#0" expanded="false" />
-            <element signature="e#1077#1078#0" expanded="false" />
-            <element signature="e#1123#1124#0" expanded="false" />
-            <element signature="e#1165#1166#0" expanded="false" />
-            <element signature="e#1214#1215#0" expanded="false" />
-            <element signature="e#1255#1256#0" expanded="false" />
-            <element signature="e#1304#1305#0" expanded="false" />
-            <element signature="e#1344#1345#0" expanded="false" />
-            <element signature="e#1393#1394#0" expanded="false" />
-            <element signature="e#1433#1434#0" expanded="false" />
-            <element signature="e#1482#1483#0" expanded="false" />
-            <element signature="method#move#0;class#Camera#0" expanded="false" />
-            <element signature="method#scale#0;class#Camera#0" expanded="false" />
-            <element signature="method#zoom#0;class#Camera#0" expanded="false" />
-            <element signature="method#translate#0;class#Camera#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Actions/GUIElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1516,8 +1411,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Component.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+        <state relative-caret-position="12">
+          <caret line="124" column="5" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
           <folding>
             <element signature="method#getDots#0;class#Component#0" expanded="false" />
             <element signature="method#getWires#0;class#Component#0" expanded="false" />
@@ -1533,6 +1428,22 @@
             <element signature="method#rotateDots#0;class#Component#0" expanded="false" />
             <element signature="method#updateDots#0;class#Component#0" expanded="false" />
             <element signature="method#draw#0;class#Component#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Render/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+          <folding>
+            <element signature="method#setXY#0;class#Camera#0" expanded="false" />
+            <element signature="method#savePoint#0;class#Camera#0" expanded="false" />
+            <element signature="method#resetSave#0;class#Camera#0" expanded="false" />
+            <element signature="method#move#0;class#Camera#0" expanded="false" />
+            <element signature="method#scale#0;class#Camera#0" expanded="false" />
+            <element signature="method#zoom#0;class#Camera#0" expanded="false" />
+            <element signature="method#translate#0;class#Camera#0" expanded="false" />
           </folding>
         </state>
       </provider>
