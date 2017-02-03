@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b7c48302-b0a5-4351-8bd5-f4250ec98bf6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="LogicHDL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,64 +26,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GUIElement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Actions/GUIElement.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-              <folding>
-                <element signature="e#588#589#0" expanded="false" />
-                <element signature="e#657#658#0" expanded="false" />
-                <element signature="method#updateDots#0;class#GUIElement#0" expanded="false" />
-                <element signature="e#862#863#0" expanded="false" />
-                <element signature="e#893#894#0" expanded="false" />
-                <element signature="e#927#928#0" expanded="false" />
-                <element signature="e#958#959#0" expanded="false" />
-                <element signature="method#setX#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#setY#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#setXY#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#setX2#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#setY2#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#setXY2#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#setXYOffset#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#resetXY#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#setDirection#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#rotate#0;class#GUIElement#0" expanded="false" />
-                <element signature="e#2175#2176#0" expanded="false" />
-                <element signature="e#2209#2210#0" expanded="false" />
-                <element signature="e#2233#2234#0" expanded="false" />
-                <element signature="e#2267#2268#0" expanded="false" />
-                <element signature="e#2342#2343#0" expanded="false" />
-                <element signature="e#2367#2368#0" expanded="false" />
-                <element signature="e#2397#2398#0" expanded="false" />
-                <element signature="e#2427#2428#0" expanded="false" />
-                <element signature="e#2457#2458#0" expanded="false" />
-                <element signature="e#2487#2488#0" expanded="false" />
-                <element signature="e#2522#2523#0" expanded="false" />
-                <element signature="e#2554#2555#0" expanded="false" />
-                <element signature="e#2591#2592#0" expanded="false" />
-                <element signature="e#2615#2616#0" expanded="false" />
-                <element signature="e#2652#2653#0" expanded="false" />
-                <element signature="e#2676#2677#0" expanded="false" />
-                <element signature="e#2704#2705#0" expanded="false" />
-                <element signature="e#2748#2749#0" expanded="false" />
-                <element signature="e#2777#2778#0" expanded="false" />
-                <element signature="e#2822#2823#0" expanded="false" />
-                <element signature="e#2870#2871#0" expanded="false" />
-                <element signature="e#2904#2905#0" expanded="false" />
-                <element signature="e#3094#3095#0" expanded="false" />
-                <element signature="e#3128#3129#0" expanded="false" />
-                <element signature="method#getImage#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#getDirectionAsInt#0;class#GUIElement#0" expanded="false" />
-                <element signature="method#getIntAsDirection#0;class#GUIElement#0" expanded="false" />
-                <element signature="e#4079#4080#0" expanded="false" />
-                <element signature="e#4170#4171#0" expanded="false" />
-                <element signature="method#drawSelected#0;class#GUIElement#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ActionHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Actions/ActionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -117,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Render/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+            <state relative-caret-position="338">
+              <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
               <folding>
                 <element signature="method#setXY#0;class#Camera#0" expanded="false" />
                 <element signature="method#savePoint#0;class#Camera#0" expanded="false" />
@@ -131,6 +74,16 @@
                 <element signature="method#zoom#0;class#Camera#0" expanded="false" />
                 <element signature="method#translate#0;class#Camera#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -256,7 +209,6 @@
         <option value="$PROJECT_DIR$/src/IO/CircuitSerializer.java" />
         <option value="$PROJECT_DIR$/src/Components/Dot.java" />
         <option value="$PROJECT_DIR$/src/IO/SerializableComponent.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Components/Modules/Fulladder.java" />
         <option value="$PROJECT_DIR$/src/Components/Literals/Constant.java" />
         <option value="$PROJECT_DIR$/src/Components/Literals/Output.java" />
@@ -269,6 +221,7 @@
         <option value="$PROJECT_DIR$/src/Components/Circuit.java" />
         <option value="$PROJECT_DIR$/src/IO/SerializedCircuit.java" />
         <option value="$PROJECT_DIR$/src/Components/Component.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -279,8 +232,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="24" />
-    <option name="y" value="40" />
+    <option name="x" value="16" />
+    <option name="y" value="41" />
     <option name="width" value="1400" />
     <option name="height" value="833" />
   </component>
@@ -951,15 +904,15 @@
       <workItem from="1485727516542" duration="2900000" />
       <workItem from="1485731898437" duration="20836000" />
       <workItem from="1485797733311" duration="18540000" />
-      <workItem from="1485982082019" duration="7515000" />
+      <workItem from="1485982082019" duration="8882000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61519000" />
+    <option name="totallyTimeSpent" value="62886000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="24" y="40" width="1400" height="833" extended-state="0" />
+    <frame x="16" y="41" width="1400" height="833" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -970,8 +923,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25506073" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13360325" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25506073" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15384616" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2569956" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1176,13 +1129,6 @@
             <element signature="method#connect#0;class#Dot#0" expanded="false" />
             <element signature="method#draw#0;class#Dot#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1434,8 +1380,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Render/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        <state relative-caret-position="338">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
           <folding>
             <element signature="method#setXY#0;class#Camera#0" expanded="false" />
             <element signature="method#savePoint#0;class#Camera#0" expanded="false" />
@@ -1445,6 +1391,14 @@
             <element signature="method#zoom#0;class#Camera#0" expanded="false" />
             <element signature="method#translate#0;class#Camera#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -2,14 +2,14 @@
 A simple simulator with GUI for creating digital logic circuits.
 
 Controls:
-  - Shift+drag : move the view around
   - Shift+S : save circuit
   - Shift+L : load circuit
+  - Shift+C : collapse/expand selected components into a circuit (need input and output components)
   - scroll : zoom in and out
   - X : Clear the circuit
   - A : Place component mode
   - S : Select component mode
-  - D : Click mode (toggle inputs)
+  - D : Click mode
   
 In place mode:
   - 1 : And gate
@@ -24,6 +24,7 @@ In place mode:
   - O : Output
 
 In select mode:
+  - Shift+drag : move the view around
   - Click component to select
   - Drag to select multiple
   - Drag selected components to move them
